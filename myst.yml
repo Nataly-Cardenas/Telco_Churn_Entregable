@@ -1,20 +1,29 @@
 version: 1
+
 project:
   id: telco-churn-entregable
   github: Nataly-Cardenas/Telco_Churn_Entregable
-  title: EDA
+  title: Telco Customer Churn
   description: Análisis exploratorio, preprocesamiento y modelado avanzado de Telco Customer Churn.
+
   toc:
+    - file: intro.md
+      title: Introducción
+
     - file: EDA.ipynb
-      title: EDA
+      title: 1. Análisis Exploratorio de Datos
+
     - file: PREPROCESAMIENTO.ipynb
-      title: PREPROCESAMIENTO
+      title: 2. Preprocesamiento
+
     - file: MODELADO_AVANZADO.ipynb
-      title: MODELADO_AVANZADO
+      title: 3. Modelado Avanzado
+
   exclude:
     - README.md
     - revision_tmp/**
     - resultados_modelado/**
+
 site:
   template: book-theme
   title: Telco Customer Churn
