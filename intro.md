@@ -23,12 +23,13 @@ Laura Rivera & Natalý Cárdenas
 
 :::{grid-item-card} Metodología
 :class-card: meta-card
-EDA · Feature Engineering · Modelos de Clasificación
+EDA · Preprocesamiento · Modelado Avanzado
 :::
 
 ::::
 
 ## Introducción del proyecto
+La pérdida de clientes (*churn*) es uno de los mayores riesgos financieros para las empresas de telecomunicaciones, donde retener a un cliente existente suele ser considerablemente más económico que adquirir uno nuevo. Este proyecto aborda la predicción de abandono de clientes a partir del dataset **Telco Customer Churn**, combinando información de servicios contratados, características de la cuenta y datos demográficos para identificar patrones asociados a la cancelación. El trabajo sigue un enfoque de Machine Learning reproducible: parte de un modelo base de regresión logística y lo contrasta con alternativas más complejas bajo un mismo protocolo de validación, priorizando la detección temprana de clientes en riesgo sobre la precisión agregada del modelo.
 
 ## Contexto del problema
 El customer churn es la cancelación o abandono de un servicio. Comprender las características relacionadas con el abandono permite orientar futuras estrategias de retención. En Machine Learning se plantea como una clasificación binaria: identificar clientes que abandonan y clientes que permanecen.
@@ -92,7 +93,7 @@ El identificador no representa una característica explicativa. Los demás campo
 
 ## Estructura del Análisis
 
-::::{grid} 1 1 2 2
+::::{grid} 1 1 3 3
 :gutter: 2
 
 :::{grid-item-card} 1. Análisis Exploratorio (EDA)
@@ -100,9 +101,14 @@ El identificador no representa una característica explicativa. Los demás campo
 Evaluación de distribuciones, tratamiento de valores faltantes, detección de sesgo y análisis de correlación entre variables candidatas.
 :::
 
-:::{grid-item-card} 2. Modelado y Predicción
+:::{grid-item-card} 2. Preprocesamiento
 :class-card: step-card
-Entrenamiento de algoritmos supervisados, optimización de hiperparámetros y evaluación de métricas orientadas a la detección de riesgo (Recall / ROC-AUC).
+Imputación, codificación de variables categóricas y escalado, ajustados exclusivamente con los datos de entrenamiento para evitar fuga de información.
+:::
+
+:::{grid-item-card} 3. Modelado Avanzado
+:class-card: step-card
+Entrenamiento de algoritmos supervisados, validación cruzada anidada y evaluación de métricas orientadas a la detección de riesgo (F1 / Recall / ROC-AUC).
 :::
 
 ::::

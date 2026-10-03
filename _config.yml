@@ -8,8 +8,12 @@ logo: Imagenes/logo.png
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: force
+  execute_notebooks: "Off"
 
+sphinx:
+  config:
+    html_theme_options:
+      default_mode: "dark"
 
 favicon: Imagenes/favicon.ico
 
