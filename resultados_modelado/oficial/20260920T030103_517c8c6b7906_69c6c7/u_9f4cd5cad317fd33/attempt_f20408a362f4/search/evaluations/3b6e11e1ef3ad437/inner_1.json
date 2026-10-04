@@ -1,0 +1,151 @@
+{
+  "sha256": "2aa0a90920f3045e98528baafadb61faa08e38a73a7f4fbf3e8776473f41a874",
+  "data": {
+    "context_hash": "3478e80079932cb1cf1e1a4f3c2ad6ce16fc8af05e586b55a0c51e01798a5cbd",
+    "model_seed": 3847293211,
+    "sampler_seed": 2189085885,
+    "inner_fold": 1,
+    "status": "complete",
+    "fit_seconds": 0.09206039999844506,
+    "rss_start_bytes": 854163456,
+    "rss_peak_sampled_bytes": 854204416,
+    "rss_sampling_seconds": 0.02,
+    "warnings": [],
+    "audit": {
+      "fit_ids_hash": "d3b6b2f173f1bce530437b0329e3f2398179e935d186374070c25989445eb01d",
+      "n_fit_original": 3005,
+      "n_fit_effective": 4429,
+      "counts_before": [
+        2207,
+        798
+      ],
+      "counts_after": [
+        2207,
+        2222
+      ],
+      "p_transformed": 24,
+      "scaler_mean": [
+        32.28319467554076,
+        64.38825291181365,
+        2258.4908818635604,
+        0.162063227953411,
+        64.44265034153425
+      ],
+      "class_weights": [
+        1.0,
+        1.0
+      ],
+      "weight_mechanism": "none"
+    },
+    "predict_seconds": 0.03616200003307313,
+    "metrics": {
+      "accuracy": 0.6984021304926764,
+      "precision_positive": 0.4577572964669739,
+      "recall_positive": 0.7487437185929648,
+      "f1_positive": 0.5681601525262154,
+      "roc_auc": 0.7969808280533099,
+      "tn": 751,
+      "fp": 353,
+      "fn": 100,
+      "tp": 298,
+      "precision_undefined": false,
+      "recall_undefined": false,
+      "brier": 0.18421487296218975,
+      "ece": 0.14078494815376216,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "left": 0.0,
+          "right": 0.1,
+          "right_closed": false,
+          "n": 406,
+          "mean_probability": 0.010913353132046416,
+          "event_rate": 0.027093596059113302
+        },
+        {
+          "bin": 1,
+          "left": 0.1,
+          "right": 0.2,
+          "right_closed": false,
+          "n": 214,
+          "mean_probability": 0.1292858943140658,
+          "event_rate": 0.14485981308411214
+        },
+        {
+          "bin": 2,
+          "left": 0.2,
+          "right": 0.3,
+          "right_closed": false,
+          "n": 0,
+          "mean_probability": null,
+          "event_rate": null
+        },
+        {
+          "bin": 3,
+          "left": 0.3,
+          "right": 0.4,
+          "right_closed": false,
+          "n": 34,
+          "mean_probability": 0.36363636363636365,
+          "event_rate": 0.14705882352941177
+        },
+        {
+          "bin": 4,
+          "left": 0.4,
+          "right": 0.5,
+          "right_closed": false,
+          "n": 196,
+          "mean_probability": 0.4617525818498395,
+          "event_rate": 0.27040816326530615
+        },
+        {
+          "bin": 5,
+          "left": 0.5,
+          "right": 0.6,
+          "right_closed": false,
+          "n": 220,
+          "mean_probability": 0.5907298089116271,
+          "event_rate": 0.2409090909090909
+        },
+        {
+          "bin": 6,
+          "left": 0.6,
+          "right": 0.7,
+          "right_closed": false,
+          "n": 43,
+          "mean_probability": 0.6731529821230817,
+          "event_rate": 0.3953488372093023
+        },
+        {
+          "bin": 7,
+          "left": 0.7,
+          "right": 0.8,
+          "right_closed": false,
+          "n": 386,
+          "mean_probability": 0.7585070370044464,
+          "event_rate": 0.5906735751295337
+        },
+        {
+          "bin": 8,
+          "left": 0.8,
+          "right": 0.9,
+          "right_closed": false,
+          "n": 0,
+          "mean_probability": null,
+          "event_rate": null
+        },
+        {
+          "bin": 9,
+          "left": 0.9,
+          "right": 1.0,
+          "right_closed": true,
+          "n": 3,
+          "mean_probability": 1.0,
+          "event_rate": 0.0
+        }
+      ]
+    },
+    "eval_ids_hash": "b1a6a8ffea7f9b8c7f18f3c8eea50e6e3690f8fa58e74e72576987af7fc0d1d7",
+    "wall_seconds": 0.14416620001429692
+  }
+}

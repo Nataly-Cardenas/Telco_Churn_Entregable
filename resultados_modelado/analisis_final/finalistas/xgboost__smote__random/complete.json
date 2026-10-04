@@ -1,0 +1,70 @@
+{
+  "experiment_id": "xgboost__smote__random",
+  "params": {
+    "n_estimators": 100,
+    "max_depth": 2,
+    "learning_rate": 0.06821169686898654,
+    "subsample": 0.941978817394868
+  },
+  "search": {
+    "optimizer": "random",
+    "optimizer_seed": 788602632,
+    "best_params": {
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.06821169686898654,
+      "subsample": 0.941978817394868
+    },
+    "best_inner_f1": 0.6324963502878999,
+    "status": "complete",
+    "stop_reason": "budget_reached",
+    "n_evaluations": 24,
+    "n_proposals": 24,
+    "new_inner_fits": 72,
+    "recovered_inner_folds": 0,
+    "logical_inner_fits": 72,
+    "session_wall_seconds": 37.025725900020916,
+    "history_file": "history_8a47f8ff278f.jsonl",
+    "timing_clean": true,
+    "n_jobs": 1,
+    "jobs_reason": "requested"
+  },
+  "refit": {
+    "fit_seconds": 0.22137619997374713,
+    "rss_start_bytes": 208523264,
+    "rss_peak_sampled_bytes": 210722816,
+    "rss_sampling_seconds": 0.02,
+    "warnings": [],
+    "audit": {
+      "fit_ids_hash": "a1a650a82152e8d5d766aaa0617c580b18fdd06eb9209679907e1aa64daa9269",
+      "n_fit_original": 5634,
+      "n_fit_effective": 8278,
+      "counts_before": [
+        4139,
+        1495
+      ],
+      "counts_after": [
+        4139,
+        4139
+      ],
+      "p_transformed": 24,
+      "scaler_mean": [
+        32.48509052183174,
+        64.92996095136671,
+        2299.33468228612,
+        0.16329428470003549,
+        64.93814413016061
+      ],
+      "class_weights": [
+        1.0,
+        1.0
+      ],
+      "weight_mechanism": "none"
+    }
+  },
+  "pipeline_hash": "a329daeb96eb1490f3f83e753914bf716801c54a9bf79733a9f83026089b8581",
+  "train_ids_hash": "a1a650a82152e8d5d766aaa0617c580b18fdd06eb9209679907e1aa64daa9269",
+  "scope": "final_refit_not_outer_estimate",
+  "logical_fits": 73,
+  "utc": "2026-09-21T17:27:53.527575+00:00"
+}

@@ -1,0 +1,151 @@
+{
+  "sha256": "7d5f5bdedcaa4350b2cb774c0746712713c7c1162fbc7e442089ac0669f4524a",
+  "data": {
+    "context_hash": "9ca1ec26f1cc1d1fe8234d4f1423c5a3b0bbbfd65eeaa26ecdcd9f11b0c5fce1",
+    "model_seed": 1984407249,
+    "sampler_seed": 1592492197,
+    "inner_fold": 2,
+    "status": "complete",
+    "fit_seconds": 0.08067870000377297,
+    "rss_start_bytes": 1112743936,
+    "rss_peak_sampled_bytes": 1112764416,
+    "rss_sampling_seconds": 0.02,
+    "warnings": [],
+    "audit": {
+      "fit_ids_hash": "aeb4e18b60d8df93950987c93bb39e0ab7ee0737d713d692776fb3a51106e1bc",
+      "n_fit_original": 3005,
+      "n_fit_effective": 3005,
+      "counts_before": [
+        2208,
+        797
+      ],
+      "counts_after": [
+        2208,
+        797
+      ],
+      "p_transformed": 24,
+      "scaler_mean": [
+        32.390682196339434,
+        65.49392678868553,
+        2312.3666888519133,
+        0.16306156405990016,
+        65.48326457042333
+      ],
+      "class_weights": [
+        1.0,
+        1.0
+      ],
+      "weight_mechanism": "none"
+    },
+    "predict_seconds": 0.036642300023231655,
+    "metrics": {
+      "accuracy": 0.7383488681757656,
+      "precision_positive": 0.5089285714285714,
+      "recall_positive": 0.42857142857142855,
+      "f1_positive": 0.46530612244897956,
+      "roc_auc": 0.7098435117712687,
+      "tn": 938,
+      "fp": 165,
+      "fn": 228,
+      "tp": 171,
+      "precision_undefined": false,
+      "recall_undefined": false,
+      "brier": 0.22135270144362354,
+      "ece": 0.19231692720424876,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "left": 0.0,
+          "right": 0.1,
+          "right_closed": false,
+          "n": 891,
+          "mean_probability": 0.0022179466623911065,
+          "event_rate": 0.14702581369248036
+        },
+        {
+          "bin": 1,
+          "left": 0.1,
+          "right": 0.2,
+          "right_closed": false,
+          "n": 13,
+          "mean_probability": 0.12071005917159765,
+          "event_rate": 0.0
+        },
+        {
+          "bin": 2,
+          "left": 0.2,
+          "right": 0.3,
+          "right_closed": false,
+          "n": 130,
+          "mean_probability": 0.2525132719227713,
+          "event_rate": 0.3384615384615385
+        },
+        {
+          "bin": 3,
+          "left": 0.3,
+          "right": 0.4,
+          "right_closed": false,
+          "n": 81,
+          "mean_probability": 0.33142316359908947,
+          "event_rate": 0.2716049382716049
+        },
+        {
+          "bin": 4,
+          "left": 0.4,
+          "right": 0.5,
+          "right_closed": false,
+          "n": 35,
+          "mean_probability": 0.44383616383616387,
+          "event_rate": 0.6
+        },
+        {
+          "bin": 5,
+          "left": 0.5,
+          "right": 0.6,
+          "right_closed": false,
+          "n": 16,
+          "mean_probability": 0.5,
+          "event_rate": 0.625
+        },
+        {
+          "bin": 6,
+          "left": 0.6,
+          "right": 0.7,
+          "right_closed": false,
+          "n": 74,
+          "mean_probability": 0.6426340732792345,
+          "event_rate": 0.47297297297297297
+        },
+        {
+          "bin": 7,
+          "left": 0.7,
+          "right": 0.8,
+          "right_closed": false,
+          "n": 8,
+          "mean_probability": 0.767361111111111,
+          "event_rate": 0.375
+        },
+        {
+          "bin": 8,
+          "left": 0.8,
+          "right": 0.9,
+          "right_closed": false,
+          "n": 8,
+          "mean_probability": 0.8166666666666667,
+          "event_rate": 0.5
+        },
+        {
+          "bin": 9,
+          "left": 0.9,
+          "right": 1.0,
+          "right_closed": true,
+          "n": 246,
+          "mean_probability": 0.9981933152664859,
+          "event_rate": 0.524390243902439
+        }
+      ]
+    },
+    "eval_ids_hash": "94d9bf0a8d8bba689cba409d62e9e78ed48829c1a02acee9e5f847517d405885",
+    "wall_seconds": 0.13390910002635792
+  }
+}

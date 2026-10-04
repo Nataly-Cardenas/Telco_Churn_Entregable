@@ -1,0 +1,151 @@
+{
+  "sha256": "7934696c09bafc719536b83ba1ae4620224453e98c6354e0e782bfbebadafebf",
+  "data": {
+    "context_hash": "9e767818063cd8d64aeb60c0be49347e9588f1245ba7054dab27373b08f1dc27",
+    "model_seed": 3847293211,
+    "sampler_seed": 2189085885,
+    "inner_fold": 1,
+    "status": "complete",
+    "fit_seconds": 0.1011593000148423,
+    "rss_start_bytes": 854159360,
+    "rss_peak_sampled_bytes": 854179840,
+    "rss_sampling_seconds": 0.02,
+    "warnings": [],
+    "audit": {
+      "fit_ids_hash": "d3b6b2f173f1bce530437b0329e3f2398179e935d186374070c25989445eb01d",
+      "n_fit_original": 3005,
+      "n_fit_effective": 4429,
+      "counts_before": [
+        2207,
+        798
+      ],
+      "counts_after": [
+        2207,
+        2222
+      ],
+      "p_transformed": 24,
+      "scaler_mean": [
+        32.28319467554076,
+        64.38825291181365,
+        2258.4908818635604,
+        0.162063227953411,
+        64.44265034153425
+      ],
+      "class_weights": [
+        1.0,
+        1.0
+      ],
+      "weight_mechanism": "none"
+    },
+    "predict_seconds": 0.03660280001349747,
+    "metrics": {
+      "accuracy": 0.670439414114514,
+      "precision_positive": 0.4348993288590604,
+      "recall_positive": 0.8140703517587939,
+      "f1_positive": 0.5669291338582677,
+      "roc_auc": 0.7909816291602942,
+      "tn": 683,
+      "fp": 421,
+      "fn": 74,
+      "tp": 324,
+      "precision_undefined": false,
+      "recall_undefined": false,
+      "brier": 0.18029440779690104,
+      "ece": 0.13574809094424542,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "left": 0.0,
+          "right": 0.1,
+          "right_closed": false,
+          "n": 517,
+          "mean_probability": 0.022133232783574115,
+          "event_rate": 0.04448742746615087
+        },
+        {
+          "bin": 1,
+          "left": 0.1,
+          "right": 0.2,
+          "right_closed": false,
+          "n": 18,
+          "mean_probability": 0.17592592592592593,
+          "event_rate": 0.1111111111111111
+        },
+        {
+          "bin": 2,
+          "left": 0.2,
+          "right": 0.3,
+          "right_closed": false,
+          "n": 154,
+          "mean_probability": 0.25882003301358136,
+          "event_rate": 0.17532467532467533
+        },
+        {
+          "bin": 3,
+          "left": 0.3,
+          "right": 0.4,
+          "right_closed": false,
+          "n": 0,
+          "mean_probability": null,
+          "event_rate": null
+        },
+        {
+          "bin": 4,
+          "left": 0.4,
+          "right": 0.5,
+          "right_closed": false,
+          "n": 67,
+          "mean_probability": 0.4136430523439143,
+          "event_rate": 0.3283582089552239
+        },
+        {
+          "bin": 5,
+          "left": 0.5,
+          "right": 0.6,
+          "right_closed": false,
+          "n": 368,
+          "mean_probability": 0.5369771036529913,
+          "event_rate": 0.2907608695652174
+        },
+        {
+          "bin": 6,
+          "left": 0.6,
+          "right": 0.7,
+          "right_closed": false,
+          "n": 1,
+          "mean_probability": 0.6,
+          "event_rate": 1.0
+        },
+        {
+          "bin": 7,
+          "left": 0.7,
+          "right": 0.8,
+          "right_closed": false,
+          "n": 89,
+          "mean_probability": 0.7383692279436017,
+          "event_rate": 0.48314606741573035
+        },
+        {
+          "bin": 8,
+          "left": 0.8,
+          "right": 0.9,
+          "right_closed": false,
+          "n": 283,
+          "mean_probability": 0.8023411387218468,
+          "event_rate": 0.607773851590106
+        },
+        {
+          "bin": 9,
+          "left": 0.9,
+          "right": 1.0,
+          "right_closed": true,
+          "n": 5,
+          "mean_probability": 0.9625,
+          "event_rate": 0.2
+        }
+      ]
+    },
+    "eval_ids_hash": "b1a6a8ffea7f9b8c7f18f3c8eea50e6e3690f8fa58e74e72576987af7fc0d1d7",
+    "wall_seconds": 0.1530365000362508
+  }
+}

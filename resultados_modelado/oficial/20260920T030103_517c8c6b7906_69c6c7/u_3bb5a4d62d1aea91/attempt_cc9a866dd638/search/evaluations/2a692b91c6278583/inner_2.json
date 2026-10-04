@@ -1,0 +1,151 @@
+{
+  "sha256": "46073b63751ea3dea6966a4230e9cf9612abdbdc4dc48b1c9a5c20d2eab1d197",
+  "data": {
+    "context_hash": "c08d2a8b75c879032f075ba96ac6f26687168ccba274ac431fef87d9df76d52f",
+    "model_seed": 1650667825,
+    "sampler_seed": 2074285127,
+    "inner_fold": 2,
+    "status": "complete",
+    "fit_seconds": 0.08823870000196621,
+    "rss_start_bytes": 733044736,
+    "rss_peak_sampled_bytes": 733065216,
+    "rss_sampling_seconds": 0.02,
+    "warnings": [],
+    "audit": {
+      "fit_ids_hash": "8f733b8406ff3f4f4b25473d6a7bf1a6f9e83049787ae0e556822cc84311eb29",
+      "n_fit_original": 3005,
+      "n_fit_effective": 4416,
+      "counts_before": [
+        2208,
+        797
+      ],
+      "counts_after": [
+        2208,
+        2208
+      ],
+      "p_transformed": 24,
+      "scaler_mean": [
+        32.57770382695507,
+        65.271231281198,
+        2332.0170049916806,
+        0.15640599001663893,
+        65.3125450865824
+      ],
+      "class_weights": [
+        1.0,
+        1.0
+      ],
+      "weight_mechanism": "none"
+    },
+    "predict_seconds": 0.03850839997176081,
+    "metrics": {
+      "accuracy": 0.7343541944074568,
+      "precision_positive": 0.5,
+      "recall_positive": 0.6491228070175439,
+      "f1_positive": 0.5648854961832062,
+      "roc_auc": 0.7189835422645461,
+      "tn": 844,
+      "fp": 259,
+      "fn": 140,
+      "tp": 259,
+      "precision_undefined": false,
+      "recall_undefined": false,
+      "brier": 0.23173291334944127,
+      "ece": 0.21150776968793875,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "left": 0.0,
+          "right": 0.1,
+          "right_closed": false,
+          "n": 864,
+          "mean_probability": 0.0,
+          "event_rate": 0.12731481481481483
+        },
+        {
+          "bin": 1,
+          "left": 0.1,
+          "right": 0.2,
+          "right_closed": false,
+          "n": 36,
+          "mean_probability": 0.1300112922661942,
+          "event_rate": 0.08333333333333333
+        },
+        {
+          "bin": 2,
+          "left": 0.2,
+          "right": 0.3,
+          "right_closed": false,
+          "n": 44,
+          "mean_probability": 0.2646516065633713,
+          "event_rate": 0.29545454545454547
+        },
+        {
+          "bin": 3,
+          "left": 0.3,
+          "right": 0.4,
+          "right_closed": false,
+          "n": 26,
+          "mean_probability": 0.3593117408906883,
+          "event_rate": 0.3076923076923077
+        },
+        {
+          "bin": 4,
+          "left": 0.4,
+          "right": 0.5,
+          "right_closed": false,
+          "n": 0,
+          "mean_probability": null,
+          "event_rate": null
+        },
+        {
+          "bin": 5,
+          "left": 0.5,
+          "right": 0.6,
+          "right_closed": false,
+          "n": 39,
+          "mean_probability": 0.545787545787546,
+          "event_rate": 0.5128205128205128
+        },
+        {
+          "bin": 6,
+          "left": 0.6,
+          "right": 0.7,
+          "right_closed": false,
+          "n": 30,
+          "mean_probability": 0.6372846477194305,
+          "event_rate": 0.5
+        },
+        {
+          "bin": 7,
+          "left": 0.7,
+          "right": 0.8,
+          "right_closed": false,
+          "n": 49,
+          "mean_probability": 0.7454409225270805,
+          "event_rate": 0.32653061224489793
+        },
+        {
+          "bin": 8,
+          "left": 0.8,
+          "right": 0.9,
+          "right_closed": false,
+          "n": 91,
+          "mean_probability": 0.8433811223924844,
+          "event_rate": 0.5494505494505495
+        },
+        {
+          "bin": 9,
+          "left": 0.9,
+          "right": 1.0,
+          "right_closed": true,
+          "n": 323,
+          "mean_probability": 0.9740813867383629,
+          "event_rate": 0.5077399380804953
+        }
+      ]
+    },
+    "eval_ids_hash": "ee0ca598b07eee8385c10e6f36541bfe2862c03ececd480ddc71482e891ad861",
+    "wall_seconds": 0.14212350000161678
+  }
+}

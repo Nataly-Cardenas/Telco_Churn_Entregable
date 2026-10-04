@@ -1,0 +1,28 @@
+{
+  "rule": "maximo F1 medio externo replica 0; familias distintas; desempate por ID",
+  "scope": "seleccion exploratoria entre 112",
+  "finalists": [
+    {
+      "experiment_id": "random_forest__smote__bayesian_tpe",
+      "model": "random_forest",
+      "balance": "smote",
+      "optimizer": "bayesian_tpe",
+      "f1_positive_mean": 0.6384205660936855
+    },
+    {
+      "experiment_id": "xgboost__smote__random",
+      "model": "xgboost",
+      "balance": "smote",
+      "optimizer": "random",
+      "f1_positive_mean": 0.6379899961210297
+    },
+    {
+      "experiment_id": "logistic__smote__grid",
+      "model": "logistic",
+      "balance": "smote",
+      "optimizer": "grid",
+      "f1_positive_mean": 0.6339530672964845
+    }
+  ],
+  "utc": "2026-09-21T17:24:47.799433+00:00"
+}

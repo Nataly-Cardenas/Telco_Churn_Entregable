@@ -1,0 +1,151 @@
+{
+  "sha256": "fe451270e6b997ffba70c659b862544159ab4965b98d1f8926454b7d0d4c6562",
+  "data": {
+    "context_hash": "f6d96cf27b91f45868d0db4fe54f5d9874df58a0205207e6f2548e456e42b714",
+    "model_seed": 3413666795,
+    "sampler_seed": 1554295504,
+    "inner_fold": 2,
+    "status": "complete",
+    "fit_seconds": 0.08687729999655858,
+    "rss_start_bytes": 380833792,
+    "rss_peak_sampled_bytes": 380854272,
+    "rss_sampling_seconds": 0.02,
+    "warnings": [],
+    "audit": {
+      "fit_ids_hash": "72aa26c8c54739e857b79a5ba9071da00f6c7895dea951fda88d26c191d1772f",
+      "n_fit_original": 3005,
+      "n_fit_effective": 4416,
+      "counts_before": [
+        2208,
+        797
+      ],
+      "counts_after": [
+        2208,
+        2208
+      ],
+      "p_transformed": 24,
+      "scaler_mean": [
+        32.1261231281198,
+        65.34853577371048,
+        2299.861181364393,
+        0.16805324459234608,
+        65.36107455885524
+      ],
+      "class_weights": [
+        1.0,
+        1.0
+      ],
+      "weight_mechanism": "none"
+    },
+    "predict_seconds": 0.034802099980879575,
+    "metrics": {
+      "accuracy": 0.7343541944074568,
+      "precision_positive": 0.5,
+      "recall_positive": 0.5588972431077694,
+      "f1_positive": 0.527810650887574,
+      "roc_auc": 0.7340972558322368,
+      "tn": 880,
+      "fp": 223,
+      "fn": 176,
+      "tp": 223,
+      "precision_undefined": false,
+      "recall_undefined": false,
+      "brier": 0.21590276100330155,
+      "ece": 0.17899837254031659,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "left": 0.0,
+          "right": 0.1,
+          "right_closed": false,
+          "n": 757,
+          "mean_probability": 0.0,
+          "event_rate": 0.11360634081902246
+        },
+        {
+          "bin": 1,
+          "left": 0.1,
+          "right": 0.2,
+          "right_closed": false,
+          "n": 48,
+          "mean_probability": 0.1498015873015873,
+          "event_rate": 0.25
+        },
+        {
+          "bin": 2,
+          "left": 0.2,
+          "right": 0.3,
+          "right_closed": false,
+          "n": 89,
+          "mean_probability": 0.2220171214553237,
+          "event_rate": 0.30337078651685395
+        },
+        {
+          "bin": 3,
+          "left": 0.3,
+          "right": 0.4,
+          "right_closed": false,
+          "n": 74,
+          "mean_probability": 0.33671171171171166,
+          "event_rate": 0.2972972972972973
+        },
+        {
+          "bin": 4,
+          "left": 0.4,
+          "right": 0.5,
+          "right_closed": false,
+          "n": 72,
+          "mean_probability": 0.4088183421516754,
+          "event_rate": 0.3472222222222222
+        },
+        {
+          "bin": 5,
+          "left": 0.5,
+          "right": 0.6,
+          "right_closed": false,
+          "n": 40,
+          "mean_probability": 0.5416666666666667,
+          "event_rate": 0.425
+        },
+        {
+          "bin": 6,
+          "left": 0.6,
+          "right": 0.7,
+          "right_closed": false,
+          "n": 80,
+          "mean_probability": 0.6244791666666666,
+          "event_rate": 0.4125
+        },
+        {
+          "bin": 7,
+          "left": 0.7,
+          "right": 0.8,
+          "right_closed": false,
+          "n": 37,
+          "mean_probability": 0.7394894894894896,
+          "event_rate": 0.3783783783783784
+        },
+        {
+          "bin": 8,
+          "left": 0.8,
+          "right": 0.9,
+          "right_closed": false,
+          "n": 78,
+          "mean_probability": 0.8265109890109889,
+          "event_rate": 0.46153846153846156
+        },
+        {
+          "bin": 9,
+          "left": 0.9,
+          "right": 1.0,
+          "right_closed": true,
+          "n": 227,
+          "mean_probability": 1.0,
+          "event_rate": 0.5594713656387665
+        }
+      ]
+    },
+    "eval_ids_hash": "6759dc897e3f145b3bbbbf597b2522fe63f05a68843d5028923ae5b37c4854e6",
+    "wall_seconds": 0.1362063999986276
+  }
+}

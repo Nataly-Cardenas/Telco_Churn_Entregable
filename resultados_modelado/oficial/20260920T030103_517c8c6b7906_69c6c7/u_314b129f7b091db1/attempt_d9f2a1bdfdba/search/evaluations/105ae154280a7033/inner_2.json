@@ -1,0 +1,151 @@
+{
+  "sha256": "6a3a3c1a216e83acd27df555d1ef0eeef63e2f28da1a4afa9f42c5a8c805c6b5",
+  "data": {
+    "context_hash": "9a685bf44488cb004064a5e54031dcde3725c1ed7150621436b5e5176b040f3d",
+    "model_seed": 1650667825,
+    "sampler_seed": 2074285127,
+    "inner_fold": 2,
+    "status": "complete",
+    "fit_seconds": 0.07115819997852668,
+    "rss_start_bytes": 827641856,
+    "rss_peak_sampled_bytes": 827666432,
+    "rss_sampling_seconds": 0.02,
+    "warnings": [],
+    "audit": {
+      "fit_ids_hash": "8f733b8406ff3f4f4b25473d6a7bf1a6f9e83049787ae0e556822cc84311eb29",
+      "n_fit_original": 3005,
+      "n_fit_effective": 3005,
+      "counts_before": [
+        2208,
+        797
+      ],
+      "counts_after": [
+        2208,
+        797
+      ],
+      "p_transformed": 24,
+      "scaler_mean": [
+        32.57770382695507,
+        65.271231281198,
+        2332.0170049916806,
+        0.15640599001663893,
+        65.3125450865824
+      ],
+      "class_weights": [
+        1.0,
+        1.0
+      ],
+      "weight_mechanism": "none"
+    },
+    "predict_seconds": 0.03583240002626553,
+    "metrics": {
+      "accuracy": 0.7876165113182424,
+      "precision_positive": 0.6020408163265306,
+      "recall_positive": 0.5914786967418546,
+      "f1_positive": 0.5967130214917825,
+      "roc_auc": 0.8199374228863182,
+      "tn": 947,
+      "fp": 156,
+      "fn": 163,
+      "tp": 236,
+      "precision_undefined": false,
+      "recall_undefined": false,
+      "brier": 0.14155855699975103,
+      "ece": 0.03236977705156085,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "left": 0.0,
+          "right": 0.1,
+          "right_closed": false,
+          "n": 567,
+          "mean_probability": 0.017617512070464983,
+          "event_rate": 0.054673721340388004
+        },
+        {
+          "bin": 1,
+          "left": 0.1,
+          "right": 0.2,
+          "right_closed": false,
+          "n": 40,
+          "mean_probability": 0.1040909090909091,
+          "event_rate": 0.05
+        },
+        {
+          "bin": 2,
+          "left": 0.2,
+          "right": 0.3,
+          "right_closed": false,
+          "n": 353,
+          "mean_probability": 0.24450291860808157,
+          "event_rate": 0.20679886685552407
+        },
+        {
+          "bin": 3,
+          "left": 0.3,
+          "right": 0.4,
+          "right_closed": false,
+          "n": 126,
+          "mean_probability": 0.33651525126179505,
+          "event_rate": 0.35714285714285715
+        },
+        {
+          "bin": 4,
+          "left": 0.4,
+          "right": 0.5,
+          "right_closed": false,
+          "n": 24,
+          "mean_probability": 0.46447368421052637,
+          "event_rate": 0.5
+        },
+        {
+          "bin": 5,
+          "left": 0.5,
+          "right": 0.6,
+          "right_closed": false,
+          "n": 263,
+          "mean_probability": 0.5417514066481527,
+          "event_rate": 0.5209125475285171
+        },
+        {
+          "bin": 6,
+          "left": 0.6,
+          "right": 0.7,
+          "right_closed": false,
+          "n": 2,
+          "mean_probability": 0.6,
+          "event_rate": 0.0
+        },
+        {
+          "bin": 7,
+          "left": 0.7,
+          "right": 0.8,
+          "right_closed": false,
+          "n": 81,
+          "mean_probability": 0.7599999999999999,
+          "event_rate": 0.7530864197530864
+        },
+        {
+          "bin": 8,
+          "left": 0.8,
+          "right": 0.9,
+          "right_closed": false,
+          "n": 37,
+          "mean_probability": 0.8227848101265822,
+          "event_rate": 0.7837837837837838
+        },
+        {
+          "bin": 9,
+          "left": 0.9,
+          "right": 1.0,
+          "right_closed": true,
+          "n": 9,
+          "mean_probability": 1.0,
+          "event_rate": 1.0
+        }
+      ]
+    },
+    "eval_ids_hash": "ee0ca598b07eee8385c10e6f36541bfe2862c03ececd480ddc71482e891ad861",
+    "wall_seconds": 0.12172440002905205
+  }
+}

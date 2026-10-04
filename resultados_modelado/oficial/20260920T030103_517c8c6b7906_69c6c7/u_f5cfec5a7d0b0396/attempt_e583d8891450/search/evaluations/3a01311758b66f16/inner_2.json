@@ -1,0 +1,151 @@
+{
+  "sha256": "b7ac8c2959c20381ce7490ee72e7f24179523337f1eca059de98c4b5f0ccb569",
+  "data": {
+    "context_hash": "78183773cd226dc983f9a3a49a91d782b952adf755fc5bf805a9485709e4ace3",
+    "model_seed": 3743751057,
+    "sampler_seed": 2667325848,
+    "inner_fold": 2,
+    "status": "complete",
+    "fit_seconds": 0.1659808999975212,
+    "rss_start_bytes": 246190080,
+    "rss_peak_sampled_bytes": 246222848,
+    "rss_sampling_seconds": 0.02,
+    "warnings": [],
+    "audit": {
+      "fit_ids_hash": "aeb4e18b60d8df93950987c93bb39e0ab7ee0737d713d692776fb3a51106e1bc",
+      "n_fit_original": 3005,
+      "n_fit_effective": 3005,
+      "counts_before": [
+        2208,
+        797
+      ],
+      "counts_after": [
+        2208,
+        797
+      ],
+      "p_transformed": 24,
+      "scaler_mean": [
+        32.390682196339434,
+        65.49392678868553,
+        2312.3666888519133,
+        0.16306156405990016,
+        65.48326457042333
+      ],
+      "class_weights": [
+        1.0,
+        1.0
+      ],
+      "weight_mechanism": "none"
+    },
+    "predict_seconds": 0.03895890002604574,
+    "metrics": {
+      "accuracy": 0.7896138482023968,
+      "precision_positive": 0.6426116838487973,
+      "recall_positive": 0.46867167919799496,
+      "f1_positive": 0.5420289855072464,
+      "roc_auc": 0.8446376594250812,
+      "tn": 999,
+      "fp": 104,
+      "fn": 212,
+      "tp": 187,
+      "precision_undefined": false,
+      "recall_undefined": false,
+      "brier": 0.13797370871651754,
+      "ece": 0.02765714319251705,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "left": 0.0,
+          "right": 0.1,
+          "right_closed": false,
+          "n": 589,
+          "mean_probability": 0.0443737666029325,
+          "event_rate": 0.03904923599320883
+        },
+        {
+          "bin": 1,
+          "left": 0.1,
+          "right": 0.2,
+          "right_closed": false,
+          "n": 211,
+          "mean_probability": 0.14540555391690177,
+          "event_rate": 0.16113744075829384
+        },
+        {
+          "bin": 2,
+          "left": 0.2,
+          "right": 0.3,
+          "right_closed": false,
+          "n": 175,
+          "mean_probability": 0.24753351271152496,
+          "event_rate": 0.28
+        },
+        {
+          "bin": 3,
+          "left": 0.3,
+          "right": 0.4,
+          "right_closed": false,
+          "n": 136,
+          "mean_probability": 0.3486003836288172,
+          "event_rate": 0.4264705882352941
+        },
+        {
+          "bin": 4,
+          "left": 0.4,
+          "right": 0.5,
+          "right_closed": false,
+          "n": 100,
+          "mean_probability": 0.4482473787665367,
+          "event_rate": 0.48
+        },
+        {
+          "bin": 5,
+          "left": 0.5,
+          "right": 0.6,
+          "right_closed": false,
+          "n": 85,
+          "mean_probability": 0.5478945528759676,
+          "event_rate": 0.5058823529411764
+        },
+        {
+          "bin": 6,
+          "left": 0.6,
+          "right": 0.7,
+          "right_closed": false,
+          "n": 74,
+          "mean_probability": 0.6478523426764721,
+          "event_rate": 0.5945945945945946
+        },
+        {
+          "bin": 7,
+          "left": 0.7,
+          "right": 0.8,
+          "right_closed": false,
+          "n": 80,
+          "mean_probability": 0.7497274622321128,
+          "event_rate": 0.675
+        },
+        {
+          "bin": 8,
+          "left": 0.8,
+          "right": 0.9,
+          "right_closed": false,
+          "n": 52,
+          "mean_probability": 0.8433096179595361,
+          "event_rate": 0.8846153846153846
+        },
+        {
+          "bin": 9,
+          "left": 0.9,
+          "right": 1.0,
+          "right_closed": true,
+          "n": 0,
+          "mean_probability": null,
+          "event_rate": null
+        }
+      ]
+    },
+    "eval_ids_hash": "94d9bf0a8d8bba689cba409d62e9e78ed48829c1a02acee9e5f847517d405885",
+    "wall_seconds": 0.21928600000683218
+  }
+}

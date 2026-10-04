@@ -1,0 +1,70 @@
+{
+  "experiment_id": "random_forest__smote__bayesian_tpe",
+  "params": {
+    "n_estimators": 100,
+    "max_depth": 8,
+    "min_samples_leaf": 5,
+    "max_features": "sqrt"
+  },
+  "search": {
+    "optimizer": "bayesian_tpe",
+    "optimizer_seed": 2532265248,
+    "best_params": {
+      "n_estimators": 100,
+      "max_depth": 8,
+      "min_samples_leaf": 5,
+      "max_features": "sqrt"
+    },
+    "best_inner_f1": 0.6365208485436272,
+    "status": "complete",
+    "stop_reason": "budget_reached",
+    "n_evaluations": 24,
+    "n_proposals": 104,
+    "new_inner_fits": 72,
+    "recovered_inner_folds": 0,
+    "logical_inner_fits": 72,
+    "session_wall_seconds": 147.66242569999304,
+    "history_file": "history_d1aa0eab4ed6.jsonl",
+    "timing_clean": true,
+    "n_jobs": 1,
+    "jobs_reason": "requested"
+  },
+  "refit": {
+    "fit_seconds": 0.6770441000116989,
+    "rss_start_bytes": 194281472,
+    "rss_peak_sampled_bytes": 199811072,
+    "rss_sampling_seconds": 0.02,
+    "warnings": [],
+    "audit": {
+      "fit_ids_hash": "a1a650a82152e8d5d766aaa0617c580b18fdd06eb9209679907e1aa64daa9269",
+      "n_fit_original": 5634,
+      "n_fit_effective": 8278,
+      "counts_before": [
+        4139,
+        1495
+      ],
+      "counts_after": [
+        4139,
+        4139
+      ],
+      "p_transformed": 24,
+      "scaler_mean": [
+        32.48509052183174,
+        64.92996095136671,
+        2299.33468228612,
+        0.16329428470003549,
+        64.93814413016061
+      ],
+      "class_weights": [
+        1.0,
+        1.0
+      ],
+      "weight_mechanism": "none"
+    }
+  },
+  "pipeline_hash": "094c315ce0777d84d676d25c91a079b02a2d9cdb4ec43e7f104bbb4e7262413d",
+  "train_ids_hash": "a1a650a82152e8d5d766aaa0617c580b18fdd06eb9209679907e1aa64daa9269",
+  "scope": "final_refit_not_outer_estimate",
+  "logical_fits": 73,
+  "utc": "2026-09-21T17:27:16.242679+00:00"
+}

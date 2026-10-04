@@ -1,0 +1,151 @@
+{
+  "sha256": "1aea80dbafb25015bd8f4db6d9f3eb0458d9743f79a900c48ae7d667c8a06832",
+  "data": {
+    "context_hash": "b06df5ad74034e2e8e75da3050f9450da948caa6c4790f69c3d19063cca54884",
+    "model_seed": 3743751057,
+    "sampler_seed": 2667325848,
+    "inner_fold": 2,
+    "status": "complete",
+    "fit_seconds": 0.06485150003572926,
+    "rss_start_bytes": 178315264,
+    "rss_peak_sampled_bytes": 178335744,
+    "rss_sampling_seconds": 0.02,
+    "warnings": [],
+    "audit": {
+      "fit_ids_hash": "aeb4e18b60d8df93950987c93bb39e0ab7ee0737d713d692776fb3a51106e1bc",
+      "n_fit_original": 3005,
+      "n_fit_effective": 3005,
+      "counts_before": [
+        2208,
+        797
+      ],
+      "counts_after": [
+        2208,
+        797
+      ],
+      "p_transformed": 24,
+      "scaler_mean": [
+        32.390682196339434,
+        65.49392678868553,
+        2312.3666888519133,
+        0.16306156405990016,
+        65.48326457042333
+      ],
+      "class_weights": [
+        0.6804800724637681,
+        1.8851944792973652
+      ],
+      "weight_mechanism": "class_weighted_vote"
+    },
+    "predict_seconds": 0.08274789998540655,
+    "metrics": {
+      "accuracy": 0.7217043941411452,
+      "precision_positive": 0.48613138686131385,
+      "recall_positive": 0.8345864661654135,
+      "f1_positive": 0.6143911439114391,
+      "roc_auc": 0.8278981679038939,
+      "tn": 751,
+      "fp": 352,
+      "fn": 66,
+      "tp": 333,
+      "precision_undefined": false,
+      "recall_undefined": false,
+      "brier": 0.18441709901513426,
+      "ece": 0.1806048513011566,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "left": 0.0,
+          "right": 0.1,
+          "right_closed": false,
+          "n": 272,
+          "mean_probability": 0.03226406196421474,
+          "event_rate": 0.01838235294117647
+        },
+        {
+          "bin": 1,
+          "left": 0.1,
+          "right": 0.2,
+          "right_closed": false,
+          "n": 146,
+          "mean_probability": 0.15224809880914553,
+          "event_rate": 0.0136986301369863
+        },
+        {
+          "bin": 2,
+          "left": 0.2,
+          "right": 0.3,
+          "right_closed": false,
+          "n": 145,
+          "mean_probability": 0.24984999121919663,
+          "event_rate": 0.13793103448275862
+        },
+        {
+          "bin": 3,
+          "left": 0.3,
+          "right": 0.4,
+          "right_closed": false,
+          "n": 131,
+          "mean_probability": 0.34906630807796085,
+          "event_rate": 0.13740458015267176
+        },
+        {
+          "bin": 4,
+          "left": 0.4,
+          "right": 0.5,
+          "right_closed": false,
+          "n": 123,
+          "mean_probability": 0.4476877341942737,
+          "event_rate": 0.17073170731707318
+        },
+        {
+          "bin": 5,
+          "left": 0.5,
+          "right": 0.6,
+          "right_closed": false,
+          "n": 141,
+          "mean_probability": 0.5493756671900826,
+          "event_rate": 0.3120567375886525
+        },
+        {
+          "bin": 6,
+          "left": 0.6,
+          "right": 0.7,
+          "right_closed": false,
+          "n": 134,
+          "mean_probability": 0.6502230593422867,
+          "event_rate": 0.3656716417910448
+        },
+        {
+          "bin": 7,
+          "left": 0.7,
+          "right": 0.8,
+          "right_closed": false,
+          "n": 173,
+          "mean_probability": 0.7507102847363896,
+          "event_rate": 0.4913294797687861
+        },
+        {
+          "bin": 8,
+          "left": 0.8,
+          "right": 0.9,
+          "right_closed": false,
+          "n": 168,
+          "mean_probability": 0.852958632856454,
+          "event_rate": 0.6071428571428571
+        },
+        {
+          "bin": 9,
+          "left": 0.9,
+          "right": 1.0,
+          "right_closed": true,
+          "n": 69,
+          "mean_probability": 0.9345090489579098,
+          "event_rate": 0.7681159420289855
+        }
+      ]
+    },
+    "eval_ids_hash": "94d9bf0a8d8bba689cba409d62e9e78ed48829c1a02acee9e5f847517d405885",
+    "wall_seconds": 0.1628216999815777
+  }
+}

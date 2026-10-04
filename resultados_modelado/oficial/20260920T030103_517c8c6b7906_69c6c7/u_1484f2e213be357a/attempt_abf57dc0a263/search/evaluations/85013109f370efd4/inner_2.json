@@ -1,0 +1,151 @@
+{
+  "sha256": "2e2d5abe1d2cd679b66c8a9d439049b29acc5b7c93419576a97a8a26c4067b77",
+  "data": {
+    "context_hash": "17b370a6766c7e34724e56861f577dd0c2d4d70c7e7fb889bd4091472831ec97",
+    "model_seed": 1984407249,
+    "sampler_seed": 1592492197,
+    "inner_fold": 2,
+    "status": "complete",
+    "fit_seconds": 0.0903933999943547,
+    "rss_start_bytes": 948154368,
+    "rss_peak_sampled_bytes": 948174848,
+    "rss_sampling_seconds": 0.02,
+    "warnings": [],
+    "audit": {
+      "fit_ids_hash": "aeb4e18b60d8df93950987c93bb39e0ab7ee0737d713d692776fb3a51106e1bc",
+      "n_fit_original": 3005,
+      "n_fit_effective": 4412,
+      "counts_before": [
+        2208,
+        797
+      ],
+      "counts_after": [
+        2208,
+        2204
+      ],
+      "p_transformed": 24,
+      "scaler_mean": [
+        32.390682196339434,
+        65.49392678868553,
+        2312.3666888519133,
+        0.16306156405990016,
+        65.48326457042333
+      ],
+      "class_weights": [
+        1.0,
+        1.0
+      ],
+      "weight_mechanism": "none"
+    },
+    "predict_seconds": 0.03773989999899641,
+    "metrics": {
+      "accuracy": 0.7490013315579228,
+      "precision_positive": 0.5175718849840255,
+      "recall_positive": 0.8120300751879699,
+      "f1_positive": 0.6321951219512195,
+      "roc_auc": 0.8436980938293148,
+      "tn": 801,
+      "fp": 302,
+      "fn": 75,
+      "tp": 324,
+      "precision_undefined": false,
+      "recall_undefined": false,
+      "brier": 0.1848051925368706,
+      "ece": 0.2013982810229187,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "left": 0.0,
+          "right": 0.1,
+          "right_closed": false,
+          "n": 0,
+          "mean_probability": null,
+          "event_rate": null
+        },
+        {
+          "bin": 1,
+          "left": 0.1,
+          "right": 0.2,
+          "right_closed": false,
+          "n": 59,
+          "mean_probability": 0.18019770549267938,
+          "event_rate": 0.0
+        },
+        {
+          "bin": 2,
+          "left": 0.2,
+          "right": 0.3,
+          "right_closed": false,
+          "n": 241,
+          "mean_probability": 0.25142389798521947,
+          "event_rate": 0.012448132780082987
+        },
+        {
+          "bin": 3,
+          "left": 0.3,
+          "right": 0.4,
+          "right_closed": false,
+          "n": 265,
+          "mean_probability": 0.35204709533486195,
+          "event_rate": 0.06792452830188679
+        },
+        {
+          "bin": 4,
+          "left": 0.4,
+          "right": 0.5,
+          "right_closed": false,
+          "n": 311,
+          "mean_probability": 0.4465831311587387,
+          "event_rate": 0.17363344051446947
+        },
+        {
+          "bin": 5,
+          "left": 0.5,
+          "right": 0.6,
+          "right_closed": false,
+          "n": 256,
+          "mean_probability": 0.5480361579132068,
+          "event_rate": 0.37890625
+        },
+        {
+          "bin": 6,
+          "left": 0.6,
+          "right": 0.7,
+          "right_closed": false,
+          "n": 212,
+          "mean_probability": 0.6527580054948496,
+          "event_rate": 0.5424528301886793
+        },
+        {
+          "bin": 7,
+          "left": 0.7,
+          "right": 0.8,
+          "right_closed": false,
+          "n": 145,
+          "mean_probability": 0.7450740218348674,
+          "event_rate": 0.696551724137931
+        },
+        {
+          "bin": 8,
+          "left": 0.8,
+          "right": 0.9,
+          "right_closed": false,
+          "n": 13,
+          "mean_probability": 0.81708667330254,
+          "event_rate": 0.8461538461538461
+        },
+        {
+          "bin": 9,
+          "left": 0.9,
+          "right": 1.0,
+          "right_closed": true,
+          "n": 0,
+          "mean_probability": null,
+          "event_rate": null
+        }
+      ]
+    },
+    "eval_ids_hash": "94d9bf0a8d8bba689cba409d62e9e78ed48829c1a02acee9e5f847517d405885",
+    "wall_seconds": 0.14397790003567934
+  }
+}

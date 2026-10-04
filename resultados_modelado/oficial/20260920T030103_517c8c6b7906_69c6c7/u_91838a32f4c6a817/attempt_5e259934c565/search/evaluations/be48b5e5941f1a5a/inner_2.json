@@ -1,0 +1,151 @@
+{
+  "sha256": "5f92d07cef194c1307754c1474a50b3823ec61c8623ff28e925a4638bbcc5f71",
+  "data": {
+    "context_hash": "473ef58a27f2f066012dcd30fe669d26b7efcfd381b00180c16b5fd55473b679",
+    "model_seed": 3973614529,
+    "sampler_seed": 1693090307,
+    "inner_fold": 2,
+    "status": "complete",
+    "fit_seconds": 0.07972259999951348,
+    "rss_start_bytes": 852705280,
+    "rss_peak_sampled_bytes": 852725760,
+    "rss_sampling_seconds": 0.02,
+    "warnings": [],
+    "audit": {
+      "fit_ids_hash": "8f733b8406ff3f4f4b25473d6a7bf1a6f9e83049787ae0e556822cc84311eb29",
+      "n_fit_original": 3005,
+      "n_fit_effective": 3005,
+      "counts_before": [
+        2208,
+        797
+      ],
+      "counts_after": [
+        2208,
+        797
+      ],
+      "p_transformed": 24,
+      "scaler_mean": [
+        32.57770382695507,
+        65.271231281198,
+        2332.0170049916806,
+        0.15640599001663893,
+        65.3125450865824
+      ],
+      "class_weights": [
+        0.6804800724637681,
+        1.8851944792973652
+      ],
+      "weight_mechanism": "class_weight"
+    },
+    "predict_seconds": 0.0357357999891974,
+    "metrics": {
+      "accuracy": 0.6418109187749668,
+      "precision_positive": 0.41366459627329194,
+      "recall_positive": 0.8345864661654135,
+      "f1_positive": 0.553156146179402,
+      "roc_auc": 0.795122438916875,
+      "tn": 631,
+      "fp": 472,
+      "fn": 66,
+      "tp": 333,
+      "precision_undefined": false,
+      "recall_undefined": false,
+      "brier": 0.21799006756374356,
+      "ece": 0.2330983072240306,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "left": 0.0,
+          "right": 0.1,
+          "right_closed": false,
+          "n": 0,
+          "mean_probability": null,
+          "event_rate": null
+        },
+        {
+          "bin": 1,
+          "left": 0.1,
+          "right": 0.2,
+          "right_closed": false,
+          "n": 0,
+          "mean_probability": null,
+          "event_rate": null
+        },
+        {
+          "bin": 2,
+          "left": 0.2,
+          "right": 0.3,
+          "right_closed": false,
+          "n": 80,
+          "mean_probability": 0.26672365672253456,
+          "event_rate": 0.0375
+        },
+        {
+          "bin": 3,
+          "left": 0.3,
+          "right": 0.4,
+          "right_closed": false,
+          "n": 285,
+          "mean_probability": 0.36053040741882253,
+          "event_rate": 0.0456140350877193
+        },
+        {
+          "bin": 4,
+          "left": 0.4,
+          "right": 0.5,
+          "right_closed": false,
+          "n": 332,
+          "mean_probability": 0.44769355803882593,
+          "event_rate": 0.15060240963855423
+        },
+        {
+          "bin": 5,
+          "left": 0.5,
+          "right": 0.6,
+          "right_closed": false,
+          "n": 456,
+          "mean_probability": 0.5527642475664305,
+          "event_rate": 0.2631578947368421
+        },
+        {
+          "bin": 6,
+          "left": 0.6,
+          "right": 0.7,
+          "right_closed": false,
+          "n": 343,
+          "mean_probability": 0.6416253528112106,
+          "event_rate": 0.60932944606414
+        },
+        {
+          "bin": 7,
+          "left": 0.7,
+          "right": 0.8,
+          "right_closed": false,
+          "n": 6,
+          "mean_probability": 0.7087241041498409,
+          "event_rate": 0.6666666666666666
+        },
+        {
+          "bin": 8,
+          "left": 0.8,
+          "right": 0.9,
+          "right_closed": false,
+          "n": 0,
+          "mean_probability": null,
+          "event_rate": null
+        },
+        {
+          "bin": 9,
+          "left": 0.9,
+          "right": 1.0,
+          "right_closed": true,
+          "n": 0,
+          "mean_probability": null,
+          "event_rate": null
+        }
+      ]
+    },
+    "eval_ids_hash": "ee0ca598b07eee8385c10e6f36541bfe2862c03ececd480ddc71482e891ad861",
+    "wall_seconds": 0.13138969999272376
+  }
+}

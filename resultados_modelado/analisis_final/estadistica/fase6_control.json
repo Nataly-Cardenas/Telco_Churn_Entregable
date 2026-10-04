@@ -1,0 +1,43 @@
+{
+  "status": "complete_exploratory",
+  "friedman": {
+    "statistic": 422.2858241811779,
+    "df": 111,
+    "p_exploratory": 7.716563954566146e-38,
+    "blocks": 5,
+    "treatments": 112,
+    "kendall_W": 0.7608753588850051,
+    "alpha": 0.05,
+    "scope": "exploratory_only",
+    "independent_blocks_assumption_met": false,
+    "limitations": "Un solo dataset, entrenamientos solapados y cinco bloques; aproximación chi-cuadrado limitada. Las semillas no añaden bloques independientes."
+  },
+  "critical_difference": 89.37210847742845,
+  "finalists": [
+    {
+      "experiment_id": "random_forest__smote__bayesian_tpe",
+      "model": "random_forest",
+      "balance": "smote",
+      "optimizer": "bayesian_tpe",
+      "f1_positive_mean": 0.6384205660936855
+    },
+    {
+      "experiment_id": "xgboost__smote__random",
+      "model": "xgboost",
+      "balance": "smote",
+      "optimizer": "random",
+      "f1_positive_mean": 0.6379899961210297
+    },
+    {
+      "experiment_id": "logistic__smote__grid",
+      "model": "logistic",
+      "balance": "smote",
+      "optimizer": "grid",
+      "f1_positive_mean": 0.6339530672964845
+    }
+  ],
+  "directed_pairs": 3,
+  "test_historically_exposed": true,
+  "official_units_unchanged": 1680,
+  "additional_final_fits": 219
+}
