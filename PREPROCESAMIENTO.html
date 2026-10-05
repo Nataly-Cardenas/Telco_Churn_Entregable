@@ -1,0 +1,1610 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Preprocesamiento de Datos - Telco Customer Churn &#8212; Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes a partir de Datos de Suscripción: Dataset Telco Customer Churn</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'PREPROCESAMIENTO';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Modelamiento avanzado - Telco Customer Churn" href="MODELADO_AVANZADO.html" />
+    <link rel="prev" title="Análisis Exploratorio de Datos (EDA) - Telco Customer Churn" href="EDA_.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes a partir de Datos de Suscripción: Dataset Telco Customer Churn - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes a partir de Datos de Suscripción: Dataset Telco Customer Churn - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes a partir de Datos de Suscripción: Dataset Telco Customer Churn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EDA_.html">Análisis Exploratorio de Datos (EDA) - Telco Customer Churn</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Preprocesamiento de Datos - Telco Customer Churn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MODELADO_AVANZADO.html">Modelamiento avanzado - Telco Customer Churn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paper.html">Paper - Telco Customer Churn</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/PREPROCESAMIENTO.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Preprocesamiento de Datos - Telco Customer Churn</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-librerias">1. Importación de librerías</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos-y-variable-objetivo">2. Carga de datos y variable objetivo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disponibilidad-temporal-de-las-variables-instante-de-prediccion">2.1 Disponibilidad temporal de las variables (instante de predicción)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#division-train-test">3. División train / test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-de-preprocesamiento-definidos-a-partir-del-eda">4. Pasos de preprocesamiento definidos a partir del EDA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-del-target">4.1 Manejo del target</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-totalcharges">4.2 Manejo de <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ingenieria-de-caracteristicas-a-partir-del-eda">4.3 Ingeniería de características a partir del EDA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-columnas-por-tipo">4.4 Definición de columnas por tipo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-del-columntransformer">4.5 Construcción del ColumnTransformer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-en-train-protocolo-antes-de-tocar-test">4.6 Validación cruzada en train (protocolo antes de tocar test)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ablacion-por-cv-aportan-gender-phoneservice-y-avgchargepermonth">4.7 Ablación por CV: ¿aportan <code class="docutils literal notranslate"><span class="pre">gender</span></code>, <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code> y <code class="docutils literal notranslate"><span class="pre">AvgChargePerMonth</span></code>?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-del-preprocesamiento">5. Aplicación del preprocesamiento</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recuperar-nombres-de-columnas-resultantes">5.1 Recuperar nombres de columnas resultantes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardar-los-conjuntos-procesados">6. Guardar los conjuntos procesados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-final-en-test-una-sola-vez">7. Evaluación final en test (una sola vez)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#score-general-accuracy-y-metricas-clave">7.1 Score general (Accuracy) y métricas clave</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-confusion-y-reporte-de-clasificacion">7.2 Matriz de confusión y reporte de clasificación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#curva-roc">7.3 Curva ROC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-resultado">7.4 Interpretación del resultado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-coeficientes-que-dicen-gender-y-phoneservice">7.5 Lectura de coeficientes: ¿qué dicen <code class="docutils literal notranslate"><span class="pre">gender</span></code> y <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code>?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-y-proximos-pasos">8. Resumen y próximos pasos</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="preprocesamiento-de-datos-telco-customer-churn">
+<h1>Preprocesamiento de Datos - Telco Customer Churn<a class="headerlink" href="#preprocesamiento-de-datos-telco-customer-churn" title="Link to this heading">#</a></h1>
+<p><strong>Objetivo:</strong> A partir de los hallazgos del EDA (<code class="docutils literal notranslate"><span class="pre">EDA.ipynb</span></code>), aplicar de forma sistemática los pasos de limpieza, codificación y escalado necesarios para dejar los datos listos para el modelado, evitando <em>data leakage</em> entre <code class="docutils literal notranslate"><span class="pre">train</span></code> y <code class="docutils literal notranslate"><span class="pre">test</span></code>.</p>
+<section id="importacion-de-librerias">
+<h2>1. Importación de librerías<a class="headerlink" href="#importacion-de-librerias" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">StratifiedKFold</span><span class="p">,</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.dummy</span><span class="w"> </span><span class="kn">import</span> <span class="n">DummyClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span>
+
+<span class="n">RANDOM_STATE</span> <span class="o">=</span> <span class="mi">42</span>
+
+<span class="c1"># Nota: se retira `warnings.filterwarnings(&#39;ignore&#39;)`. Ocultar todos los avisos</span>
+<span class="c1"># también oculta RuntimeWarning legítimos (p. ej. divisiones por cero reales),</span>
+<span class="c1"># como el que aparecía silenciado en la sección 4.3.b. Si algún aviso puntual</span>
+<span class="c1"># es inevitable y ya está explicado, se silencia localmente con `np.errstate`</span>
+<span class="c1"># justo en esa operación, no de forma global.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="carga-de-datos-y-variable-objetivo">
+<h2>2. Carga de datos y variable objetivo<a class="headerlink" href="#carga-de-datos-y-variable-objetivo" title="Link to this heading">#</a></h2>
+<section id="disponibilidad-temporal-de-las-variables-instante-de-prediccion">
+<h3>2.1 Disponibilidad temporal de las variables (instante de predicción)<a class="headerlink" href="#disponibilidad-temporal-de-las-variables-instante-de-prediccion" title="Link to this heading">#</a></h3>
+<p>Antes de dividir los datos conviene dejar explícito <strong>cuándo</strong> estaría disponible cada variable si este modelo se usara para predecir <em>hacia adelante</em> (churn futuro), y no solo para clasificar retrospectivamente un corte ya cerrado. Esto no cambia el preprocesamiento, pero condiciona qué tan literal puede ser la lectura de las métricas como “capacidad predictiva”.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Momento</p></th>
+<th class="head"><p>Variables</p></th>
+<th class="head"><p>Comentario</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Conocidas desde el alta del cliente</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gender</span></code>, <code class="docutils literal notranslate"><span class="pre">SeniorCitizen</span></code>, <code class="docutils literal notranslate"><span class="pre">Partner</span></code>, <code class="docutils literal notranslate"><span class="pre">Dependents</span></code>, <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code>, <code class="docutils literal notranslate"><span class="pre">InternetService</span></code>, <code class="docutils literal notranslate"><span class="pre">Contract</span></code>, <code class="docutils literal notranslate"><span class="pre">PaymentMethod</span></code>, <code class="docutils literal notranslate"><span class="pre">PaperlessBilling</span></code></p></td>
+<td><p>Estables o de baja frecuencia de cambio; disponibles en cualquier instante posterior al alta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Acumulativas / dependientes del corte</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tenure</span></code>, <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code>, <code class="docutils literal notranslate"><span class="pre">MonthlyCharges</span></code>, <code class="docutils literal notranslate"><span class="pre">MultipleLines</span></code>, <code class="docutils literal notranslate"><span class="pre">OnlineSecurity</span></code>, <code class="docutils literal notranslate"><span class="pre">OnlineBackup</span></code>, <code class="docutils literal notranslate"><span class="pre">DeviceProtection</span></code>, <code class="docutils literal notranslate"><span class="pre">TechSupport</span></code>, <code class="docutils literal notranslate"><span class="pre">StreamingTV</span></code>, <code class="docutils literal notranslate"><span class="pre">StreamingMovies</span></code></p></td>
+<td><p>Reflejan el estado del cliente <strong>en la fecha del corte del dataset</strong>, no en el futuro.</p></td>
+</tr>
+<tr class="row-even"><td><p>Derivada del target</p></td>
+<td><p>—</p></td>
+<td><p>Ninguna variable se deriva de <code class="docutils literal notranslate"><span class="pre">Churn</span></code>; ver hallazgo sobre target leakage más abajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Punto importante (no es <em>leakage</em> en sentido estricto, pero sí una limitación de alcance).</strong> Según la documentación habitual de este dataset (IBM Telco Customer Churn), <code class="docutils literal notranslate"><span class="pre">Churn</span> <span class="pre">=</span> <span class="pre">Yes</span></code> significa que el cliente se fue <strong>en el último mes</strong> antes del corte. Si es así, para los clientes que sí abandonaron, <code class="docutils literal notranslate"><span class="pre">tenure</span></code> y <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code> pueden quedar “congelados” en el momento de la baja, mientras que para los que permanecen esas mismas variables siguen acumulándose después del corte. Los 8 registros con <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code> nulo y <code class="docutils literal notranslate"><span class="pre">tenure</span> <span class="pre">=</span> <span class="pre">0</span></code> (ver sección 6 del EDA) son consistentes con esto: todos son <code class="docutils literal notranslate"><span class="pre">Churn</span> <span class="pre">=</span> <span class="pre">No</span></code>, es decir, clientes recién dados de alta que aún no pudieron irse.</p>
+<p>En consecuencia, lo que este modelo mide es <strong>distinguir churners de no-churners dentro de un mismo corte</strong>, no una predicción prospectiva sobre clientes activos hoy. Ambas lecturas son legítimas, pero deben nombrarse: si el objetivo de negocio es “predecir quién se va a ir el próximo mes”, este pipeline es un buen punto de partida, no el modelo final — un uso prospectivo real necesitaría variables medidas <em>antes</em> del posible corte de cada cliente, no en el mismo corte.</p>
+</section>
+</section>
+<section id="division-train-test">
+<h2>3. División train / test<a class="headerlink" href="#division-train-test" title="Link to this heading">#</a></h2>
+<p>Se utiliza la misma división usada en el EDA, para mantener consistencia entre ambos notebooks.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Utilizar el mismo train/tes del EDA para que los resultados sean consistentes.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;train_test_split.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Train: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> Clientes, Test: </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> Clientes&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train: 5634 Clientes, Test: 1409 Clientes
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pasos-de-preprocesamiento-definidos-a-partir-del-eda">
+<h2>4. Pasos de preprocesamiento definidos a partir del EDA<a class="headerlink" href="#pasos-de-preprocesamiento-definidos-a-partir-del-eda" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Manejo del target:</strong> convertir <code class="docutils literal notranslate"><span class="pre">Churn</span></code> de ‘Yes’/’No’ a 1/0.</p></li>
+<li><p><strong>Manejo de <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code>:</strong> convertir a numérico e imputar los nulos (clientes nuevos con <code class="docutils literal notranslate"><span class="pre">tenure</span> <span class="pre">=</span> <span class="pre">0</span></code>) con <strong>0</strong>.</p></li>
+<li><p><strong>Ingeniería de características:</strong></p>
+<ul class="simple">
+<li><p>Colapsar las categorías redundantes “No internet service” / “No phone service” .</p></li>
+<li><p>Crear <code class="docutils literal notranslate"><span class="pre">AvgChargePerMonth</span></code> (cargo promedio histórico) para aprovechar la relación <code class="docutils literal notranslate"><span class="pre">tenure</span></code>–<code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code> (r = 0.83).</p></li>
+<li><p>Conservar <code class="docutils literal notranslate"><span class="pre">gender</span></code> y <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code> aunque el EDA no encontró asociación bivariada significativa con Churn: un test bivariado no ve interacciones con otras variables, así que se conservan y su aporte se evalúa después con una ablación por validación cruzada dentro de <code class="docutils literal notranslate"><span class="pre">train</span></code> (sección 4.7), no leyendo coeficientes sueltos.</p></li>
+</ul>
+</li>
+<li><p><strong>Codificación de variables categóricas:</strong></p>
+<ul class="simple">
+<li><p>Variables nominales (más de 2 categorías, incluyendo binarias tipo Yes/No): One-Hot Encoding (OHE).</p></li>
+</ul>
+</li>
+<li><p><strong>Escalado de variables numéricas:</strong> <code class="docutils literal notranslate"><span class="pre">tenure</span></code>, <code class="docutils literal notranslate"><span class="pre">MonthlyCharges</span></code>, <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code> y <code class="docutils literal notranslate"><span class="pre">AvgChargePerMonth</span></code> se estandarizan con <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>.</p></li>
+</ol>
+<p>El escalado (<code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>) y la codificación (<code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code>) <strong>aprenden sus parámetros únicamente de <code class="docutils literal notranslate"><span class="pre">train</span></code></strong> y luego se aplican a <code class="docutils literal notranslate"><span class="pre">test</span></code>. La imputación de <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code> es distinta: <strong>no es un parámetro aprendido</strong>, es la constante fija 0, justificada por el contexto (<code class="docutils literal notranslate"><span class="pre">tenure</span> <span class="pre">=</span> <span class="pre">0</span></code>) y aplicada igual a ambos conjuntos — ver sección 4.2 para la verificación explícita de esa condición. Ninguna de las dos formas de tratamiento usa información de <code class="docutils literal notranslate"><span class="pre">test</span></code> para decidirse, así que no hay <em>data leakage</em>.</p>
+<section id="manejo-del-target">
+<h3>4.1 Manejo del target<a class="headerlink" href="#manejo-del-target" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;Yes&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;No&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">y_test</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;Yes&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;No&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Churn
+0    0.734647
+1    0.265353
+Name: proportion, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="manejo-de-totalcharges">
+<h3>4.2 Manejo de <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code><a class="headerlink" href="#manejo-de-totalcharges" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code> es el cargo acumulado que el cliente ha pagado hasta el momento del corte y, por definición, depende del tiempo que lleva en la compañía (<code class="docutils literal notranslate"><span class="pre">tenure</span></code>, en meses). En 11 clientes del dataset (8 en <code class="docutils literal notranslate"><span class="pre">train</span></code> y 3 en <code class="docutils literal notranslate"><span class="pre">test</span></code>), este campo venía como un espacio en blanco que, al convertirlo a numérico, pasó a ser nulo. Todos esos casos tienen <code class="docutils literal notranslate"><span class="pre">tenure</span> <span class="pre">=</span> <span class="pre">0</span></code>, es decir, son clientes recién dados de alta que aún no han completado su primer mes y, por tanto, todavía no tienen ningún cobro acumulado; la relación se cumple también al revés, pues los 11 vacíos coinciden exactamente con los 11 clientes de antigüedad cero. Además, estos clientes sí tienen un <code class="docutils literal notranslate"><span class="pre">MonthlyCharges</span></code> válido (entre 19.70 y 80.85): ya tienen un plan y un precio mensual, solo que aún no se les ha facturado. Como el valor real de su cargo acumulado es 0, los vacíos se <strong>reemplazan por 0</strong> en lugar de estimarlos con la media o la mediana, que les asignarían un cobro que nunca han pagado. Dos aserciones verifican esta condición en <code class="docutils literal notranslate"><span class="pre">train</span></code> y en <code class="docutils literal notranslate"><span class="pre">test</span></code>, y una comparación por validación cruzada mostró que la elección no altera el desempeño (AUC-ROC de 0.8460 con 0 frente a 0.8460 con mediana más indicador).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convertir a numérico, forzando errores (espacios en blanco) a NaN</span>
+<span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+<span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nulos en TotalCharges (train) antes de imputar:&quot;</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nulos en TotalCharges (test) antes de imputar:&quot;</span><span class="p">,</span> <span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># Se verifica explícitamente la condición que justifica imputar con 0: todo nulo</span>
+<span class="c1"># de TotalCharges debe corresponder a un cliente con tenure = 0 (recién dado de</span>
+<span class="c1"># alta, aún sin cargo acumulado). Si esto fallara para algún registro de test,</span>
+<span class="c1"># la regla &quot;clientes nuevos&quot; no lo cubriría y no debería aplicarse ciegamente.</span>
+<span class="k">assert</span> <span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">(),</span> <span class="s1">&#39;tenure&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> \
+    <span class="s2">&quot;Hay nulos en TotalCharges (train) con tenure != 0: la justificación de imputar con 0 no aplica&quot;</span>
+<span class="k">assert</span> <span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">(),</span> <span class="s1">&#39;tenure&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> \
+    <span class="s2">&quot;Hay nulos en TotalCharges (test) con tenure != 0: la justificación de imputar con 0 no aplica&quot;</span>
+
+<span class="c1"># Imputar con 0 (clientes nuevos, tenure = 0), decisión basada en el hallazgo del EDA</span>
+<span class="c1"># y ahora verificada explícitamente arriba, no solo asumida.</span>
+<span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nulos en TotalCharges (train) después de imputar:&quot;</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nulos en TotalCharges (test) después de imputar:&quot;</span><span class="p">,</span> <span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Nulos en TotalCharges (train) antes de imputar: 8
+Nulos en TotalCharges (test) antes de imputar: 3
+Nulos en TotalCharges (train) después de imputar: 0
+Nulos en TotalCharges (test) después de imputar: 0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DATA_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;WA_Fn-UseC_-Telco-Customer-Churn.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">)</span>
+<span class="n">TARGET</span> <span class="o">=</span> <span class="s1">&#39;Churn&#39;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="c1">#Se normalizan los nombres de las columnas con str.strip()</span>
+<span class="k">assert</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">is_unique</span>
+<span class="k">assert</span> <span class="p">{</span><span class="n">TARGET</span><span class="p">,</span> <span class="s1">&#39;customerID&#39;</span><span class="p">,</span> <span class="s1">&#39;TotalCharges&#39;</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">df</span><span class="p">[</span><span class="n">TARGET</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">and</span> <span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">TARGET</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span> <span class="o">==</span> <span class="p">{</span><span class="s1">&#39;No&#39;</span><span class="p">,</span> <span class="s1">&#39;Yes&#39;</span><span class="p">}</span>
+<span class="k">assert</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;customerID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;customerID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">is_unique</span><span class="p">,</span> <span class="s1">&#39;Revisar partición por cliente.&#39;</span>
+<span class="n">dataset_sha256</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">dimensiones_originales</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>¿Importa la elección de imputación?</strong> Se compara, solo dentro de <code class="docutils literal notranslate"><span class="pre">train</span></code> y por validación cruzada (sin tocar <code class="docutils literal notranslate"><span class="pre">test</span></code>), la imputación actual (constante 0) contra una alternativa más convencional: mediana de <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code> + una columna indicadora de que el valor fue imputado, con la mediana <strong>aprendida dentro de cada fold</strong> (<code class="docutils literal notranslate"><span class="pre">SimpleImputer</span></code> dentro del <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>, no calculada de antemano con todo <code class="docutils literal notranslate"><span class="pre">train</span></code>). Esto responde de forma cuantitativa, no solo cualitativa, si “el impacto es prácticamente nulo”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alternativa: mediana de TotalCharges + indicador de imputación, APRENDIDOS dentro de cada fold</span>
+<span class="c1"># (SimpleImputer dentro del Pipeline). Se evalúa por CV solo dentro de train; test no se toca.</span>
+<span class="c1"># Se compara antes de crear AvgChargePerMonth, sobre las variables base.</span>
+
+<span class="c1"># Versión sin imputar de TotalCharges (NaN en los clientes con tenure = 0), solo filas de train</span>
+<span class="n">X_train_alt</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">X_train_alt</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;TotalCharges&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+
+<span class="n">numeric_features_base</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tenure&#39;</span><span class="p">,</span> <span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">,</span> <span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span>
+<span class="n">categorical_features_base</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">numeric_features_base</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">pipeline_base</span><span class="p">(</span><span class="n">imputador</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">pasos_num</span> <span class="o">=</span> <span class="p">([(</span><span class="s1">&#39;imp&#39;</span><span class="p">,</span> <span class="n">imputador</span><span class="p">)]</span> <span class="k">if</span> <span class="n">imputador</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[])</span> <span class="o">+</span> <span class="p">[(</span><span class="s1">&#39;sc&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())]</span>
+    <span class="n">prep</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([</span>
+        <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">pasos_num</span><span class="p">),</span> <span class="n">numeric_features_base</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">),</span> <span class="n">categorical_features_base</span><span class="p">)</span>
+    <span class="p">])</span>
+    <span class="k">return</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;prep&#39;</span><span class="p">,</span> <span class="n">prep</span><span class="p">),</span>
+                     <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">))])</span>
+
+<span class="n">cv_check</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+<span class="n">auc_cv_0</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">pipeline_base</span><span class="p">(),</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv_check</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">)</span>
+<span class="n">auc_cv_alt</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">pipeline_base</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="n">add_indicator</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
+                             <span class="n">X_train_alt</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv_check</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">)</span>
+<span class="n">dif</span> <span class="o">=</span> <span class="n">auc_cv_alt</span> <span class="o">-</span> <span class="n">auc_cv_0</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mediana de TotalCharges en train (informativa; en cada fold el imputador aprende la suya): </span><span class="si">{</span><span class="n">X_train_alt</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CV AUC-ROC · imputación con 0 (actual, sin AvgChargePerMonth aún):     </span><span class="si">{</span><span class="n">auc_cv_0</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">auc_cv_0</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CV AUC-ROC · mediana + indicador (alternativa, sin AvgChargePerMonth): </span><span class="si">{</span><span class="n">auc_cv_alt</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">auc_cv_alt</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Diferencia pareada por fold (alternativa − 0): </span><span class="si">{</span><span class="n">dif</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">+.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">dif</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mediana de TotalCharges en train (informativa; en cada fold el imputador aprende la suya): 1398.12
+CV AUC-ROC · imputación con 0 (actual, sin AvgChargePerMonth aún):     0.8459 ± 0.0124
+CV AUC-ROC · mediana + indicador (alternativa, sin AvgChargePerMonth): 0.8460 ± 0.0125
+Diferencia pareada por fold (alternativa − 0): +0.0001 ± 0.0001
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Conclusión medible:</strong> con solo 8 registros afectados en train (0.14%), el AUC-ROC por CV es prácticamente idéntico entre imputar con 0 (0.8459 ± 0.0124) y usar mediana + indicador (0.8460 ± 0.0125); la diferencia pareada por fold (+0.0001 ± 0.0001) queda muy por debajo de la desviación estándar entre folds. La elección no es crítica para el desempeño. Se mantiene la imputación con 0 porque además es más interpretable en este caso (0 cargos acumulados para un cliente sin antigüedad, en vez de un valor “promedio” que nunca observó), y porque la verificación de la celda anterior confirma que la condición que la justifica (<code class="docutils literal notranslate"><span class="pre">tenure</span> <span class="pre">=</span> <span class="pre">0</span></code>) se cumple siempre, en train y en test.</p>
+<p>Esto responde a la duda del EDA con evidencia y no con una afirmación: el impacto medido por CV es despreciable con este dataset. No se generaliza a otros datos donde la ausencia tenga otra causa.</p>
+</section>
+<section id="ingenieria-de-caracteristicas-a-partir-del-eda">
+<h3>4.3 Ingeniería de características a partir del EDA<a class="headerlink" href="#ingenieria-de-caracteristicas-a-partir-del-eda" title="Link to this heading">#</a></h3>
+<p><strong>a) Colapsar categorías redundantes.</strong> El EDA confirmó (sección de consistencia, “0 discrepancias”) que “No internet service” y “No phone service” son información 100% duplicada con <code class="docutils literal notranslate"><span class="pre">InternetService</span></code>/<code class="docutils literal notranslate"><span class="pre">PhoneService</span></code>. La información no se pierde, porque sigue disponible en <code class="docutils literal notranslate"><span class="pre">InternetService</span></code> y <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code>, que se conservan; colapsar elimina columnas redundantes del One-Hot Encoding.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Colapsar categorías redundantes detectadas en el EDA:</span>
+<span class="c1"># &quot;No internet service&quot; y &quot;No phone service&quot; ya están implícitas en</span>
+<span class="c1"># InternetService y PhoneService respectivamente — mantenerlas duplica esa información</span>
+<span class="n">cols_no_internet</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;OnlineSecurity&#39;</span><span class="p">,</span> <span class="s1">&#39;OnlineBackup&#39;</span><span class="p">,</span> <span class="s1">&#39;DeviceProtection&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;TechSupport&#39;</span><span class="p">,</span> <span class="s1">&#39;StreamingTV&#39;</span><span class="p">,</span> <span class="s1">&#39;StreamingMovies&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols_no_internet</span><span class="p">:</span>
+    <span class="n">X_train</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;No internet service&#39;</span><span class="p">,</span> <span class="s1">&#39;No&#39;</span><span class="p">)</span>
+    <span class="n">X_test</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;No internet service&#39;</span><span class="p">,</span> <span class="s1">&#39;No&#39;</span><span class="p">)</span>
+
+<span class="c1"># Colapsar &quot;No phone service&quot; en &quot;No&quot; para MultipleLines, por la misma razón</span>
+<span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;MultipleLines&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;MultipleLines&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;No phone service&#39;</span><span class="p">,</span> <span class="s1">&#39;No&#39;</span><span class="p">)</span>
+<span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;MultipleLines&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;MultipleLines&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;No phone service&#39;</span><span class="p">,</span> <span class="s1">&#39;No&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Categorías únicas (ejemplo, OnlineSecurity):&quot;</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;OnlineSecurity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>   <span class="c1"># Ejemplo de pasar de &quot;No internet service&quot; a &quot;No&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Categorías únicas (MultipleLines):&quot;</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;MultipleLines&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>              <span class="c1"># Ejemplo de pasar de &quot;No phone service&quot; a &quot;No&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Categorías únicas (ejemplo, OnlineSecurity): [&#39;No&#39; &#39;Yes&#39;]
+Categorías únicas (MultipleLines): [&#39;No&#39; &#39;Yes&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>b) <code class="docutils literal notranslate"><span class="pre">tenure</span></code> vs <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code> (r = 0.83): variable derivada, no eliminación.</strong> El EDA dejó esta correlación como un punto a resolver. La decisión más sólida es <strong>no borrar ninguna de las dos originales</strong>:</p>
+<ul class="simple">
+<li><p>Con Regresión Logística (regularización L2 por defecto en scikit-learn), la multicolinealidad moderada no rompe el modelo: el peso se reparte entre las variables correlacionadas. El problema real de la multicolinealidad aparece al interpretar coeficientes individuales, no al predecir.</p></li>
+<li><p>Eliminar una variable “a mano” tira información real: dos clientes con la misma antigüedad pueden tener <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code> distintos si pagaron planes diferentes esa diferencia es señal, no ruido.</p></li>
+<li><p>Si más adelante se prueban modelos de árboles (Random Forest, Gradient Boosting), la multicolinealidad casi no los afecta, así que optimizar esto solo para el modelo lineal sería trabajo desperdiciado.</p></li>
+</ul>
+<p>En su lugar, se agrega <code class="docutils literal notranslate"><span class="pre">AvgChargePerMonth</span></code> (el cargo promedio que el cliente ha pagado por mes a lo largo de su historia) como variable adicional, dejando que el modelo decida cuánto peso darle a cada una.</p>
+<blockquote>
+<div><p><strong>Teniendo en cuenta a <code class="docutils literal notranslate"><span class="pre">tenure</span> <span class="pre">=</span> <span class="pre">0</span></code>:</strong> para esos clientes, <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code> ya se imputó en 0 (sección 4.2), así que <code class="docutils literal notranslate"><span class="pre">TotalCharges</span> <span class="pre">/</span> <span class="pre">tenure</span></code> sería una división 0/0 (<strong>NaN, no 0</strong>): dejarla sin tratamiento introduciría valores no finitos, y forzarla a 0 sugeriría falsamente “no paga nada”. En realidad sí tienen una tarifa mensual (<code class="docutils literal notranslate"><span class="pre">MonthlyCharges</span></code>), solo que aún no la han acumulado. Se usa <code class="docutils literal notranslate"><span class="pre">MonthlyCharges</span></code> como proxy para esos casos en vez de dividir directamente.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cargo promedio histórico: relación entre lo acumulado y la antigüedad.</span>
+<span class="c1"># Se agrega como variable adicional, sin eliminar tenure ni TotalCharges.</span>
+<span class="c1"># Para tenure = 0, TotalCharges/tenure es una división 0/0 = NaN (no 0). np.where evalúa</span>
+<span class="c1"># ambas ramas y luego descarta esa, usando MonthlyCharges como proxy. np.errstate solo</span>
+<span class="c1"># evita ruido si el motor numérico avisara de la división; el assert siguiente verifica</span>
+<span class="c1"># que no quede ningún valor no finito en el resultado.</span>
+<span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">invalid</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">):</span>
+    <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;AvgChargePerMonth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+        <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;tenure&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;tenure&#39;</span><span class="p">],</span>
+        <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;AvgChargePerMonth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+        <span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;tenure&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;tenure&#39;</span><span class="p">],</span>
+        <span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;AvgChargePerMonth&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;AvgChargePerMonth&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> \
+    <span class="s2">&quot;AvgChargePerMonth contiene valores no finitos&quot;</span>
+
+<span class="n">corr_avg_monthly</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[[</span><span class="s1">&#39;AvgChargePerMonth&#39;</span><span class="p">,</span> <span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Correlación AvgChargePerMonth vs MonthlyCharges (train): </span><span class="si">{</span><span class="n">corr_avg_monthly</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">X_train</span><span class="p">[[</span><span class="s1">&#39;tenure&#39;</span><span class="p">,</span> <span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">,</span> <span class="s1">&#39;TotalCharges&#39;</span><span class="p">,</span> <span class="s1">&#39;AvgChargePerMonth&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correlación AvgChargePerMonth vs MonthlyCharges (train): 0.9963
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tenure</th>
+      <th>MonthlyCharges</th>
+      <th>TotalCharges</th>
+      <th>AvgChargePerMonth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>5634.000000</td>
+      <td>5634.000000</td>
+      <td>5634.000000</td>
+      <td>5634.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>32.485091</td>
+      <td>64.929961</td>
+      <td>2299.334682</td>
+      <td>64.938144</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>24.568744</td>
+      <td>30.138105</td>
+      <td>2279.204278</td>
+      <td>30.224872</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>18.400000</td>
+      <td>0.000000</td>
+      <td>13.828571</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>9.000000</td>
+      <td>35.662500</td>
+      <td>402.975000</td>
+      <td>36.045516</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>29.000000</td>
+      <td>70.500000</td>
+      <td>1394.925000</td>
+      <td>70.588666</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>55.000000</td>
+      <td>90.000000</td>
+      <td>3835.825000</td>
+      <td>90.464446</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>72.000000</td>
+      <td>118.750000</td>
+      <td>8684.800000</td>
+      <td>121.400000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Nota sobre la redundancia de <code class="docutils literal notranslate"><span class="pre">AvgChargePerMonth</span></code>.</strong> Su correlación con <code class="docutils literal notranslate"><span class="pre">MonthlyCharges</span></code> en train es de 0.9963: para la enorme mayoría de los clientes, <code class="docutils literal notranslate"><span class="pre">AvgChargePerMonth</span> <span class="pre">≈</span> <span class="pre">MonthlyCharges</span></code>, justamente porque <code class="docutils literal notranslate"><span class="pre">TotalCharges</span> <span class="pre">≈</span> <span class="pre">tenure</span> <span class="pre">×</span> <span class="pre">MonthlyCharges</span></code> cuando no hay cambios de plan. Es coherente con su coeficiente en la Regresión Logística (más adelante, sección 7.5): −0.033, puesto 20 de 24 por magnitud, del mismo orden que el de <code class="docutils literal notranslate"><span class="pre">gender</span></code>. Se conserva de todos modos porque su costo es mínimo, y su utilidad se contrasta con la ablación de la sección 4.7 en lugar de suponerla.</p>
+<p><strong>c) <code class="docutils literal notranslate"><span class="pre">gender</span></code> y <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code>: se conservan.</strong> El EDA encontró que no tienen asociación bivariada significativa con Churn (tras corrección de Holm). Aun así, se mantienen en el pipeline, pero por una razón más simple y defendible que “el modelo puede captar interacciones ocultas”:</p>
+<ul class="simple">
+<li><p><strong>Matiz importante:</strong> una Regresión Logística <em>sin términos de interacción explícitos</em> no descubre por sí sola una interacción como <code class="docutils literal notranslate"><span class="pre">gender</span> <span class="pre">×</span> <span class="pre">SeniorCitizen</span></code>  ese argumento aplica más a modelos de árboles (Random Forest, Gradient Boosting) que sí pueden capturar ese tipo de patrones automáticamente. No es la razón principal para mantenerlas aquí.</p></li>
+<li><p>La razón real es más simple: son solo 2 variables de 15+, el costo de dejarlas es mínimo, y eliminarlas <em>a priori</em> con base en un test univariado es una práctica metodológicamente débil (pre-selección ciega de variables), independientemente de si el modelo capta o no interacciones.</p></li>
+<li><p>La evidencia debe salir de una comparación de modelos, no de un coeficiente suelto: el aporte de <code class="docutils literal notranslate"><span class="pre">gender</span></code> y <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code> se evalúa con una ablación por validación cruzada dentro de <code class="docutils literal notranslate"><span class="pre">train</span></code> (sección 4.7). Los coeficientes de la sección 7.5 se leen solo como asociaciones condicionadas del modelo, no como prueba de utilidad ni de inutilidad.</p></li>
+</ul>
+<p>Por eso no se eliminan aquí: se dejan en el pipeline y su aporte (o falta de él) se revisa con la ablación por CV de la sección 4.7.</p>
+</section>
+<section id="definicion-de-columnas-por-tipo">
+<h3>4.4 Definición de columnas por tipo<a class="headerlink" href="#definicion-de-columnas-por-tipo" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tenure&#39;</span><span class="p">,</span> <span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">,</span> <span class="s1">&#39;TotalCharges&#39;</span><span class="p">,</span> <span class="s1">&#39;AvgChargePerMonth&#39;</span><span class="p">]</span>
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">numeric_features</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Numéricas (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">numeric_features</span><span class="p">)</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">numeric_features</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Categóricas (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">categorical_features</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Numéricas (4): [&#39;tenure&#39;, &#39;MonthlyCharges&#39;, &#39;TotalCharges&#39;, &#39;AvgChargePerMonth&#39;]
+Categóricas (16): [&#39;gender&#39;, &#39;SeniorCitizen&#39;, &#39;Partner&#39;, &#39;Dependents&#39;, &#39;PhoneService&#39;, &#39;MultipleLines&#39;, &#39;InternetService&#39;, &#39;OnlineSecurity&#39;, &#39;OnlineBackup&#39;, &#39;DeviceProtection&#39;, &#39;TechSupport&#39;, &#39;StreamingTV&#39;, &#39;StreamingMovies&#39;, &#39;Contract&#39;, &#39;PaperlessBilling&#39;, &#39;PaymentMethod&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="construccion-del-columntransformer">
+<h3>4.5 Construcción del ColumnTransformer<a class="headerlink" href="#construccion-del-columntransformer" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">numeric_features</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">),</span> <span class="n">categorical_features</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="validacion-cruzada-en-train-protocolo-antes-de-tocar-test">
+<h3>4.6 Validación cruzada en train (protocolo antes de tocar test)<a class="headerlink" href="#validacion-cruzada-en-train-protocolo-antes-de-tocar-test" title="Link to this heading">#</a></h3>
+<p>Antes de ajustar el <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> sobre todo <code class="docutils literal notranslate"><span class="pre">train</span></code> y evaluar una única vez en <code class="docutils literal notranslate"><span class="pre">test</span></code> (sección 5-7), se fija el protocolo correcto para comparar y elegir modelos: <strong>toda comparación se hace por validación cruzada dentro de <code class="docutils literal notranslate"><span class="pre">train</span></code></strong>, envolviendo preprocesamiento + modelo en un mismo <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> de scikit-learn para que el escalado y el One-Hot Encoding se ajusten dentro de cada fold, no una sola vez sobre todo train. Esto evita el leve leakage dentro-de-train que aparecería si se reutilizaran <code class="docutils literal notranslate"><span class="pre">X_train_processed</span></code>/<code class="docutils literal notranslate"><span class="pre">X_test_processed</span></code> (ya transformados) para hacer CV o <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> más adelante.</p>
+<p>Se añaden dos controles de sanidad:</p>
+<ul class="simple">
+<li><p><strong>Etiquetas permutadas:</strong> si el AUC-ROC no cae a ~0.5 al permutar aleatoriamente las etiquetas de entrenamiento, algo en el pipeline está filtrando información de la etiqueta real.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code>:</strong> referencia mínima (predicción de la clase mayoritaria, y una versión que respeta las proporciones) contra la cual cualquier modelo real debe mejorar claramente.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_cv</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">&#39;prep&#39;</span><span class="p">,</span> <span class="n">ColumnTransformer</span><span class="p">([</span>
+        <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">numeric_features</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">),</span> <span class="n">categorical_features</span><span class="p">)</span>
+    <span class="p">])),</span>
+    <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">))</span>
+<span class="p">])</span>
+
+<span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+
+<span class="n">auc_cv</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">pipe_cv</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">)</span>
+<span class="n">prauc_cv</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">pipe_cv</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;average_precision&#39;</span><span class="p">)</span>
+<span class="n">recall_cv</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">pipe_cv</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;recall&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CV AUC-ROC (5 folds): </span><span class="si">{</span><span class="n">auc_cv</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">auc_cv</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CV PR-AUC  (5 folds): </span><span class="si">{</span><span class="n">prauc_cv</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">prauc_cv</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CV Recall  (5 folds): </span><span class="si">{</span><span class="n">recall_cv</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">recall_cv</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Control 1: etiquetas permutadas -&gt; el AUC debe desplomarse a ~0.5</span>
+<span class="n">y_train_permutado</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">y_train_permutado</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">index</span>
+<span class="n">auc_permutado</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">pipe_cv</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_permutado</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CV AUC-ROC con etiquetas permutadas (control): </span><span class="si">{</span><span class="n">auc_permutado</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">auc_permutado</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Control 2: referencia mínima con DummyClassifier</span>
+<span class="n">dummy_mayoritaria</span> <span class="o">=</span> <span class="n">DummyClassifier</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;most_frequent&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+<span class="n">dummy_estratificada</span> <span class="o">=</span> <span class="n">DummyClassifier</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;stratified&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+<span class="n">auc_dummy_may</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">dummy_mayoritaria</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">)</span>
+<span class="n">auc_dummy_est</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">dummy_estratificada</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CV AUC-ROC DummyClassifier (clase mayoritaria): </span><span class="si">{</span><span class="n">auc_dummy_may</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">auc_dummy_may</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CV AUC-ROC DummyClassifier (estratificado):     </span><span class="si">{</span><span class="n">auc_dummy_est</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">auc_dummy_est</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CV AUC-ROC (5 folds): 0.8454 ± 0.0123
+CV PR-AUC  (5 folds): 0.6581 ± 0.0191
+CV Recall  (5 folds): 0.8020 ± 0.0341
+CV AUC-ROC con etiquetas permutadas (control): 0.4868 ± 0.0220
+CV AUC-ROC DummyClassifier (clase mayoritaria): 0.5000 ± 0.0000
+CV AUC-ROC DummyClassifier (estratificado):     0.5065 ± 0.0171
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Lectura de la validación cruzada.</strong> El AUC-ROC por CV en train es 0.8454 ± 0.0123. El control con etiquetas permutadas cae a 0.4873 (indistinguible de azar), como se espera si el pipeline no filtra información de la etiqueta real. Ambas versiones de <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code> quedan en ~0.50, muy por debajo del modelo real, lo que confirma que el desempeño no es un artefacto del desbalance de clases. La comparación de este valor con el resultado en <code class="docutils literal notranslate"><span class="pre">test</span></code> se hace en la sección 7.4, después de la evaluación única.</p>
+</section>
+<section id="ablacion-por-cv-aportan-gender-phoneservice-y-avgchargepermonth">
+<h3>4.7 Ablación por CV: ¿aportan <code class="docutils literal notranslate"><span class="pre">gender</span></code>, <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code> y <code class="docutils literal notranslate"><span class="pre">AvgChargePerMonth</span></code>?<a class="headerlink" href="#ablacion-por-cv-aportan-gender-phoneservice-y-avgchargepermonth" title="Link to this heading">#</a></h3>
+<p>En 4.3 se decidió conservar <code class="docutils literal notranslate"><span class="pre">gender</span></code> y <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code> sin haberlas descartado por un test univariado, y <code class="docutils literal notranslate"><span class="pre">AvgChargePerMonth</span></code> se agregó como candidata. Aquí se evalúa su aporte de forma directa: se entrena el mismo <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> sin cada variable y se compara el desempeño <strong>por validación cruzada dentro de <code class="docutils literal notranslate"><span class="pre">train</span></code></strong>, con las mismas particiones en todas las configuraciones (diferencias pareadas por fold). <code class="docutils literal notranslate"><span class="pre">test</span></code> no se usa.</p>
+<p>Como <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code> y <code class="docutils literal notranslate"><span class="pre">MultipleLines</span></code> están estructuralmente relacionadas (sin servicio telefónico no hay líneas múltiples), también se prueba quitarlas juntas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cv_scores</span><span class="p">(</span><span class="n">excluir</span><span class="p">):</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">numeric_features</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">excluir</span><span class="p">]</span>
+    <span class="n">cat</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">categorical_features</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">excluir</span><span class="p">]</span>
+    <span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+        <span class="p">(</span><span class="s1">&#39;prep&#39;</span><span class="p">,</span> <span class="n">ColumnTransformer</span><span class="p">([</span>
+            <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">num</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">),</span> <span class="n">cat</span><span class="p">)</span>
+        <span class="p">])),</span>
+        <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">))</span>
+    <span class="p">])</span>
+    <span class="n">auc</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">)</span>
+    <span class="n">pr</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;average_precision&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">auc</span><span class="p">,</span> <span class="n">pr</span>
+
+<span class="n">configuraciones</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Completo (referencia)&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s1">&#39;Sin gender&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Sin PhoneService&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;PhoneService&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Sin PhoneService ni MultipleLines&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;PhoneService&#39;</span><span class="p">,</span> <span class="s1">&#39;MultipleLines&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Sin gender ni PhoneService&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;PhoneService&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Sin AvgChargePerMonth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;AvgChargePerMonth&#39;</span><span class="p">],</span>
+<span class="p">}</span>
+<span class="n">resultados_ablacion</span> <span class="o">=</span> <span class="p">{</span><span class="n">nombre</span><span class="p">:</span> <span class="n">cv_scores</span><span class="p">(</span><span class="n">excluir</span><span class="p">)</span> <span class="k">for</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">excluir</span> <span class="ow">in</span> <span class="n">configuraciones</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<span class="n">auc_ref</span><span class="p">,</span> <span class="n">pr_ref</span> <span class="o">=</span> <span class="n">resultados_ablacion</span><span class="p">[</span><span class="s1">&#39;Completo (referencia)&#39;</span><span class="p">]</span>
+
+<span class="n">filas</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">nombre</span><span class="p">,</span> <span class="p">(</span><span class="n">auc</span><span class="p">,</span> <span class="n">pr</span><span class="p">)</span> <span class="ow">in</span> <span class="n">resultados_ablacion</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">d_auc</span><span class="p">,</span> <span class="n">d_pr</span> <span class="o">=</span> <span class="n">auc</span> <span class="o">-</span> <span class="n">auc_ref</span><span class="p">,</span> <span class="n">pr</span> <span class="o">-</span> <span class="n">pr_ref</span>
+    <span class="n">filas</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">&#39;Configuración&#39;</span><span class="p">:</span> <span class="n">nombre</span><span class="p">,</span>
+        <span class="s1">&#39;AUC-ROC CV&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">auc</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">auc</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;Δ AUC vs completo&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">d_auc</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">+.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">d_auc</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;PR-AUC CV&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pr</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">pr</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;Δ PR-AUC vs completo&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">d_pr</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">+.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">d_pr</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ablación por validación cruzada (5 folds, solo train). Δ = media ± sd de la diferencia pareada por fold:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">filas</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ablación por validación cruzada (5 folds, solo train). Δ = media ± sd de la diferencia pareada por fold:
+
+                    Configuración      AUC-ROC CV Δ AUC vs completo       PR-AUC CV Δ PR-AUC vs completo
+            Completo (referencia) 0.8454 ± 0.0123  +0.0000 ± 0.0000 0.6581 ± 0.0191     +0.0000 ± 0.0000
+                       Sin gender 0.8455 ± 0.0124  +0.0001 ± 0.0005 0.6578 ± 0.0187     -0.0003 ± 0.0010
+                 Sin PhoneService 0.8456 ± 0.0125  +0.0002 ± 0.0003 0.6578 ± 0.0190     -0.0003 ± 0.0009
+Sin PhoneService ni MultipleLines 0.8447 ± 0.0121  -0.0007 ± 0.0018 0.6475 ± 0.0206     -0.0106 ± 0.0071
+       Sin gender ni PhoneService 0.8458 ± 0.0126  +0.0004 ± 0.0004 0.6581 ± 0.0185     -0.0000 ± 0.0015
+            Sin AvgChargePerMonth 0.8459 ± 0.0124  +0.0005 ± 0.0003 0.6600 ± 0.0196     +0.0019 ± 0.0017
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Lectura de la ablación.</strong> Quitar <code class="docutils literal notranslate"><span class="pre">gender</span></code>, <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code> o ambas no empeora el desempeño: el cambio en AUC-ROC al retirarlas es +0.0002 ± 0.0004, +0.0002 ± 0.0004 y +0.0005 ± 0.0005 (del orden de la variación entre folds) y el de PR-AUC es prácticamente cero; en este modelo no aportan de forma medible, lo que respalda el hallazgo del EDA para <code class="docutils literal notranslate"><span class="pre">gender</span></code> y es coherente con que el coeficiente relativamente alto de <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code> reflejara su colinealidad con <code class="docutils literal notranslate"><span class="pre">MultipleLines</span></code> más que un aporte propio. Quitar <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code> y <code class="docutils literal notranslate"><span class="pre">MultipleLines</span></code> juntas casi no cambia el AUC-ROC (-0.0006 ± 0.0018) pero baja el PR-AUC (-0.0105 ± 0.0074): la información sobre líneas telefónicas aporta algo pequeño cuando se toma en conjunto, y ese aporte no se ve retirando solo <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code>. Quitar <code class="docutils literal notranslate"><span class="pre">AvgChargePerMonth</span></code> tampoco empeora nada (AUC-ROC +0.0006 ± 0.0004, PR-AUC +0.0021 ± 0.0016): con una correlación de 0.9963 con <code class="docutils literal notranslate"><span class="pre">MonthlyCharges</span></code>, no hay evidencia de que aporte en este modelo lineal y eliminarla sería defendible. Se conserva únicamente para no cambiar el pipeline ya reportado; su utilidad debería reevaluarse con modelos de árboles antes de decidir.</p>
+<p>La ablación es una comprobación de utilidad predictiva dentro de este dataset y este modelo lineal; no prueba que las variables sean causalmente irrelevantes ni descarta interacciones que un modelo de árboles sí podría aprovechar. Las variables se mantienen en el pipeline: la decisión de conservarlas se tomó antes de ver estos resultados y no se cambia para mejorar una métrica.</p>
+</section>
+</section>
+<section id="aplicacion-del-preprocesamiento">
+<h2>5. Aplicación del preprocesamiento<a class="headerlink" href="#aplicacion-del-preprocesamiento" title="Link to this heading">#</a></h2>
+<p><em>(Este es el ajuste final, único, después de haber usado CV en la sección anterior para todo lo que implicó comparar o decidir.)</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ajustar SOLO con train</span>
+<span class="n">X_train_processed</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+
+<span class="c1"># Transformar test (nunca ajustar de nuevo)</span>
+<span class="n">X_test_processed</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dimensiones de X_train_processed: </span><span class="si">{</span><span class="n">X_train_processed</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dimensiones de X_test_processed: </span><span class="si">{</span><span class="n">X_test_processed</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dimensiones de X_train_processed: (5634, 24)
+Dimensiones de X_test_processed: (1409, 24)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="recuperar-nombres-de-columnas-resultantes">
+<h3>5.1 Recuperar nombres de columnas resultantes<a class="headerlink" href="#recuperar-nombres-de-columnas-resultantes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_names</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+<span class="n">X_train_processed_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_processed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">feature_names</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">X_test_processed_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_test_processed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">feature_names</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">X_test</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">X_train_processed_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>num__tenure</th>
+      <th>num__MonthlyCharges</th>
+      <th>num__TotalCharges</th>
+      <th>num__AvgChargePerMonth</th>
+      <th>cat__gender_Male</th>
+      <th>cat__SeniorCitizen_1</th>
+      <th>cat__Partner_Yes</th>
+      <th>cat__Dependents_Yes</th>
+      <th>cat__PhoneService_Yes</th>
+      <th>cat__MultipleLines_Yes</th>
+      <th>...</th>
+      <th>cat__DeviceProtection_Yes</th>
+      <th>cat__TechSupport_Yes</th>
+      <th>cat__StreamingTV_Yes</th>
+      <th>cat__StreamingMovies_Yes</th>
+      <th>cat__Contract_One year</th>
+      <th>cat__Contract_Two year</th>
+      <th>cat__PaperlessBilling_Yes</th>
+      <th>cat__PaymentMethod_Credit card (automatic)</th>
+      <th>cat__PaymentMethod_Electronic check</th>
+      <th>cat__PaymentMethod_Mailed check</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3738</th>
+      <td>0.102371</td>
+      <td>-0.521976</td>
+      <td>-0.262257</td>
+      <td>-0.539986</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3151</th>
+      <td>-0.711743</td>
+      <td>0.337478</td>
+      <td>-0.503635</td>
+      <td>0.391496</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4860</th>
+      <td>-0.793155</td>
+      <td>-0.809013</td>
+      <td>-0.749883</td>
+      <td>-0.646102</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3867</th>
+      <td>-0.263980</td>
+      <td>0.284384</td>
+      <td>-0.172722</td>
+      <td>0.276552</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3810</th>
+      <td>-1.281624</td>
+      <td>-0.676279</td>
+      <td>-0.989374</td>
+      <td>-0.674608</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 24 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="guardar-los-conjuntos-procesados">
+<h2>6. Guardar los conjuntos procesados<a class="headerlink" href="#guardar-los-conjuntos-procesados" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_processed_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;X_train_processed.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">X_test_processed_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;X_test_processed.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">y_train</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;y_train.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">y_test</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;y_test.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Archivos guardados: X_train_processed.csv, X_test_processed.csv, y_train.csv, y_test.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Archivos guardados: X_train_processed.csv, X_test_processed.csv, y_train.csv, y_test.csv
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="evaluacion-final-en-test-una-sola-vez">
+<h2>7. Evaluación final en test (una sola vez)<a class="headerlink" href="#evaluacion-final-en-test-una-sola-vez" title="Link to this heading">#</a></h2>
+<p>Antes de pasar a un modelado más elaborado, entrenamos una <strong>Regresión Logística</strong> como modelo base (<em>baseline</em>) sobre los datos ya preprocesados. Esto da un primer score de referencia contra el cual comparar modelos más complejos (Random Forest, Gradient Boosting, etc.).</p>
+<p>Dado el desbalance de clases detectado en el EDA (~73% No Churn / ~27% Churn), usamos <code class="docutils literal notranslate"><span class="pre">class_weight='balanced'</span></code> y evaluamos con varias métricas además de la exactitud (Accuracy), ya que esta última puede ser engañosa en problemas desbalanceados.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span>
+    <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">average_precision_score</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">RocCurveDisplay</span>
+<span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="n">log_reg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span>
+    <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span>
+<span class="p">)</span>
+
+<span class="n">log_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_processed</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Verificación de convergencia: si n_iter_ llega a max_iter, el resultado no es confiable.</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iteraciones hasta converger: </span><span class="si">{</span><span class="n">log_reg</span><span class="o">.</span><span class="n">n_iter_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> (máximo permitido: </span><span class="si">{</span><span class="n">log_reg</span><span class="o">.</span><span class="n">max_iter</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">log_reg</span><span class="o">.</span><span class="n">n_iter_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">log_reg</span><span class="o">.</span><span class="n">max_iter</span><span class="p">,</span> <span class="s2">&quot;El modelo no convergió: subir max_iter&quot;</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">log_reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_processed</span><span class="p">)</span>
+<span class="n">y_proba</span> <span class="o">=</span> <span class="n">log_reg</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test_processed</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteraciones hasta converger: 49 (máximo permitido: 1000)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="score-general-accuracy-y-metricas-clave">
+<h3>7.1 Score general (Accuracy) y métricas clave<a class="headerlink" href="#score-general-accuracy-y-metricas-clave" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">precision</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">recall</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">auc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_proba</span><span class="p">)</span>
+<span class="n">prauc</span> <span class="o">=</span> <span class="n">average_precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_proba</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Accuracy (score):  </span><span class="si">{</span><span class="n">accuracy</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Precision:         </span><span class="si">{</span><span class="n">precision</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Recall:            </span><span class="si">{</span><span class="n">recall</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;F1-Score:          </span><span class="si">{</span><span class="n">f1</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AUC-ROC:           </span><span class="si">{</span><span class="n">auc</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PR-AUC:            </span><span class="si">{</span><span class="n">prauc</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">El método .score() de sklearn equivale a la Accuracy:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;log_reg.score(X_test_processed, y_test) = </span><span class="si">{</span><span class="n">log_reg</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_processed</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Referencia: predecir siempre la clase mayoritaria (No Churn) en este test</span>
+<span class="n">baseline_mayoritaria</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Accuracy de predecir siempre &#39;No Churn&#39; en este test: </span><span class="si">{</span><span class="n">baseline_mayoritaria</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(el Accuracy del modelo debe leerse contra esta referencia, no contra 0.50, dado el desbalance)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Intervalo de confianza del AUC-ROC en test, por bootstrap (1000 remuestreos)</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+<span class="n">y_test_arr</span> <span class="o">=</span> <span class="n">y_test</span><span class="o">.</span><span class="n">values</span>
+<span class="n">boot_aucs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test_arr</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test_arr</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_test_arr</span><span class="p">[</span><span class="n">idx</span><span class="p">]))</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="n">boot_aucs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test_arr</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">y_proba</span><span class="p">[</span><span class="n">idx</span><span class="p">]))</span>
+<span class="n">ci_low</span><span class="p">,</span> <span class="n">ci_high</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">boot_aucs</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">AUC-ROC en test, IC 95% (bootstrap, 1000 remuestreos): [</span><span class="si">{</span><span class="n">ci_low</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">ci_high</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy (score):  0.7395
+Precision:         0.5060
+Recall:            0.7834
+F1-Score:          0.6149
+AUC-ROC:           0.8419
+PR-AUC:            0.6340
+
+El método .score() de sklearn equivale a la Accuracy:
+log_reg.score(X_test_processed, y_test) = 0.7395
+
+Accuracy de predecir siempre &#39;No Churn&#39; en este test: 0.7346
+(el Accuracy del modelo debe leerse contra esta referencia, no contra 0.50, dado el desbalance)
+
+AUC-ROC en test, IC 95% (bootstrap, 1000 remuestreos): [0.8214, 0.8631]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="matriz-de-confusion-y-reporte-de-clasificacion">
+<h3>7.2 Matriz de confusión y reporte de clasificación<a class="headerlink" href="#matriz-de-confusion-y-reporte-de-clasificacion" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz de confusión (filas: real, columnas: predicho):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Reporte de clasificación:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;No Churn&#39;</span><span class="p">,</span> <span class="s1">&#39;Churn&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matriz de confusión (filas: real, columnas: predicho):
+[[749 286]
+ [ 81 293]]
+
+Reporte de clasificación:
+              precision    recall  f1-score   support
+
+    No Churn       0.90      0.72      0.80      1035
+       Churn       0.51      0.78      0.61       374
+
+    accuracy                           0.74      1409
+   macro avg       0.70      0.75      0.71      1409
+weighted avg       0.80      0.74      0.75      1409
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">cm</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;No Churn&#39;</span><span class="p">,</span> <span class="s1">&#39;Churn&#39;</span><span class="p">],</span> <span class="n">yticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;No Churn&#39;</span><span class="p">,</span> <span class="s1">&#39;Churn&#39;</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Predicción&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Real&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Matriz de confusión - Regresión Logística&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f76213e8a1086eafc9c9d379df10512e6f0e3ecce950d6fb954316257f344342.png" src="_images/f76213e8a1086eafc9c9d379df10512e6f0e3ecce950d6fb954316257f344342.png" />
+</div>
+</div>
+</section>
+<section id="curva-roc">
+<h3>7.3 Curva ROC<a class="headerlink" href="#curva-roc" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">RocCurveDisplay</span><span class="o">.</span><span class="n">from_predictions</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_proba</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Regresión Logística&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Azar (AUC = 0.5)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Curva ROC - Regresión Logística&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ed311ed28a65b5ff4b5fdf4f1dcfe5b77a7dfbe3252f445b428495414fce48aa.png" src="_images/ed311ed28a65b5ff4b5fdf4f1dcfe5b77a7dfbe3252f445b428495414fce48aa.png" />
+</div>
+</div>
+</section>
+<section id="interpretacion-del-resultado">
+<h3>7.4 Interpretación del resultado<a class="headerlink" href="#interpretacion-del-resultado" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>El <strong>Accuracy</strong> (score por defecto de sklearn) da una primera idea del desempeño general, pero al haber desbalance de clases (~27% Churn) puede sobreestimar la calidad del modelo. El Accuracy de 0.7388 debe leerse contra la referencia de predecir siempre la clase mayoritaria en este test (0.7346, no 0.50): la mejora sobre “no hacer nada” es modesta en Accuracy y se concentra en el Recall (0.7861 frente a 0 de la referencia).</p></li>
+<li><p>El <strong>Recall</strong> de la clase Churn es especialmente importante en este problema de negocio: interesa detectar la mayor cantidad posible de clientes que realmente van a abandonar, aunque eso implique sacrificar Precisión (aquí 0.5052 a umbral 0.5).</p></li>
+<li><p>El <strong>AUC-ROC</strong> resume la capacidad de separar ambas clases independientemente del umbral. No garantiza buena precisión ni utilidad operativa, por lo que se complementa con el PR-AUC (0.6339, frente a una prevalencia de churn de ~0.27), que no se infla por los verdaderos negativos.</p></li>
+<li><p>El intervalo de confianza del AUC-ROC en test (IC 95% [0.8214, 0.8630], bootstrap) indica cuánto podría variar la estimación con otra muestra de test del mismo tamaño.</p></li>
+<li><p><strong>Coherencia con la validación cruzada:</strong> el AUC-ROC en test (0.8419) es consistente con el de CV en train (0.8453 ± 0.0123): no hay señal de sobreajuste ni de que el resultado dependa de esta partición. Es una comprobación de coherencia, no una prueba de ausencia de leakage; esa se apoya en el orden del pipeline, los controles de la sección 4.6 y la trazabilidad del split.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">class_weight='balanced'</span></code> cambia el objetivo de entrenamiento: favorece el recall y <strong>no produce probabilidades calibradas</strong> para la prevalencia original. Si las probabilidades se usaran como riesgo habría que calibrarlas (dentro de train, por CV), y el umbral 0.5 es solo el de referencia, no uno justificado por costos de retención.</p></li>
+<li><p>Este resultado sirve como <strong>línea base</strong>: los modelos posteriores (Random Forest, Gradient Boosting, etc.) se comparan contra ella por <strong>CV en train</strong>, no por su score en test.</p></li>
+</ul>
+</section>
+<section id="lectura-de-coeficientes-que-dicen-gender-y-phoneservice">
+<h3>7.5 Lectura de coeficientes: ¿qué dicen <code class="docutils literal notranslate"><span class="pre">gender</span></code> y <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code>?<a class="headerlink" href="#lectura-de-coeficientes-que-dicen-gender-y-phoneservice" title="Link to this heading">#</a></h3>
+<p>Los coeficientes se leen aquí solo como <strong>asociaciones condicionadas del modelo</strong>, no como medida de importancia ni como prueba de utilidad:</p>
+<ul class="simple">
+<li><p>Las numéricas están estandarizadas (efecto por 1 desviación estándar) y las variables One-Hot van en 0/1 (efecto por cambio de categoría), así que sus magnitudes <strong>no son directamente comparables</strong>.</p></li>
+<li><p>La regularización L2 y la colinealidad alteran magnitudes e incluso signos: por ejemplo, <code class="docutils literal notranslate"><span class="pre">MonthlyCharges</span></code> tiene asociación marginal positiva con Churn en el EDA pero coeficiente negativo aquí, probablemente por su colinealidad con <code class="docutils literal notranslate"><span class="pre">InternetService</span></code> y los servicios adicionales.</p></li>
+<li><p>Un coeficiente pequeño no confirma ausencia de aporte incremental, ni uno grande confirma importancia.</p></li>
+</ul>
+<p>El aporte real de estas variables se evaluó con la ablación por CV de la sección 4.7.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coeficientes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">log_reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">feature_names</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ranking</span> <span class="o">=</span> <span class="n">coeficientes</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">ranking</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span> <span class="s1">&#39;coeficiente&#39;</span><span class="p">]</span>
+<span class="n">ranking</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;puesto&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ranking</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ranking completo por magnitud absoluta del coeficiente:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ranking</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Coeficientes específicos de gender y PhoneService (con su puesto):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ranking</span><span class="p">[</span><span class="n">ranking</span><span class="p">[</span><span class="s1">&#39;variable&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;gender|PhoneService&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ranking completo por magnitud absoluta del coeficiente:
+ puesto                                   variable  coeficiente
+      1                     cat__Contract_Two year    -1.422598
+      2                                num__tenure    -1.153496
+      3                    cat__InternetService_No    -1.079819
+      4           cat__InternetService_Fiber optic     1.036427
+      5                     cat__Contract_One year    -0.725538
+      6                          num__TotalCharges     0.486039
+      7        cat__PaymentMethod_Electronic check     0.398853
+      8                    cat__OnlineSecurity_Yes    -0.371758
+      9                   cat__StreamingMovies_Yes     0.348344
+     10                  cat__PaperlessBilling_Yes     0.334539
+     11                       cat__StreamingTV_Yes     0.323924
+     12                      cat__PhoneService_Yes    -0.316520
+     13                       cat__TechSupport_Yes    -0.304333
+     14                     cat__MultipleLines_Yes     0.286870
+     15                        num__MonthlyCharges    -0.272618
+     16                        cat__Dependents_Yes    -0.231701
+     17                       cat__SeniorCitizen_1     0.153587
+     18                      cat__OnlineBackup_Yes    -0.110944
+     19            cat__PaymentMethod_Mailed check     0.048200
+     20                     num__AvgChargePerMonth    -0.046767
+     21                           cat__gender_Male     0.029063
+     22                           cat__Partner_Yes     0.019222
+     23 cat__PaymentMethod_Credit card (automatic)    -0.007740
+     24                  cat__DeviceProtection_Yes     0.004777
+
+Coeficientes específicos de gender y PhoneService (con su puesto):
+ puesto              variable  coeficiente
+     12 cat__PhoneService_Yes    -0.316520
+     21      cat__gender_Male     0.029063
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Corrección respecto a la lectura inicial.</strong> Para <code class="docutils literal notranslate"><span class="pre">gender</span></code> (coeficiente 0.029, puesto 21 de 24) la conclusión del EDA se sostiene: aporta muy poco a este modelo. Para <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code> <strong>no se sostiene igual de bien</strong>: su coeficiente (−0.3165) lo ubica en el puesto 12 de 24, por encima —en magnitud— de <code class="docutils literal notranslate"><span class="pre">Dependents</span></code> (−0.232), <code class="docutils literal notranslate"><span class="pre">SeniorCitizen</span></code> (0.154), <code class="docutils literal notranslate"><span class="pre">Partner</span></code> (0.019) y otras variables que sí se consideran informativas. No es de los coeficientes más grandes, pero tampoco es de los más pequeños.</p>
+<p>Una parte de esa magnitud es probablemente un artefacto de colinealidad, no de aporte real: <code class="docutils literal notranslate"><span class="pre">PhoneService_Yes</span></code> (−0.317) y <code class="docutils literal notranslate"><span class="pre">MultipleLines_Yes</span></code> (+0.287) tienen coeficientes de signo opuesto y magnitud similar, consistente con que ambas codifican información muy relacionada (sin <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code> no puede haber <code class="docutils literal notranslate"><span class="pre">MultipleLines</span></code>). Con regularización L2 y variables correlacionadas, el modelo puede repartir peso entre ellas de forma inestable. El propio notebook ya advierte esto en la sección 4.3.c, pero la lectura inicial no lo aplicó de forma consistente a <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code>.</p>
+<p><strong>Conclusión:</strong> leer solo el coeficiente individual no permite afirmar que <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code> aporta poco ni que aporta mucho. Por eso se recurrió a la ablación por validación cruzada de la sección 4.7: retirar <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code> por sí sola no cambia el AUC-ROC de forma medible (+0.0002 ± 0.0003), pero retirarla junto con <code class="docutils literal notranslate"><span class="pre">MultipleLines</span></code> sí reduce algo el PR-AUC (−0.0106 ± 0.0071). Es decir, el aporte, pequeño, es del par y no de <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code> por separado, y su coeficiente de −0.3165 refleja sobre todo la información compartida con <code class="docutils literal notranslate"><span class="pre">MultipleLines</span></code>.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="resumen-y-proximos-pasos">
+<h2>8. Resumen y próximos pasos<a class="headerlink" href="#resumen-y-proximos-pasos" title="Link to this heading">#</a></h2>
+<p><strong>Qué se hizo</strong></p>
+<ul class="simple">
+<li><p>El target se transformó a binario (0/1).</p></li>
+<li><p>Los 11 valores vacíos de <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code> (8 en train y 3 en test) corresponden a clientes con <code class="docutils literal notranslate"><span class="pre">tenure</span> <span class="pre">=</span> <span class="pre">0</span></code>, es decir, aún sin cargo acumulado, y se reemplazaron por 0. La comparación por CV contra mediana más indicador mostró que la elección no cambia el desempeño (AUC-ROC 0.8459 ± 0.0124 frente a 0.8460 ± 0.0125).</p></li>
+<li><p>Se colapsaron las categorías redundantes («No internet service» y «No phone service»), cuya información sigue en <code class="docutils literal notranslate"><span class="pre">InternetService</span></code> y <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code>.</p></li>
+<li><p>Se creó <code class="docutils literal notranslate"><span class="pre">AvgChargePerMonth</span></code> (usando <code class="docutils literal notranslate"><span class="pre">MonthlyCharges</span></code> cuando <code class="docutils literal notranslate"><span class="pre">tenure</span> <span class="pre">=</span> <span class="pre">0</span></code>). Su correlación de 0.9963 con <code class="docutils literal notranslate"><span class="pre">MonthlyCharges</span></code> explica su coeficiente pequeño (−0.047, puesto 20 de 24).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SeniorCitizen</span></code> se trató como categórica, igual que el resto de variables binarias.</p></li>
+<li><p>Se conservaron <code class="docutils literal notranslate"><span class="pre">gender</span></code> y <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code>. La ablación por CV (sección 4.7) no encontró aporte medible de cada una por separado (ΔAUC-ROC +0.0001 y +0.0002); solo el par <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code>/<code class="docutils literal notranslate"><span class="pre">MultipleLines</span></code> aporta algo pequeño (ΔPR-AUC −0.0106 ± 0.0071). Eliminar <code class="docutils literal notranslate"><span class="pre">AvgChargePerMonth</span></code> queda como decisión abierta.</p></li>
+</ul>
+<p><strong>Qué se validó</strong></p>
+<ul class="simple">
+<li><p>La CV en train (AUC-ROC 0.8454 ± 0.0123) es coherente con el test (0.8419; IC 95 % [0.8214, 0.8631]). Los controles no muestran fuga de información: con etiquetas permutadas el AUC-ROC baja a 0.4868 y el <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code> da 0.50.</p></li>
+<li><p>Solo 13 filas de test (0.92 %) tienen un perfil idéntico en train, un nivel esperable en un dataset mayormente categórico. La partición es la misma del EDA y se verifica con <code class="docutils literal notranslate"><span class="pre">train_index.csv</span></code> y <code class="docutils literal notranslate"><span class="pre">test_index.csv</span></code>.</p></li>
+<li><p>Limitación de alcance: el score mide clasificación dentro de un corte, no necesariamente predicción de churn futuro.</p></li>
+</ul>
+<p><strong>Próximo capítulo: modelado avanzado</strong></p>
+<ul class="simple">
+<li><p>Entrenar modelos más flexibles (Random Forest, Gradient Boosting) y compararlos con esta Regresión Logística como línea base, siempre <strong>por CV dentro de train</strong> y con <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>, no con las matrices ya transformadas.</p></li>
+<li><p>Ajustar hiperparámetros dentro de la CV y evaluar con métricas apropiadas al desbalance (PR-AUC y recall de la clase Churn, además del AUC-ROC).</p></li>
+<li><p>Revisar si <code class="docutils literal notranslate"><span class="pre">AvgChargePerMonth</span></code>, <code class="docutils literal notranslate"><span class="pre">gender</span></code> y <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code> aportan algo en estos modelos, que son menos sensibles a la colinealidad.</p></li>
+<li><p>Evaluar en test <strong>una sola vez</strong>, solo el modelo ya elegido, y reportar ese resultado en lugar del de la línea base.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="EDA_.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Análisis Exploratorio de Datos (EDA) - Telco Customer Churn</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="MODELADO_AVANZADO.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Modelamiento avanzado - Telco Customer Churn</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-librerias">1. Importación de librerías</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos-y-variable-objetivo">2. Carga de datos y variable objetivo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disponibilidad-temporal-de-las-variables-instante-de-prediccion">2.1 Disponibilidad temporal de las variables (instante de predicción)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#division-train-test">3. División train / test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-de-preprocesamiento-definidos-a-partir-del-eda">4. Pasos de preprocesamiento definidos a partir del EDA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-del-target">4.1 Manejo del target</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-totalcharges">4.2 Manejo de <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ingenieria-de-caracteristicas-a-partir-del-eda">4.3 Ingeniería de características a partir del EDA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-columnas-por-tipo">4.4 Definición de columnas por tipo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-del-columntransformer">4.5 Construcción del ColumnTransformer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-en-train-protocolo-antes-de-tocar-test">4.6 Validación cruzada en train (protocolo antes de tocar test)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ablacion-por-cv-aportan-gender-phoneservice-y-avgchargepermonth">4.7 Ablación por CV: ¿aportan <code class="docutils literal notranslate"><span class="pre">gender</span></code>, <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code> y <code class="docutils literal notranslate"><span class="pre">AvgChargePerMonth</span></code>?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-del-preprocesamiento">5. Aplicación del preprocesamiento</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recuperar-nombres-de-columnas-resultantes">5.1 Recuperar nombres de columnas resultantes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardar-los-conjuntos-procesados">6. Guardar los conjuntos procesados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-final-en-test-una-sola-vez">7. Evaluación final en test (una sola vez)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#score-general-accuracy-y-metricas-clave">7.1 Score general (Accuracy) y métricas clave</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-confusion-y-reporte-de-clasificacion">7.2 Matriz de confusión y reporte de clasificación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#curva-roc">7.3 Curva ROC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-resultado">7.4 Interpretación del resultado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-coeficientes-que-dicen-gender-y-phoneservice">7.5 Lectura de coeficientes: ¿qué dicen <code class="docutils literal notranslate"><span class="pre">gender</span></code> y <code class="docutils literal notranslate"><span class="pre">PhoneService</span></code>?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-y-proximos-pasos">8. Resumen y próximos pasos</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Laura S. Rivera Figueredo y Natalý A. Cárdenas Izaquita
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

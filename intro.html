@@ -1,0 +1,751 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes a partir de Datos de Suscripción: Dataset Telco Customer Churn &#8212; Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes a partir de Datos de Suscripción: Dataset Telco Customer Churn</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Análisis Exploratorio de Datos (EDA) - Telco Customer Churn" href="EDA_.html" />
+    <link rel="prev" title="Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes a partir de Datos de Suscripción: Dataset Telco Customer Churn - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes a partir de Datos de Suscripción: Dataset Telco Customer Churn - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes a partir de Datos de Suscripción: Dataset Telco Customer Churn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EDA_.html">Análisis Exploratorio de Datos (EDA) - Telco Customer Churn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PREPROCESAMIENTO.html">Preprocesamiento de Datos - Telco Customer Churn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MODELADO_AVANZADO.html">Modelamiento avanzado - Telco Customer Churn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paper.html">Paper - Telco Customer Churn</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/intro.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes a partir de Datos de Suscripción: Dataset Telco Customer Churn</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-del-proyecto">Introducción del proyecto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-del-problema">Contexto del problema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">Objetivo general</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-especificos">Objetivos específicos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-de-las-variables-del-proyecto">Descripción de las variables del proyecto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-analisis">Estructura del Análisis</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modelo-de-clasificacion-binaria-para-la-prediccion-de-abandono-de-clientes-a-partir-de-datos-de-suscripcion-dataset-telco-customer-churn">
+<h1>Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes a partir de Datos de Suscripción: Dataset Telco Customer Churn<a class="headerlink" href="#modelo-de-clasificacion-binaria-para-la-prediccion-de-abandono-de-clientes-a-partir-de-datos-de-suscripcion-dataset-telco-customer-churn" title="Link to this heading">#</a></h1>
+<p><em><strong>Análisis de Retención de Clientes y Riesgo de Abandono (Churn) con Machine Learning</strong></em></p>
+<p><strong>Laura Rivera · Natalý Cárdenas</strong> Departamento de Matemáticas, Física y Ciencia de Datos, Universidad del Norte, Barranquilla, Colombia
+<code class="docutils literal notranslate"><span class="pre">sriveral&#64;uninorte.edu.co</span></code> · <code class="docutils literal notranslate"><span class="pre">nizaquita&#64;uninorte.edu.co</span></code></p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-3 sd-row-cols-lg-3 sd-g-2 sd-g-xs-2 sd-g-sm-2 sd-g-md-2 sd-g-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm meta-card docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Asignatura</div>
+<p class="sd-card-text">Visualización de Datos y Machine Learning</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm meta-card docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Autoras</div>
+<p class="sd-card-text">Laura Rivera &amp; Natalý Cárdenas</p>
+<p class="sd-card-text"><em>Departamento de Matemáticas, Física y Ciencia de Datos</em>
+<em>Universidad del Norte</em></p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm meta-card docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Metodología</div>
+<p class="sd-card-text">EDA · Preprocesamiento · Modelado Avanzado</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="introduccion-del-proyecto">
+<h2>Introducción del proyecto<a class="headerlink" href="#introduccion-del-proyecto" title="Link to this heading">#</a></h2>
+<p>La pérdida de clientes (<em>churn</em>) es uno de los mayores riesgos financieros para las empresas de telecomunicaciones, donde retener a un cliente existente suele ser considerablemente más económico que adquirir uno nuevo. Este proyecto aborda la predicción de abandono de clientes a partir del dataset <strong>Telco Customer Churn</strong>, combinando información de servicios contratados, características de la cuenta y datos demográficos para identificar patrones asociados a la cancelación. El trabajo sigue un enfoque de Machine Learning reproducible: parte de un modelo base de regresión logística y lo contrasta con alternativas más complejas bajo un mismo protocolo de validación, priorizando la detección temprana de clientes en riesgo sobre la precisión agregada del modelo.</p>
+</section>
+<section id="contexto-del-problema">
+<h2>Contexto del problema<a class="headerlink" href="#contexto-del-problema" title="Link to this heading">#</a></h2>
+<p>El customer churn es la cancelación o abandono de un servicio. Comprender las características relacionadas con el abandono permite orientar futuras estrategias de retención. En Machine Learning se plantea como una clasificación binaria: identificar clientes que abandonan y clientes que permanecen.</p>
+<p>Según los <a class="reference external" href="https://www.kaggle.com/datasets/blastchar/telco-customer-churn">datos de Kaggle</a>, cada fila representa un cliente y Churn indica abandono durante el último mes. El conjunto de datos incluye información sobre:</p>
+<ul class="simple">
+<li><p>Clientes que se dieron de baja en el último mes: la columna se llama “Abandono”.
+Servicios que cada cliente ha contratado: teléfono, líneas múltiples, internet, seguridad en línea, copia de seguridad en línea, protección de dispositivos, soporte técnico y transmisión de TV y películas.</p></li>
+<li><p>Información de la cuenta del cliente: cuánto tiempo lleva siendo cliente, contrato, método de pago, facturación electrónica, cargos mensuales y cargos totales.</p></li>
+<li><p>Información demográfica sobre los clientes: género, rango de edad y si tienen pareja o personas a su cargo.
+Inspiración</p></li>
+</ul>
+</section>
+<section id="objetivo-general">
+<h2>Objetivo general<a class="headerlink" href="#objetivo-general" title="Link to this heading">#</a></h2>
+<p>Desarrollar y evaluar modelos de Machine Learning para predecir la cancelación de clientes de telecomunicaciones con el dataset Telco Customer Churn, partiendo de una regresión logística y comparando alternativas mediante una metodología reproducible que priorice la generalización y evite la fuga de información.</p>
+<section id="objetivos-especificos">
+<h3>Objetivos específicos<a class="headerlink" href="#objetivos-especificos" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Comprender la estructura, calidad y distribución de los datos, así como las asociaciones entre las características de los clientes y el churn, mediante análisis exploratorio del conjunto de entrenamiento.</p></li>
+<li><p>Diseñar un preprocesamiento adecuado para valores faltantes, variables categóricas y escalas numéricas, ajustando sus parámetros exclusivamente con los datos de entrenamiento de cada partición de validación.</p></li>
+<li><p>Construir una regresión logística como modelo inicial de referencia y evaluar sus aciertos, errores y capacidad para identificar clientes que abandonan.</p></li>
+<li><p>Comparar modelos y estrategias metodológicas adicionales con el baseline bajo el mismo protocolo de validación, considerando el desbalance y controlando el sobreajuste.</p></li>
+<li><p>Evaluar la mejora respecto al baseline con métricas apropiadas para clasificación y probabilidades, reservando el conjunto test para la evaluación final del modelo seleccionado.</p></li>
+<li><p>Interpretar los resultados y las limitaciones del modelo para formular conclusiones sobre su utilidad potencial en retención de clientes, sin atribuir causalidad a las asociaciones observadas.</p></li>
+</ul>
+</section>
+</section>
+<section id="descripcion-de-las-variables-del-proyecto">
+<h2>Descripción de las variables del proyecto<a class="headerlink" href="#descripcion-de-las-variables-del-proyecto" title="Link to this heading">#</a></h2>
+<p>Diccionario resumido de los metadatos de Kaggle:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Tipo conceptual</p></th>
+<th class="head"><p>Significado</p></th>
+<th class="head"><p>Papel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>customerID</p></td>
+<td><p>Identificador</p></td>
+<td><p>Código del cliente</p></td>
+<td><p>Integridad; no predictor</p></td>
+</tr>
+<tr class="row-odd"><td><p>gender</p></td>
+<td><p>Categórica</p></td>
+<td><p>Género registrado (Masculino/Femenino)</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-even"><td><p>SeniorCitizen</p></td>
+<td><p>Binaria</p></td>
+<td><p>Adulto mayor (1/0)</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-odd"><td><p>Partner</p></td>
+<td><p>Binaria</p></td>
+<td><p>Tiene pareja (1/0)</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-even"><td><p>Dependents</p></td>
+<td><p>Binaria</p></td>
+<td><p>Tiene dependientes</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-odd"><td><p>tenure</p></td>
+<td><p>Numérica discreta</p></td>
+<td><p>Antigüedad en meses</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-even"><td><p>PhoneService</p></td>
+<td><p>Categórica</p></td>
+<td><p>Servicio telefónico</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-odd"><td><p>MultipleLines</p></td>
+<td><p>Categórica</p></td>
+<td><p>Líneas múltiples</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-even"><td><p>InternetService</p></td>
+<td><p>Categórica</p></td>
+<td><p>Servicio de internet</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-odd"><td><p>OnlineSecurity</p></td>
+<td><p>Categórica</p></td>
+<td><p>Seguridad en línea</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-even"><td><p>OnlineBackup</p></td>
+<td><p>Categórica</p></td>
+<td><p>Respaldo en línea</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-odd"><td><p>DeviceProtection</p></td>
+<td><p>Categórica</p></td>
+<td><p>Protección de dispositivos</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-even"><td><p>TechSupport</p></td>
+<td><p>Categórica</p></td>
+<td><p>Soporte técnico</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-odd"><td><p>StreamingTV</p></td>
+<td><p>Categórica</p></td>
+<td><p>Televisión por streaming</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-even"><td><p>StreamingMovies</p></td>
+<td><p>Categórica</p></td>
+<td><p>Películas por streaming</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-odd"><td><p>Contract</p></td>
+<td><p>Categórica</p></td>
+<td><p>Modalidad contractual</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-even"><td><p>PaperlessBilling</p></td>
+<td><p>Categórica</p></td>
+<td><p>Facturación sin papel</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-odd"><td><p>PaymentMethod</p></td>
+<td><p>Categórica</p></td>
+<td><p>Método de pago</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-even"><td><p>MonthlyCharges</p></td>
+<td><p>Numérica</p></td>
+<td><p>Cargo mensual</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-odd"><td><p>TotalCharges</p></td>
+<td><p>Numérica; puede venir como texto</p></td>
+<td><p>Cargos totales</p></td>
+<td><p>Candidato</p></td>
+</tr>
+<tr class="row-even"><td><p>Churn</p></td>
+<td><p>Binaria</p></td>
+<td><p>Abandono durante el último mes</p></td>
+<td><p>Objetivo Yes/No</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El identificador no representa una característica explicativa. Los demás campos son candidatos.</p>
+</section>
+<section id="estructura-del-analisis">
+<h2>Estructura del Análisis<a class="headerlink" href="#estructura-del-analisis" title="Link to this heading">#</a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-3 sd-row-cols-lg-3 sd-g-2 sd-g-xs-2 sd-g-sm-2 sd-g-md-2 sd-g-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm step-card docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+1. Análisis Exploratorio (EDA)</div>
+<p class="sd-card-text">Evaluación de distribuciones, tratamiento de valores faltantes, detección de sesgo y análisis de correlación entre variables candidatas.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm step-card docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+2. Preprocesamiento</div>
+<p class="sd-card-text">Imputación, codificación de variables categóricas y escalado, ajustados exclusivamente con los datos de entrenamiento para evitar fuga de información.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm step-card docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+3. Modelado Avanzado</div>
+<p class="sd-card-text">Entrenamiento de algoritmos supervisados, validación cruzada anidada y evaluación de métricas orientadas a la detección de riesgo (F1 / Recall / ROC-AUC).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Enlaces de interés
+<strong>Conjunto de datos</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.kaggle.com/datasets/blastchar/telco-customer-churn">Kaggle — Telco Customer Churn</a></p></li>
+</ul>
+<p><strong>Repositorio del proyecto</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Nataly-Cardenas/Telco_Churn_Entregable">GitHub</a></p></li>
+</ul>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="EDA_.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Análisis Exploratorio de Datos (EDA) - Telco Customer Churn</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-del-proyecto">Introducción del proyecto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-del-problema">Contexto del problema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">Objetivo general</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-especificos">Objetivos específicos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-de-las-variables-del-proyecto">Descripción de las variables del proyecto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-analisis">Estructura del Análisis</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Laura S. Rivera Figueredo y Natalý A. Cárdenas Izaquita
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
