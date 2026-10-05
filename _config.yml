@@ -5,34 +5,33 @@ title: "Modelo de Clasificación Binaria para la Predicción de Abandono de Clie
 author: Laura S. Rivera Figueredo y Natalý A. Cárdenas Izaquita
 logo: Imagenes/logo.png
 
-# Force re-execution of notebooks on each build.
-# See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: "off"
+
+html:
+  extra_css:
+    - style/custom.css
+  use_issues_button: true
+  use_repository_button: true
+  use_download_button: true
+  use_edit_page_button: true
 
 sphinx:
   config:
     html_theme_options:
       default_mode: "dark"
+  extra_extensions:
+    - sphinx_design
 
 favicon: Imagenes/favicon.ico
 
-# Define the name of the latex output file for PDF builds
 latex:
   latex_documents:
     targetname: book.tex
 
-# Add a bibtex file so that we can create citations
 bibtex_bibfiles:
   - references.bib
 
-# Information about where the book exists on the web
 repository:
   url: https://github.com/Nataly-Cardenas/Telco_Churn_Entregable
   branch: main
-
-html:
-  use_issues_button: true
-  use_repository_button: true
-  use_download_button: true
-  use_edit_page_button: true
