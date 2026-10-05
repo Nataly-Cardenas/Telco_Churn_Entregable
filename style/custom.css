@@ -1,0 +1,774 @@
+/* ============================================================
+   Telco Customer Churn — Tema Adaptado
+   Paleta:
+   #2563EB (Principal) | #06B6D4 (Acento) | #EF4444 (Riesgo)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+
+/* ============================================================
+   1. VARIABLES MODO CLARO
+   ============================================================ */
+
+:root {
+
+  /* ---------- Identidad visual ---------- */
+
+  --brand-primary: #2563EB;
+  --brand-accent: #06B6D4;
+  --brand-risk: #EF4444;
+
+  /*
+     Color dinámico para elementos que deben adaptarse
+     automáticamente al modo claro/oscuro.
+  */
+  --myst-color-primary: var(--brand-primary);
+  --myst-color-primary-light: #EFF6FF;
+
+
+  /* ---------- Interfaz ---------- */
+
+  --bg-surface: #FFFFFF;
+  --bg-surface-muted: #F4F8FB;
+
+  --bg-code: #0F172A;
+
+  --color-text-main: #243447;
+  --color-text-muted: #64748B;
+
+  --color-border: rgba(37, 99, 235, 0.15);
+
+
+  /* ---------- Tipografías ---------- */
+
+  --font-body: 'IBM Plex Sans',
+               -apple-system,
+               BlinkMacSystemFont,
+               sans-serif;
+
+  --font-mono: 'IBM Plex Mono', monospace;
+
+
+  /* ---------- Sombras ---------- */
+
+  --shadow-soft: 0 2px 12px rgba(37, 99, 235, 0.08);
+}
+
+
+/* ============================================================
+   2. VARIABLES MODO OSCURO
+   ============================================================ */
+
+body[data-theme="dark"],
+html[data-theme="dark"],
+.dark {
+
+  --myst-color-primary: #60A5FA;
+  --myst-color-primary-light: #172554;
+
+  --bg-surface: #0F172A;
+  --bg-surface-muted: #1E293B;
+
+  --bg-code: #090D16;
+
+  --color-text-main: #E2E8F0;
+  --color-text-muted: #94A3B8;
+
+  --color-border: rgba(255, 255, 255, 0.10);
+
+  --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.30);
+}
+
+
+/* ============================================================
+   3. BASE Y TIPOGRAFÍA
+   ============================================================ */
+
+body {
+
+  font-family: var(--font-body);
+
+  font-size: 16px;
+
+  line-height: 1.6;
+
+  background-color: var(--bg-surface);
+
+  color: var(--color-text-main);
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+
+/* ---------- Encabezados ---------- */
+
+h1,
+h2,
+h3,
+h4 {
+
+  font-family: var(--font-body);
+
+  font-weight: 700;
+
+  letter-spacing: -0.01em;
+
+  color: var(--myst-color-primary) !important;
+}
+
+
+h1 {
+
+  font-size: 2.2rem;
+
+  padding-bottom: 0.6rem;
+
+  border-bottom: 3px solid var(--brand-accent);
+
+  margin-bottom: 0.4rem;
+}
+
+
+h1 + p em,
+h1 + p strong em {
+
+  display: block;
+
+  color: var(--color-text-muted);
+
+  font-size: 1.05rem;
+
+  font-weight: 400;
+
+  font-style: italic;
+
+  margin-top: 0.5rem;
+}
+
+
+h2 {
+
+  font-size: 1.5rem;
+
+  margin-top: 1.8rem;
+
+  padding-left: 0.7rem;
+
+  border-left: 4px solid var(--brand-accent);
+}
+
+
+h3 {
+
+  font-size: 1.2rem;
+
+  color: var(--brand-accent) !important;
+}
+
+
+p {
+
+  color: var(--color-text-main);
+}
+
+
+/* ---------- Código ---------- */
+
+code,
+pre,
+.highlight {
+
+  font-family: var(--font-mono) !important;
+}
+
+
+/* ============================================================
+   4. TARJETAS / CALLOUTS / ADMONITIONS
+   ============================================================ */
+
+.admonition,
+aside.admonition,
+div[class*="admonition"] {
+
+  display: block !important;
+
+  background: var(--bg-surface-muted) !important;
+
+  border: 1px solid var(--color-border) !important;
+
+  border-left: 5px solid var(--brand-accent) !important;
+
+  border-radius: 8px !important;
+
+  margin: 1.5rem 0 !important;
+
+  padding: 1rem 1.25rem !important;
+
+  box-shadow: var(--shadow-soft) !important;
+
+  overflow: hidden !important;
+}
+
+
+/* ---------- Título del callout ---------- */
+
+.admonition .admonition-title,
+aside.admonition .admonition-title,
+div[class*="admonition"] > p:first-child,
+div[class*="admonition"] .title {
+
+  background: transparent !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+
+  padding: 0 !important;
+
+  margin: 0 0 0.5rem 0 !important;
+
+  font-size: 1.05rem !important;
+
+  font-weight: 700 !important;
+
+  color: var(--myst-color-primary) !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+
+  gap: 8px !important;
+}
+
+
+/* ---------- Contenido ---------- */
+
+.admonition .admonition-content,
+div[class*="admonition"] > div,
+div[class*="admonition"] > p:not(:first-child) {
+
+  background: transparent !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+
+  padding: 0 !important;
+
+  margin: 0 !important;
+
+  color: var(--color-text-main) !important;
+}
+
+
+/* ---------- Tipos ---------- */
+
+.admonition.important,
+[class*="admonition-important"] {
+
+  border-left-color: var(--brand-primary) !important;
+}
+
+
+.admonition.warning,
+[class*="admonition-warning"] {
+
+  border-left-color: var(--brand-risk) !important;
+}
+
+
+.admonition.warning .admonition-title {
+
+  color: var(--brand-risk) !important;
+}
+
+
+/* ============================================================
+   5. TABLAS DE DATOS Y PANDAS OUTPUTS
+   ============================================================ */
+
+div.output_html,
+.jp-RenderedHTMLCommon table,
+.myst-content table,
+table.dataframe,
+table {
+
+  display: block !important;
+
+  max-width: 100% !important;
+
+  overflow-x: auto !important;
+
+  border-collapse: collapse;
+
+  margin: 1.4rem 0;
+
+  font-size: 0.9rem;
+
+  box-shadow: var(--shadow-soft);
+
+  border-radius: 8px;
+
+  background: var(--bg-surface);
+}
+
+
+/* ---------- Celdas ---------- */
+
+table th,
+table td,
+table.dataframe th,
+table.dataframe td {
+
+  white-space: nowrap !important;
+
+  word-break: normal !important;
+
+  hyphens: none !important;
+
+  padding: 8px 12px !important;
+}
+
+
+/* ---------- Encabezado ---------- */
+
+table th {
+
+  background: var(--brand-primary);
+
+  color: #FFFFFF;
+
+  font-weight: 600;
+
+  text-align: left !important;
+
+  vertical-align: bottom !important;
+}
+
+
+/* ---------- Encabezado en modo oscuro ---------- */
+
+body[data-theme="dark"] table th {
+
+  background: #1E3A5F;
+
+  color: #93C5FD;
+
+  border-bottom: 2px solid var(--color-border);
+}
+
+
+/* ---------- Celdas ---------- */
+
+table td {
+
+  border-bottom: 1px solid var(--color-border);
+
+  font-variant-numeric: tabular-nums;
+
+  color: var(--color-text-main);
+}
+
+
+/* ---------- Filas alternadas ---------- */
+
+table tr:nth-child(even) td {
+
+  background: var(--bg-surface-muted);
+}
+
+
+/* ============================================================
+   6. CÓDIGO Y SALIDAS DE JUPYTER
+   ============================================================ */
+
+.cell_input,
+div.cell_input,
+div.highlight,
+div.highlight pre {
+
+  background-color: var(--bg-code) !important;
+
+  border-radius: 8px !important;
+
+  border: 1px solid var(--color-border) !important;
+
+  margin-bottom: 0.5rem !important;
+}
+
+
+/* ---------- Output general ---------- */
+
+.cell_output,
+div.cell_output,
+.output_area,
+div.output_area {
+
+  background: transparent !important;
+
+  padding: 0 !important;
+
+  margin-top: 0.25rem !important;
+}
+
+
+/* ---------- Output de texto ---------- */
+
+.output.stream,
+.output_subarea,
+.output_text,
+.output_stream,
+div.output_area pre,
+div.output_subarea pre,
+.cell_output pre,
+.stream {
+
+  background-color: var(--bg-surface-muted) !important;
+
+  color: var(--color-text-main) !important;
+
+  border: 1px solid var(--color-border) !important;
+
+  border-radius: 8px !important;
+
+  padding: 1rem 1.2rem !important;
+
+  font-family: var(--font-mono) !important;
+
+  font-size: 0.88rem !important;
+
+  line-height: 1.5 !important;
+
+  overflow-x: auto !important;
+}
+
+
+/* ---------- Output en modo oscuro ---------- */
+
+body[data-theme="dark"] .output.stream,
+body[data-theme="dark"] .output_subarea,
+body[data-theme="dark"] .output_text,
+body[data-theme="dark"] .output_stream,
+body[data-theme="dark"] div.output_area pre,
+body[data-theme="dark"] div.output_subarea pre,
+body[data-theme="dark"] .cell_output pre,
+body[data-theme="dark"] .stream,
+body[data-theme="dark"] .stream span {
+
+  background-color: #1E293B !important;
+
+  color: #F1F5F9 !important;
+
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+
+/* ---------- Eliminar sombras innecesarias ---------- */
+
+.cell_input pre,
+.cell_output pre {
+
+  box-shadow: none !important;
+
+  margin: 0 !important;
+}
+
+
+/* ============================================================
+   7. CÓDIGO EN LÍNEA
+   ============================================================ */
+
+/*
+   Importante:
+   No aplicamos este estilo al sidebar porque allí
+   el código se veía como un "chip".
+*/
+
+.bd-content code:not(pre code),
+main code:not(pre code),
+article code:not(pre code),
+.content code:not(pre code) {
+
+  background: var(--bg-surface-muted);
+
+  color: var(--myst-color-primary);
+
+  padding: 0.2em 0.4em;
+
+  border-radius: 4px;
+
+  font-size: 0.88em;
+}
+
+
+/* ---------- Código dentro del sidebar ---------- */
+
+.sidebar-secondary code,
+.toc-drawer code,
+aside.toc code,
+.bd-toc-nav code {
+
+  background: transparent !important;
+
+  color: inherit !important;
+
+  padding: 0 !important;
+
+  font-family: var(--font-mono);
+}
+
+
+/* ============================================================
+   8. ENLACES
+   ============================================================ */
+
+a {
+
+  color: var(--brand-accent);
+
+  text-decoration: none;
+
+  transition: color 0.15s ease;
+}
+
+
+a:hover {
+
+  color: var(--brand-primary);
+}
+
+
+/* ============================================================
+   9. IMÁGENES
+   ============================================================ */
+
+img {
+
+  max-width: 100%;
+
+  height: auto;
+
+  border-radius: 8px;
+
+  box-shadow: var(--shadow-soft);
+}
+
+
+/* ============================================================
+   10. SELECCIÓN DE TEXTO
+   ============================================================ */
+
+::selection {
+
+  background: var(--brand-accent);
+
+  color: #FFFFFF;
+}
+
+
+/* ============================================================
+   11. SCROLLBAR
+   ============================================================ */
+
+::-webkit-scrollbar {
+
+  height: 10px;
+
+  width: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+
+  background: var(--bg-surface-muted);
+}
+
+
+::-webkit-scrollbar-thumb {
+
+  background: var(--brand-accent);
+
+  border-radius: 6px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+
+  background: var(--brand-primary);
+}
+
+
+/* ============================================================
+   12. TARJETAS DE LA PORTADA
+   grid / grid-item-card
+   ============================================================ */
+
+.sd-card {
+
+  background-color: var(--bg-surface-muted) !important;
+
+  border: 1px solid var(--color-border) !important;
+
+  color: var(--color-text-main) !important;
+
+  border-radius: 8px !important;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+
+.sd-card:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow: var(--shadow-soft) !important;
+}
+
+
+.sd-card strong {
+
+  color: var(--myst-color-primary) !important;
+
+  font-size: 0.75rem;
+
+  letter-spacing: 0.05em;
+
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   13. SIDEBAR / CONTENTS
+   ============================================================ */
+
+.bd-sidebar-primary {
+
+  font-family: var(--font-body);
+}
+
+
+.bd-sidebar-primary .sidebar-primary-items {
+
+  font-size: 0.95rem;
+}
+
+
+.bd-sidebar-primary .nav-link {
+
+  color: var(--color-text-main);
+
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+
+.bd-sidebar-primary .nav-link:hover {
+
+  color: var(--brand-primary);
+
+  background-color: var(--bg-surface-muted);
+}
+
+
+.bd-sidebar-primary .nav-link.active {
+
+  color: var(--brand-primary) !important;
+
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   14. BOTONES
+   ============================================================ */
+
+button,
+.btn {
+
+  font-family: var(--font-body);
+}
+
+
+.btn-primary {
+
+  background-color: var(--brand-primary) !important;
+
+  border-color: var(--brand-primary) !important;
+}
+
+
+.btn-primary:hover {
+
+  background-color: var(--brand-accent) !important;
+
+  border-color: var(--brand-accent) !important;
+}
+
+
+/* ============================================================
+   15. FIGURAS Y OUTPUTS GRÁFICOS
+   ============================================================ */
+
+.jp-RenderedImage,
+.output_png,
+.output_jpeg,
+.output_svg {
+
+  max-width: 100%;
+
+  margin: 1rem auto;
+}
+
+
+.jp-RenderedImage img,
+.output_png img,
+.output_jpeg img,
+.output_svg img {
+
+  max-width: 100%;
+
+  height: auto;
+}
+
+
+/* ============================================================
+   16. RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  body {
+
+    font-size: 15px;
+  }
+
+
+  h1 {
+
+    font-size: 1.8rem;
+  }
+
+
+  h2 {
+
+    font-size: 1.35rem;
+  }
+
+
+  h3 {
+
+    font-size: 1.1rem;
+  }
+
+
+  .sd-card {
+
+    margin-bottom: 1rem;
+  }
+}
