@@ -1,6 +1,6 @@
 # Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes a partir de Datos de Suscripción: Dataset Telco Customer Churn
 
-***Análisis de Retención de Clientes y Riesgo de Abandono (Churn) con Visualización de Datos y Machine Learning***
+***Análisis de Retención de Clientes y Riesgo de Abandono (Churn)***
 
 **Laura S. Rivera Figueredo y Natalý A. Cárdenas Izaquita**  
 Departamento de Matemáticas, Física y Ciencia de Datos, Universidad del Norte, Barranquilla, Colombia  
@@ -14,32 +14,27 @@ Departamento de Matemáticas, Física y Ciencia de Datos, Universidad del Norte,
 Visualización de Datos y Machine Learning
 :::
 
-:::{grid-item-card} Herramientas
+:::{grid-item-card} Conjunto de datos
 :class-card: meta-card
-Python · Pandas · Plotly · Matplotlib / Seaborn · Dash · scikit-learn · SHAP
+Telco Customer Churn (IBM) · 7,043 clientes · 26.5 % de abandono
 :::
 
 :::{grid-item-card} Metodología
 :class-card: meta-card
-EDA visual · Preprocesamiento · Modelado Avanzado · Interpretación
+EDA · Preprocesamiento · Modelado Avanzado · Interpretación
 :::
 
 ::::
 
-## Introducción del proyecto
-La pérdida de clientes (*churn*) es uno de los mayores riesgos financieros para las empresas de telecomunicaciones, donde retener a un cliente existente suele ser considerablemente más económico que adquirir uno nuevo. Este proyecto aborda la predicción del abandono de clientes a partir del dataset **Telco Customer Churn**, combinando información de servicios contratados, características de la cuenta y datos demográficos para identificar patrones asociados a la cancelación.
+## Introducción
+La pérdida de clientes (*churn*) es uno de los principales riesgos financieros de las empresas de telecomunicaciones: cada cancelación supone la pérdida de ingresos recurrentes, y retener a un cliente existente suele ser considerablemente más económico que adquirir uno nuevo. Anticipar qué clientes tienen mayor probabilidad de abandonar el servicio permite dirigir ofertas, mejoras de servicio y acciones de retención de forma selectiva, en lugar de aplicarlas a toda la base de clientes.
 
-El trabajo integra dos componentes complementarios:
+El problema presenta dos dificultades. Los clientes que abandonan son una minoría (alrededor de uno de cada cuatro), por lo que un modelo puede acertar en la mayoría de los casos sin detectar a casi ninguno de ellos; y las variables disponibles describen el estado del cliente en un momento dado, lo que obliga a interpretar los hallazgos como asociaciones y no como causas del abandono.
 
-- **Visualización de datos**, como herramienta para explorar la estructura y la calidad de los datos, descubrir qué segmentos de clientes concentran el abandono, justificar las decisiones de preprocesamiento y comunicar los resultados de los modelos (comparaciones de desempeño, curvas ROC e importancia de variables) de forma clara para un público no técnico.
-- **Machine Learning**, siguiendo un enfoque reproducible que parte de un modelo base de regresión logística y lo contrasta con alternativas más complejas bajo un mismo protocolo de validación, priorizando la detección temprana de clientes en riesgo sobre la precisión agregada del modelo.
-
-De esta forma, las visualizaciones no son un complemento decorativo: guían el análisis desde la exploración inicial hasta la interpretación final, y los modelos aportan la capacidad predictiva que permite convertir esos hallazgos en acciones de retención.
+Este proyecto aborda la predicción del abandono con el conjunto público **Telco Customer Churn** de IBM, que combina los servicios contratados, las características de la cuenta y los datos demográficos de cada cliente. A partir de un análisis exploratorio que identifica los perfiles con mayor tasa de abandono, se construye un modelo base de regresión logística y se compara con alternativas más complejas bajo un mismo protocolo de validación, priorizando la detección de los clientes en riesgo sin generar un volumen excesivo de falsas alertas. Los resultados se ponen a disposición en este Jupyter Book, en un paper y en un tablero interactivo.
 
 ## Contexto del problema
-El *customer churn* es la cancelación o abandono de un servicio. Comprender las características relacionadas con el abandono permite orientar futuras estrategias de retención. Desde la visualización de datos, el problema se aborda describiendo gráficamente cómo cambia la tasa de abandono entre segmentos de clientes; desde el Machine Learning, se plantea como una clasificación binaria: identificar clientes que abandonan y clientes que permanecen.
-
-Según los [datos de Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn), cada fila representa un cliente y la columna `Churn` indica si abandonó el servicio durante el último mes. El conjunto de datos incluye información sobre:
+El *customer churn* es la cancelación o abandono de un servicio. Según los [datos de Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn), cada fila del conjunto representa un cliente y la columna `Churn` indica si abandonó el servicio durante el último mes. El conjunto de datos incluye información sobre:
 
 - **Abandono:** clientes que se dieron de baja en el último mes (columna `Churn`).
 - **Servicios contratados:** teléfono, líneas múltiples, internet, seguridad en línea, copia de seguridad en línea, protección de dispositivos, soporte técnico y transmisión de TV y películas.
@@ -47,22 +42,17 @@ Según los [datos de Kaggle](https://www.kaggle.com/datasets/blastchar/telco-cus
 - **Información demográfica:** género, rango de edad y si tienen pareja o personas a su cargo.
 
 ## Objetivo general
-Analizar y predecir la cancelación de clientes de telecomunicaciones con el dataset Telco Customer Churn, integrando técnicas de visualización de datos para explorar, explicar y comunicar los patrones de abandono, y modelos de Machine Learning que, partiendo de una regresión logística, se comparan mediante una metodología reproducible que priorice la generalización y evite la fuga de información.
+Identificar a los clientes de una empresa de telecomunicaciones con mayor riesgo de abandonar el servicio y los factores asociados a ese abandono, construyendo y comparando de forma reproducible modelos de clasificación que detecten la mayor cantidad posible de clientes en riesgo sin generar un exceso de falsas alertas.
 
 ### Objetivos específicos
-- Comprender la estructura, calidad y distribución de los datos, así como las asociaciones entre las características de los clientes y el churn, mediante un análisis exploratorio visual del conjunto de entrenamiento.
-
-- Diseñar visualizaciones que identifiquen los segmentos con mayor tasa de abandono y que sustenten las decisiones de preprocesamiento y modelado.
-
-- Diseñar un preprocesamiento adecuado para valores faltantes, variables categóricas y escalas numéricas, ajustando sus parámetros exclusivamente con los datos de entrenamiento de cada partición de validación.
-
-- Construir una regresión logística como modelo inicial de referencia y evaluar sus aciertos, errores y capacidad para identificar clientes que abandonan.
-
-- Comparar modelos y estrategias metodológicas adicionales con el baseline bajo el mismo protocolo de validación, considerando el desbalance y controlando el sobreajuste.
-
-- Evaluar la mejora respecto al baseline con métricas apropiadas para clasificación y probabilidades, reservando el conjunto test para la evaluación final del modelo seleccionado.
-
-- Interpretar y comunicar visualmente los resultados y las limitaciones del modelo, mediante gráficos de desempeño, importancia de variables y un tablero interactivo, sin atribuir causalidad a las asociaciones observadas.
+1. **Describir el problema y los datos:** caracterizar el conjunto Telco Customer Churn, su calidad (valores faltantes, atípicos y tipos de variables) y el nivel de desbalance de la variable objetivo.
+2. **Reservar un conjunto de prueba:** separar el 20 % de los clientes mediante una partición estratificada antes del análisis, de modo que ninguna decisión se tome con los datos destinados a la evaluación final.
+3. **Identificar los perfiles de abandono:** analizar la distribución de cada variable y su asociación con el abandono, para determinar qué segmentos de clientes (tipo de contrato, servicios, antigüedad, método de pago) concentran las mayores tasas de cancelación.
+4. **Preparar los datos sin fuga de información:** definir el tratamiento de faltantes, la codificación de variables categóricas, el escalado y las variables derivadas, ajustándolos únicamente con los datos de entrenamiento de cada partición.
+5. **Establecer un modelo de referencia:** entrenar una regresión logística como modelo base y cuantificar sus aciertos y errores, en especial los clientes que abandonan y no son detectados.
+6. **Comparar alternativas de forma controlada:** evaluar 112 configuraciones (7 modelos × 4 técnicas de balanceo × 4 métodos de optimización de hiperparámetros) con validación cruzada anidada y el F1 de la clase de abandono como métrica principal, contrastando estadísticamente sus diferencias, la calibración de probabilidades y el costo computacional.
+7. **Explicar las predicciones:** identificar con SHAP y LIME las variables que más influyen en el riesgo de abandono, sin atribuirles un efecto causal.
+8. **Poner los resultados a disposición:** presentar el análisis en un Jupyter Book, un paper y un tablero interactivo que permitan consultar los hallazgos sin necesidad de ejecutar el código.
 
 ## Descripción de las variables del proyecto
 Diccionario resumido de los metadatos de Kaggle:
@@ -95,29 +85,39 @@ Diccionario resumido de los metadatos de Kaggle:
 El identificador no representa una característica explicativa. Los demás campos son candidatos.
 
 
-## Estructura del Análisis
+## Estructura del libro
 
 ::::{grid} 1 1 2 2
 :gutter: 2
 
 :::{grid-item-card} 1. Marco Teórico
 :class-card: step-card
-Conceptos de visualización de datos, aprendizaje supervisado, desbalance de clases, validación, métricas e interpretabilidad que sustentan el proyecto.
+Conceptos que sustentan el análisis: abandono de clientes, clasificación, desbalance, validación, métricas e interpretabilidad.
 :::
 
 :::{grid-item-card} 2. Análisis Exploratorio (EDA)
 :class-card: step-card
-Visualización de distribuciones, tratamiento de valores faltantes, detección de sesgo, tasas de abandono por segmento y análisis de correlación entre variables candidatas.
+Calidad de los datos, distribuciones, tasas de abandono por segmento y asociación entre variables.
 :::
 
 :::{grid-item-card} 3. Preprocesamiento
 :class-card: step-card
-Imputación, codificación de variables categóricas y escalado, ajustados exclusivamente con los datos de entrenamiento para evitar fuga de información.
+Imputación, codificación de variables categóricas, escalado y modelo base, ajustados exclusivamente con los datos de entrenamiento.
 :::
 
 :::{grid-item-card} 4. Modelado Avanzado
 :class-card: step-card
-Entrenamiento de algoritmos supervisados, validación cruzada anidada, evaluación de métricas orientadas a la detección de riesgo (F1 / Recall / ROC-AUC) y visualización de resultados.
+Comparación de 112 configuraciones con validación cruzada anidada, evaluación en test e interpretación de los modelos.
+:::
+
+:::{grid-item-card} 5. Paper
+:class-card: step-card
+Versión web y PDF del artículo con la metodología y los resultados del proyecto.
+:::
+
+:::{grid-item-card} 6. Guía del Repositorio
+:class-card: step-card
+Estructura del repositorio, requisitos, orden de ejecución de los notebooks y construcción del libro.
 :::
 
 ::::
@@ -128,5 +128,5 @@ Entrenamiento de algoritmos supervisados, validación cruzada anidada, evaluaci�
 
 **Repositorios del proyecto**
 - [GitHub — Jupyter Book y notebooks](https://github.com/Nataly-Cardenas/Telco_Churn_Entregable)
-- [GitHub — Dashboard interactivo (Plotly Dash)](https://github.com/Nataly-Cardenas/Dash_Telco_Churn)
+- [GitHub — Dashboard interactivo](https://github.com/Nataly-Cardenas/Dash_Telco_Churn)
 :::
