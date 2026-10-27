@@ -1,8 +1,9 @@
 # Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes a partir de Datos de Suscripción: Dataset Telco Customer Churn
 
-***Análisis de Retención de Clientes y Riesgo de Abandono (Churn) con Machine Learning***
+***Análisis de Retención de Clientes y Riesgo de Abandono (Churn) con Visualización de Datos y Machine Learning***
 
-**Laura Rivera · Natalý Cárdenas** Departamento de Matemáticas, Física y Ciencia de Datos, Universidad del Norte, Barranquilla, Colombia
+**Laura S. Rivera Figueredo y Natalý A. Cárdenas Izaquita**  
+Departamento de Matemáticas, Física y Ciencia de Datos, Universidad del Norte, Barranquilla, Colombia  
 `sriveral@uninorte.edu.co` · `nizaquita@uninorte.edu.co`
 
 ::::{grid} 1 1 3 3
@@ -13,42 +14,45 @@
 Visualización de Datos y Machine Learning
 :::
 
-:::{grid-item-card} Autoras
+:::{grid-item-card} Herramientas
 :class-card: meta-card
-Laura Rivera & Natalý Cárdenas
-
-*Departamento de Matemáticas, Física y Ciencia de Datos*
-*Universidad del Norte*
+Python · Pandas · Plotly · Matplotlib / Seaborn · Dash · scikit-learn · SHAP
 :::
 
 :::{grid-item-card} Metodología
 :class-card: meta-card
-EDA · Preprocesamiento · Modelado Avanzado
+EDA visual · Preprocesamiento · Modelado Avanzado · Interpretación
 :::
 
 ::::
 
 ## Introducción del proyecto
-La pérdida de clientes (*churn*) es uno de los mayores riesgos financieros para las empresas de telecomunicaciones, donde retener a un cliente existente suele ser considerablemente más económico que adquirir uno nuevo. Este proyecto aborda la predicción de abandono de clientes a partir del dataset **Telco Customer Churn**, combinando información de servicios contratados, características de la cuenta y datos demográficos para identificar patrones asociados a la cancelación. El trabajo sigue un enfoque de Machine Learning reproducible: parte de un modelo base de regresión logística y lo contrasta con alternativas más complejas bajo un mismo protocolo de validación, priorizando la detección temprana de clientes en riesgo sobre la precisión agregada del modelo.
+La pérdida de clientes (*churn*) es uno de los mayores riesgos financieros para las empresas de telecomunicaciones, donde retener a un cliente existente suele ser considerablemente más económico que adquirir uno nuevo. Este proyecto aborda la predicción del abandono de clientes a partir del dataset **Telco Customer Churn**, combinando información de servicios contratados, características de la cuenta y datos demográficos para identificar patrones asociados a la cancelación.
+
+El trabajo integra dos componentes complementarios:
+
+- **Visualización de datos**, como herramienta para explorar la estructura y la calidad de los datos, descubrir qué segmentos de clientes concentran el abandono, justificar las decisiones de preprocesamiento y comunicar los resultados de los modelos (comparaciones de desempeño, curvas ROC e importancia de variables) de forma clara para un público no técnico.
+- **Machine Learning**, siguiendo un enfoque reproducible que parte de un modelo base de regresión logística y lo contrasta con alternativas más complejas bajo un mismo protocolo de validación, priorizando la detección temprana de clientes en riesgo sobre la precisión agregada del modelo.
+
+De esta forma, las visualizaciones no son un complemento decorativo: guían el análisis desde la exploración inicial hasta la interpretación final, y los modelos aportan la capacidad predictiva que permite convertir esos hallazgos en acciones de retención.
 
 ## Contexto del problema
-El customer churn es la cancelación o abandono de un servicio. Comprender las características relacionadas con el abandono permite orientar futuras estrategias de retención. En Machine Learning se plantea como una clasificación binaria: identificar clientes que abandonan y clientes que permanecen.
+El *customer churn* es la cancelación o abandono de un servicio. Comprender las características relacionadas con el abandono permite orientar futuras estrategias de retención. Desde la visualización de datos, el problema se aborda describiendo gráficamente cómo cambia la tasa de abandono entre segmentos de clientes; desde el Machine Learning, se plantea como una clasificación binaria: identificar clientes que abandonan y clientes que permanecen.
 
-Según los [datos de Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn), cada fila representa un cliente y Churn indica abandono durante el último mes. El conjunto de datos incluye información sobre:
+Según los [datos de Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn), cada fila representa un cliente y la columna `Churn` indica si abandonó el servicio durante el último mes. El conjunto de datos incluye información sobre:
 
-- Clientes que se dieron de baja en el último mes: la columna se llama "Abandono".
-Servicios que cada cliente ha contratado: teléfono, líneas múltiples, internet, seguridad en línea, copia de seguridad en línea, protección de dispositivos, soporte técnico y transmisión de TV y películas.
-
-- Información de la cuenta del cliente: cuánto tiempo lleva siendo cliente, contrato, método de pago, facturación electrónica, cargos mensuales y cargos totales.
-
-- Información demográfica sobre los clientes: género, rango de edad y si tienen pareja o personas a su cargo.
-Inspiración
+- **Abandono:** clientes que se dieron de baja en el último mes (columna `Churn`).
+- **Servicios contratados:** teléfono, líneas múltiples, internet, seguridad en línea, copia de seguridad en línea, protección de dispositivos, soporte técnico y transmisión de TV y películas.
+- **Información de la cuenta:** antigüedad como cliente, tipo de contrato, método de pago, facturación electrónica, cargos mensuales y cargos totales.
+- **Información demográfica:** género, rango de edad y si tienen pareja o personas a su cargo.
 
 ## Objetivo general
-Desarrollar y evaluar modelos de Machine Learning para predecir la cancelación de clientes de telecomunicaciones con el dataset Telco Customer Churn, partiendo de una regresión logística y comparando alternativas mediante una metodología reproducible que priorice la generalización y evite la fuga de información.
+Analizar y predecir la cancelación de clientes de telecomunicaciones con el dataset Telco Customer Churn, integrando técnicas de visualización de datos para explorar, explicar y comunicar los patrones de abandono, y modelos de Machine Learning que, partiendo de una regresión logística, se comparan mediante una metodología reproducible que priorice la generalización y evite la fuga de información.
 
 ### Objetivos específicos
-- Comprender la estructura, calidad y distribución de los datos, así como las asociaciones entre las características de los clientes y el churn, mediante análisis exploratorio del conjunto de entrenamiento.
+- Comprender la estructura, calidad y distribución de los datos, así como las asociaciones entre las características de los clientes y el churn, mediante un análisis exploratorio visual del conjunto de entrenamiento.
+
+- Diseñar visualizaciones que identifiquen los segmentos con mayor tasa de abandono y que sustenten las decisiones de preprocesamiento y modelado.
 
 - Diseñar un preprocesamiento adecuado para valores faltantes, variables categóricas y escalas numéricas, ajustando sus parámetros exclusivamente con los datos de entrenamiento de cada partición de validación.
 
@@ -58,7 +62,7 @@ Desarrollar y evaluar modelos de Machine Learning para predecir la cancelación 
 
 - Evaluar la mejora respecto al baseline con métricas apropiadas para clasificación y probabilidades, reservando el conjunto test para la evaluación final del modelo seleccionado.
 
-- Interpretar los resultados y las limitaciones del modelo para formular conclusiones sobre su utilidad potencial en retención de clientes, sin atribuir causalidad a las asociaciones observadas.
+- Interpretar y comunicar visualmente los resultados y las limitaciones del modelo, mediante gráficos de desempeño, importancia de variables y un tablero interactivo, sin atribuir causalidad a las asociaciones observadas.
 
 ## Descripción de las variables del proyecto
 Diccionario resumido de los metadatos de Kaggle:
@@ -93,31 +97,36 @@ El identificador no representa una característica explicativa. Los demás campo
 
 ## Estructura del Análisis
 
-::::{grid} 1 1 3 3
+::::{grid} 1 1 2 2
 :gutter: 2
 
-:::{grid-item-card} 1. Análisis Exploratorio (EDA)
+:::{grid-item-card} 1. Marco Teórico
 :class-card: step-card
-Evaluación de distribuciones, tratamiento de valores faltantes, detección de sesgo y análisis de correlación entre variables candidatas.
+Conceptos de visualización de datos, aprendizaje supervisado, desbalance de clases, validación, métricas e interpretabilidad que sustentan el proyecto.
 :::
 
-:::{grid-item-card} 2. Preprocesamiento
+:::{grid-item-card} 2. Análisis Exploratorio (EDA)
+:class-card: step-card
+Visualización de distribuciones, tratamiento de valores faltantes, detección de sesgo, tasas de abandono por segmento y análisis de correlación entre variables candidatas.
+:::
+
+:::{grid-item-card} 3. Preprocesamiento
 :class-card: step-card
 Imputación, codificación de variables categóricas y escalado, ajustados exclusivamente con los datos de entrenamiento para evitar fuga de información.
 :::
 
-:::{grid-item-card} 3. Modelado Avanzado
+:::{grid-item-card} 4. Modelado Avanzado
 :class-card: step-card
-Entrenamiento de algoritmos supervisados, validación cruzada anidada y evaluación de métricas orientadas a la detección de riesgo (F1 / Recall / ROC-AUC).
+Entrenamiento de algoritmos supervisados, validación cruzada anidada, evaluación de métricas orientadas a la detección de riesgo (F1 / Recall / ROC-AUC) y visualización de resultados.
 :::
 
 ::::
-
-
 
 :::{seealso} Enlaces de interés
 **Conjunto de datos**
 - [Kaggle — Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
 
-**Repositorio del proyecto**
-- [GitHub](https://github.com/Nataly-Cardenas/Telco_Churn_Entregable)
+**Repositorios del proyecto**
+- [GitHub — Jupyter Book y notebooks](https://github.com/Nataly-Cardenas/Telco_Churn_Entregable)
+- [GitHub — Dashboard interactivo (Plotly Dash)](https://github.com/Nataly-Cardenas/Dash_Telco_Churn)
+:::
