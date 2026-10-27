@@ -79,8 +79,7 @@ Telco_Churn_Entregable/
 ├── PREPROCESAMIENTO.ipynb       # Preprocesamiento y modelo base
 ├── MODELADO_AVANZADO.ipynb      # Experimentos, resultados e interpretación
 │
-├── intro.md                     # Introducción del libro
-├── marco_teorico.md             # Marco teórico
+├── intro.md                     # Introducción y marco teórico
 ├── paper.md                     # Versión web del paper
 ├── README.md                    # Esta guía
 │

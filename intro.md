@@ -54,6 +54,26 @@ Identificar a los clientes de una empresa de telecomunicaciones con mayor riesgo
 7. **Explicar las predicciones:** identificar con SHAP y LIME las variables que más influyen en el riesgo de abandono, sin atribuirles un efecto causal.
 8. **Poner los resultados a disposición:** presentar el análisis en un Jupyter Book, un paper y un tablero interactivo que permitan consultar los hallazgos sin necesidad de ejecutar el código.
 
+## Marco teórico
+
+### Abandono de clientes y clasificación binaria
+El abandono de clientes (*churn*) es la cancelación o no renovación de un servicio durante un periodo determinado. Su predicción se plantea como una **clasificación binaria supervisada**: a partir de las características $x_i$ de cada cliente se estima la probabilidad $P(y_i = 1 \mid x_i)$ de que abandone. El análisis exploratorio previo (Tukey, 1977) mide la asociación de cada variable con el abandono mediante la correlación punto-biserial, la V de Cramér (Cramér, 1946) y el coeficiente de Spearman, con corrección de Holm para contrastes múltiples (Holm, 1979).
+
+### Desbalance de clases y fuga de información
+Cuando la clase de interés es minoritaria, los modelos tienden a favorecer a la mayoritaria. **SMOTE** genera ejemplos sintéticos de la clase minoritaria interpolando entre vecinos cercanos (Chawla et al., 2002) y **ADASYN** los concentra en las regiones más difíciles (He et al., 2008). Estas técnicas, junto con la imputación, la codificación y el escalado, deben ajustarse **solo con los datos de entrenamiento**; de lo contrario, información de prueba se filtra al modelo (*data leakage*) y las métricas resultan optimistas.
+
+### Modelos de clasificación
+Se usa la **regresión logística** como modelo base por su interpretabilidad (Hosmer et al., 2013) y se compara con **KNN** (Cover y Hart, 1967), **Naive Bayes** (Domingos y Pazzani, 1997), **árboles de decisión** (Breiman et al., 1984), **Random Forest** (Breiman, 2001), **XGBoost** (Chen y Guestrin, 2016) y **SVM** (Cortes y Vapnik, 1995). Sus hiperparámetros se eligen con Grid Search, Random Search (Bergstra y Bengio, 2012), TPE (Bergstra et al., 2011) o algoritmos genéticos, dentro de una **validación cruzada anidada**: un bucle interno selecciona los hiperparámetros y uno externo mide el desempeño con datos que no intervinieron en esa selección, evitando estimaciones optimistas (Varma y Simon, 2006).
+
+### Métricas e interpretabilidad
+Tomando el abandono como clase positiva:
+
+$$
+\text{Precision} = \frac{TP}{TP + FP}, \qquad \text{Recall} = \frac{TP}{TP + FN}, \qquad F_1 = \frac{2\,TP}{2\,TP + FP + FN}.
+$$
+
+El **F1** equilibra la detección de clientes que abandonan (Recall) y la proporción de alertas correctas (Precision), por lo que es más informativo que la exactitud con clases desbalanceadas; el **AUC-ROC** mide la capacidad de ordenar a los clientes por riesgo. Las diferencias entre modelos se contrastan con las pruebas de Friedman y Nemenyi (Demšar, 2006) y de DeLong (DeLong et al., 1988). Por último, **SHAP** (Lundberg y Lee, 2017) y **LIME** (Ribeiro et al., 2016) explican qué variables influyen en las predicciones, sin implicar relaciones causales.
+
 ## Descripción de las variables del proyecto
 Diccionario resumido de los metadatos de Kaggle:
 
@@ -84,38 +104,55 @@ Diccionario resumido de los metadatos de Kaggle:
 
 El identificador no representa una característica explicativa. Los demás campos son candidatos.
 
+## Referencias
+
+- Bergstra, J., Bardenet, R., Bengio, Y. y Kégl, B. (2011). Algorithms for hyper-parameter optimization. En *Advances in Neural Information Processing Systems*, 24.
+- Bergstra, J. y Bengio, Y. (2012). Random search for hyper-parameter optimization. *Journal of Machine Learning Research*, 13, 281–305.
+- Breiman, L. (2001). Random forests. *Machine Learning*, 45(1), 5–32.
+- Breiman, L., Friedman, J. H., Olshen, R. A. y Stone, C. J. (1984). *Classification and Regression Trees*. Wadsworth.
+- Chawla, N. V., Bowyer, K. W., Hall, L. O. y Kegelmeyer, W. P. (2002). SMOTE: Synthetic minority over-sampling technique. *Journal of Artificial Intelligence Research*, 16, 321–357.
+- Chen, T. y Guestrin, C. (2016). XGBoost: A scalable tree boosting system. En *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining* (pp. 785–794).
+- Cortes, C. y Vapnik, V. (1995). Support-vector networks. *Machine Learning*, 20(3), 273–297.
+- Cover, T. y Hart, P. (1967). Nearest neighbor pattern classification. *IEEE Transactions on Information Theory*, 13(1), 21–27.
+- Cramér, H. (1946). *Mathematical Methods of Statistics*. Princeton University Press.
+- DeLong, E. R., DeLong, D. M. y Clarke-Pearson, D. L. (1988). Comparing the areas under two or more correlated receiver operating characteristic curves: A nonparametric approach. *Biometrics*, 44(3), 837–845.
+- Demšar, J. (2006). Statistical comparisons of classifiers over multiple data sets. *Journal of Machine Learning Research*, 7, 1–30.
+- Domingos, P. y Pazzani, M. (1997). On the optimality of the simple Bayesian classifier under zero-one loss. *Machine Learning*, 29, 103–130.
+- He, H., Bai, Y., Garcia, E. A. y Li, S. (2008). ADASYN: Adaptive synthetic sampling approach for imbalanced learning. En *2008 IEEE International Joint Conference on Neural Networks* (pp. 1322–1328).
+- Holm, S. (1979). A simple sequentially rejective multiple test procedure. *Scandinavian Journal of Statistics*, 6(2), 65–70.
+- Hosmer, D. W., Lemeshow, S. y Sturdivant, R. X. (2013). *Applied Logistic Regression* (3.ª ed.). Wiley.
+- Lundberg, S. M. y Lee, S.-I. (2017). A unified approach to interpreting model predictions. En *Advances in Neural Information Processing Systems*, 30 (pp. 4765–4774).
+- Ribeiro, M. T., Singh, S. y Guestrin, C. (2016). "Why should I trust you?": Explaining the predictions of any classifier. En *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining* (pp. 1135–1144).
+- Tukey, J. W. (1977). *Exploratory Data Analysis*. Addison-Wesley.
+- Varma, S. y Simon, R. (2006). Bias in error estimation when using cross-validation for model selection. *BMC Bioinformatics*, 7, 91.
+
 
 ## Estructura del libro
 
 ::::{grid} 1 1 2 2
 :gutter: 2
 
-:::{grid-item-card} 1. Marco Teórico
-:class-card: step-card
-Conceptos que sustentan el análisis: abandono de clientes, clasificación, desbalance, validación, métricas e interpretabilidad.
-:::
-
-:::{grid-item-card} 2. Análisis Exploratorio (EDA)
+:::{grid-item-card} 1. Análisis Exploratorio (EDA)
 :class-card: step-card
 Calidad de los datos, distribuciones, tasas de abandono por segmento y asociación entre variables.
 :::
 
-:::{grid-item-card} 3. Preprocesamiento
+:::{grid-item-card} 2. Preprocesamiento
 :class-card: step-card
 Imputación, codificación de variables categóricas, escalado y modelo base, ajustados exclusivamente con los datos de entrenamiento.
 :::
 
-:::{grid-item-card} 4. Modelado Avanzado
+:::{grid-item-card} 3. Modelado Avanzado
 :class-card: step-card
 Comparación de 112 configuraciones con validación cruzada anidada, evaluación en test e interpretación de los modelos.
 :::
 
-:::{grid-item-card} 5. Paper
+:::{grid-item-card} 4. Paper
 :class-card: step-card
 Versión web y PDF del artículo con la metodología y los resultados del proyecto.
 :::
 
-:::{grid-item-card} 6. Guía del Repositorio
+:::{grid-item-card} 5. Guía del Repositorio
 :class-card: step-card
 Estructura del repositorio, requisitos, orden de ejecución de los notebooks y construcción del libro.
 :::
