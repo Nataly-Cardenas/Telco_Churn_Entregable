@@ -1,34 +1,34 @@
-# Guía del Repositorio — Telco Customer Churn
+# Guía del Repositorio
 
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Jupyter Book](https://img.shields.io/badge/Jupyter_Book-0.15-F37626?style=for-the-badge&logo=jupyter&logoColor=white)](https://nataly-cardenas.github.io/Telco_Churn_Entregable/)
 [![Dataset](https://img.shields.io/badge/Dataset-Kaggle-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
 
-> **Resumen del proyecto:** este proyecto predice el abandono de clientes (*churn*) de una empresa de telecomunicaciones a partir del conjunto público Telco Customer Churn de IBM (7,043 clientes, 21 columnas y 26.5 % de abandono). El flujo abarca la limpieza y transformación de los datos (ETL), un análisis exploratorio realizado solo sobre el conjunto de entrenamiento, un preprocesamiento sin fuga de información y un diseño experimental de 112 configuraciones: 7 modelos × 4 técnicas de balanceo × 4 métodos de optimización de hiperparámetros, evaluadas con validación cruzada anidada (5 folds externos × 3 internos).
+> Resumen del proyecto: este proyecto predice el abandono de clientes (*churn*) de una empresa de telecomunicaciones a partir del conjunto público Telco Customer Churn de IBM (7,043 clientes, 21 columnas y 26.5 % de abandono). El flujo abarca la limpieza y transformación de los datos (ETL), un análisis exploratorio realizado solo sobre el conjunto de entrenamiento, un preprocesamiento sin fuga de información y un diseño experimental de 112 configuraciones: 7 modelos × 4 técnicas de balanceo × 4 métodos de optimización de hiperparámetros, evaluadas con validación cruzada anidada (5 folds externos × 3 internos).
 >
-> **Resultados:** Random Forest y XGBoost con SMOTE alcanzan el mayor F1 de la clase de abandono (0.638), seguidos de la regresión logística (0.634), sin diferencias estadísticamente detectables entre ellos. El balanceo con SMOTE es el factor que más mejora el desempeño, y el tipo de contrato, el servicio de internet y la antigüedad son las variables más influyentes según SHAP.
+> Resultados: Random Forest y XGBoost con SMOTE alcanzan el mayor F1 de la clase de abandono (0.638), seguidos de la regresión logística (0.634), sin diferencias estadísticamente detectables entre ellos. El balanceo con SMOTE es el factor que más mejora el desempeño, y el tipo de contrato, el servicio de internet y la antigüedad son las variables más influyentes según SHAP.
 
-📖 **Libro en línea:** <https://nataly-cardenas.github.io/Telco_Churn_Entregable/>
+📖 Libro en línea: <https://nataly-cardenas.github.io/Telco_Churn_Entregable/>
 
 ---
 
 ## Inicio rápido (requisitos y configuración)
 
-Se necesita **Python 3.12**. Los pasos siguientes crean un entorno virtual e instalan las librerías con las que se ejecutaron los notebooks.
+Se necesita Python 3.12. Los pasos siguientes crean un entorno virtual e instalan las librerías con las que se ejecutaron los notebooks.
 
 <details open>
-<summary><b>Configuración del entorno virtual</b></summary>
+<summary>Configuración del entorno virtual</summary>
 
 <br>
 
-1. **Clonar el repositorio** y entrar en la carpeta:
+1. Clonar el repositorio y entrar en la carpeta:
 
    ```bash
    git clone https://github.com/Nataly-Cardenas/Telco_Churn_Entregable.git
    cd Telco_Churn_Entregable
    ```
 
-2. **Crear el entorno virtual** con Python 3.12:
+2. Crear el entorno virtual con Python 3.12:
 
    ```bash
    python -m venv .venv
@@ -36,7 +36,7 @@ Se necesita **Python 3.12**. Los pasos siguientes crean un entorno virtual e ins
 
    Con Anaconda o Miniconda también puede usarse `conda create --name telco python=3.12 -y`.
 
-3. **Activar el entorno virtual**:
+3. Activar el entorno virtual:
 
    ```bash
    # Windows
@@ -47,7 +47,7 @@ Se necesita **Python 3.12**. Los pasos siguientes crean un entorno virtual e ins
    conda activate telco
    ```
 
-4. **Instalar las dependencias** del análisis:
+4. Instalar las dependencias del análisis:
 
    ```bash
    pip install -r requirements.txt
@@ -101,16 +101,16 @@ Los notebooks se ejecutan en este orden; cada uno usa los archivos que genera el
 | `PREPROCESAMIENTO.ipynb` | Imputación, colapso de categorías redundantes, variable `AvgChargePerMonth`, codificación One-Hot, estandarización y modelo base de regresión logística | `X_train_processed.csv`, `X_test_processed.csv`, `y_train.csv`, `y_test.csv` |
 | `MODELADO_AVANZADO.ipynb` | Comparación de las 112 configuraciones con validación cruzada anidada, pruebas de Friedman/Nemenyi y DeLong, calibración, costo computacional, evaluación en test e interpretabilidad con SHAP y LIME | `resultados_modelado/` |
 
-> **Nota:** la carpeta `resultados_modelado/` completa ocupa alrededor de 6 GB. El notebook de modelado consulta esos artefactos para no repetir los experimentos; reejecutarlo desde cero requiere un tiempo de cómputo considerable.
+> Nota: la carpeta `resultados_modelado/` completa ocupa alrededor de 6 GB. El notebook de modelado consulta esos artefactos para no repetir los experimentos; reejecutarlo desde cero requiere un tiempo de cómputo considerable.
 
 ---
 
 ## Guía de ejecución
 
-1. **Activar el entorno virtual** (ver *Inicio rápido*).
-2. **Abrir los notebooks** con Jupyter o VS Code:
-   - **Jupyter:** ejecutar `jupyter lab` desde la carpeta del proyecto y abrir los notebooks en el orden de la tabla anterior.
-   - **VS Code:** abrir la carpeta del proyecto, seleccionar el intérprete del entorno virtual (`Ctrl + Shift + P` → **Python: Select Interpreter**) y ejecutar los notebooks en orden.
+1. Activar el entorno virtual (ver *Inicio rápido*).
+2. Abrir los notebooks con Jupyter o VS Code:
+   - Jupyter: ejecutar `jupyter lab` desde la carpeta del proyecto y abrir los notebooks en el orden de la tabla anterior.
+   - VS Code: abrir la carpeta del proyecto, seleccionar el intérprete del entorno virtual (`Ctrl + Shift + P` → Python: Select Interpreter) y ejecutar los notebooks en orden.
 
 ---
 
@@ -125,21 +125,21 @@ jupyter-book build .
 
 El sitio queda en `_build/html/`; basta con abrir `_build/html/intro.html` en el navegador.
 
-**Publicación:** al actualizar la rama `main`, GitHub Actions construye el libro y lo publica en GitHub Pages. El flujo verifica con `notebooks.sha256` que los notebooks conserven sus huellas originales.
+Publicación: al actualizar la rama `main`, GitHub Actions construye el libro y lo publica en GitHub Pages. El flujo verifica con `notebooks.sha256` que los notebooks conserven sus huellas originales.
 
 ---
 
 ## Recursos relacionados
 
-- 📊 **Dashboard interactivo (Plotly Dash):** [Dash_Telco_Churn](https://github.com/Nataly-Cardenas/Dash_Telco_Churn)
-- 📄 **Paper:** [`paper/paper.pdf`](paper/paper.pdf)
-- 🗂️ **Conjunto de datos:** [Kaggle — Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
+- 📊 Dashboard interactivo (Plotly Dash): [Dash_Telco_Churn](https://github.com/Nataly-Cardenas/Dash_Telco_Churn)
+- 📄 Paper: [`paper/paper.pdf`](paper/paper.pdf)
+- 🗂️ Conjunto de datos: [Kaggle — Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
 
 ---
 
 ## Autoras
 
-- **Laura S. Rivera Figueredo** — `sriveral@uninorte.edu.co`
-- **Natalý A. Cárdenas Izaquita** — `nizaquita@uninorte.edu.co`
+- Laura S. Rivera Figueredo — `sriveral@uninorte.edu.co`
+- Natalý A. Cárdenas Izaquita — `nizaquita@uninorte.edu.co`
 
 Departamento de Matemáticas, Física y Ciencia de Datos, Universidad del Norte, Barranquilla, Colombia.

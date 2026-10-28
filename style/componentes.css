@@ -1,0 +1,694 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap');
+
+/* ============================================================
+   Telco Customer Churn — Componentes de salida de los notebooks
+   Tablas, indicadores y paneles agrupados (gráfica/tabla +
+   interpretación). Usa la paleta de las figuras del libro:
+   #1B4F72 (principal), #06B6D4 (acento), #E4572E (riesgo).
+   ============================================================ */
+
+:root {
+
+  --tc-navy: #1B4F72;
+
+  --tc-accent: #06B6D4;
+
+  --tc-chip-bg: #EAF2F8;
+
+  --tc-shadow: 0 2px 12px rgba(27, 79, 114, 0.08);
+
+  --tc-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --tc-mono: 'IBM Plex Mono', SFMono-Regular, Menlo, monospace;
+
+  --tc-card-bg: #FFFFFF;
+
+  --tc-card-border: #DCE6ED;
+
+  --tc-row-alt: #F4F8FB;
+
+  --tc-text: #243B53;
+
+  --tc-muted: #5B6B7C;
+}
+
+
+
+
+/* ---------- Tablas (mismo diseño de las tablas del EDA) ---------- */
+
+.eda-table {
+
+  overflow: auto;
+
+  margin: 12px 0 18px;
+
+  max-width: 100%;
+
+  color: var(--tc-text);
+
+  background: var(--tc-card-bg);
+
+  border: 1px solid var(--tc-card-border);
+
+  border-radius: 8px;
+
+  padding: 12px;
+
+  box-shadow: var(--tc-shadow);
+}
+
+
+.eda-table table {
+
+  display: table !important;
+
+  width: 100%;
+
+  border-collapse: collapse;
+
+  box-shadow: none;
+
+  margin: 0;
+
+  font: 13px/1.5 var(--tc-font);
+
+  background: transparent;
+}
+
+
+.eda-table th {
+
+  background: var(--tc-navy) !important;
+
+  color: #FFFFFF !important;
+
+  padding: 9px !important;
+
+  text-align: left !important;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  font-weight: 500;
+}
+
+
+.eda-table td {
+
+  padding: 8px !important;
+
+  border-bottom: 1px solid var(--tc-card-border);
+
+  white-space: normal !important;
+
+  min-width: 65px;
+
+  max-width: 420px;
+
+  text-align: left !important;
+
+  color: var(--tc-text);
+
+  background: transparent;
+}
+
+
+.eda-table tbody tr,
+.eda-table tbody tr:hover {
+
+  background: var(--tc-card-bg) !important;
+}
+
+
+.eda-table tbody td {
+
+  color: var(--tc-text) !important;
+}
+
+
+.eda-table tbody tr:nth-child(even) td {
+
+  background: var(--tc-row-alt) !important;
+}
+
+
+.eda-table input {
+
+  padding: 7px 10px;
+
+  border: 1px solid var(--tc-card-border);
+
+  border-radius: 6px;
+
+  margin: 8px 0;
+
+  color: var(--tc-text);
+
+  background: var(--tc-card-bg);
+
+  font: 13px var(--tc-font);
+}
+
+
+.eda-table-title,
+.tc-title {
+
+  display: block;
+
+  color: var(--tc-navy);
+
+  font-size: 0.95rem;
+
+  font-weight: 500;
+
+  letter-spacing: 0.01em;
+}
+
+
+
+
+.eda-table-note {
+
+  margin: 8px 2px 0;
+
+  color: var(--tc-muted);
+
+  font-size: 0.82rem;
+}
+
+
+/* ---------- Tarjetas de indicadores ---------- */
+
+.tc-card {
+
+  background: var(--tc-card-bg);
+
+  border: 1px solid var(--tc-card-border);
+
+  border-radius: 8px;
+
+  padding: 14px 16px;
+
+  margin: 12px 0 18px;
+
+  color: var(--tc-text);
+
+  box-shadow: var(--tc-shadow);
+
+  font-family: var(--tc-font);
+}
+
+
+.tc-kpis {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+
+  gap: 10px;
+
+  margin-top: 10px;
+}
+
+
+.tc-kpi {
+
+  min-width: 0;
+
+  background: var(--tc-row-alt);
+
+  border: 1px solid var(--tc-card-border);
+
+  border-top: 3px solid var(--tc-accent);
+
+  border-radius: 8px;
+
+  padding: 10px 12px;
+}
+
+
+.tc-kpi-label {
+
+  display: block;
+
+  color: var(--tc-muted);
+
+  font-size: 0.8rem;
+
+  line-height: 1.35;
+}
+
+
+.tc-kpi-value {
+
+  display: block;
+
+  color: var(--tc-navy);
+
+  font-family: var(--tc-mono);
+
+  font-size: 1.05rem;
+
+  margin-top: 4px;
+
+  overflow-wrap: anywhere;
+
+  word-break: break-word;
+
+  font-variant-numeric: tabular-nums;
+}
+
+
+
+
+.tc-kpi-detail {
+
+  display: block;
+
+  color: var(--tc-muted);
+
+  font-size: 0.78rem;
+
+  margin-top: 2px;
+}
+
+
+.tc-note {
+
+  display: flex;
+
+  gap: 10px;
+
+  align-items: flex-start;
+
+  background: var(--tc-row-alt);
+
+  border: 1px solid var(--tc-card-border);
+
+  border-left: 4px solid var(--tc-accent);
+
+  border-radius: 8px;
+
+  padding: 10px 14px;
+
+  margin: 10px 0;
+
+  color: var(--tc-text);
+
+  font-size: 0.92rem;
+}
+
+
+.tc-note.ok {
+
+  border-left-color: #16A34A;
+}
+
+
+.tc-note.warn {
+
+  border-left-color: #F59E0B;
+}
+
+
+.tc-chips {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  margin: 6px 0 2px;
+}
+
+
+.tc-chip {
+
+  display: inline-block;
+
+  padding: 2px 10px;
+
+  border-radius: 999px;
+
+  background: var(--tc-chip-bg);
+
+  border: 1px solid var(--tc-card-border);
+
+  color: var(--tc-text);
+
+  font-family: var(--tc-mono);
+
+  font-size: 0.8rem;
+}
+
+
+.tc-kv {
+
+  display: grid;
+
+  grid-template-columns: minmax(150px, max-content) 1fr;
+
+  gap: 6px 16px;
+
+  margin-top: 10px;
+
+  font-size: 0.9rem;
+}
+
+
+.tc-kv dt {
+
+  color: var(--tc-muted);
+
+  font-family: var(--tc-mono);
+
+  font-size: 0.82rem;
+}
+
+
+.tc-kv dd {
+
+  margin: 0;
+
+  color: var(--tc-text);
+
+  word-break: break-word;
+}
+
+
+.tc-card details summary {
+
+  cursor: pointer;
+
+  color: var(--tc-navy);
+
+  font-size: 0.92rem;
+}
+
+
+
+
+/* ---------- Paneles agrupados (gráfica / tabla + interpretación) ---------- */
+
+.tc-group {
+
+  background: var(--tc-card-bg);
+
+  border: 1px solid var(--tc-card-border);
+
+  border-radius: 10px;
+
+  margin: 16px 0 26px;
+
+  box-shadow: var(--tc-shadow);
+
+  color: var(--tc-text);
+
+  font-family: var(--tc-font);
+
+  overflow: hidden;
+}
+
+
+.tc-group-head {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px 16px;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 12px 16px;
+
+  background: var(--tc-row-alt);
+
+  border-bottom: 1px solid var(--tc-card-border);
+}
+
+
+.tc-group-heading {
+
+  display: flex;
+
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+
+.tc-group-kicker {
+
+  color: var(--tc-muted);
+
+  font-size: 0.72rem;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+
+.tc-group-current {
+
+  color: var(--tc-navy);
+
+  font-size: 1.1rem;
+
+  font-weight: 500;
+}
+
+
+
+
+.tc-group-nav {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+}
+
+
+.tc-select {
+
+  appearance: none;
+
+  -webkit-appearance: none;
+
+  min-width: 220px;
+
+  max-width: 100%;
+
+  padding: 8px 34px 8px 12px;
+
+  border: 1px solid var(--tc-card-border);
+
+  border-radius: 6px;
+
+  color: var(--tc-text);
+
+  font: 0.92rem var(--tc-font);
+
+  cursor: pointer;
+
+  background:
+    var(--tc-card-bg)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2306B6D4' stroke-width='2'/%3E%3C/svg%3E")
+    no-repeat right 12px center;
+}
+
+
+.tc-step {
+
+  width: 34px;
+
+  height: 34px;
+
+  border: 1px solid var(--tc-card-border);
+
+  border-radius: 6px;
+
+  background: var(--tc-card-bg);
+
+  color: var(--tc-navy);
+
+  font-size: 1.1rem;
+
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+
+.tc-step:hover,
+.tc-select:hover {
+
+  border-color: var(--tc-accent);
+}
+
+
+.tc-pane {
+
+  display: none;
+
+  padding: 14px 16px 16px;
+}
+
+
+.tc-pane.is-active {
+
+  display: block;
+}
+
+
+.tc-views {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-bottom: 12px;
+}
+
+
+.tc-view-btn {
+
+  padding: 6px 14px;
+
+  border-radius: 999px;
+
+  border: 1px solid var(--tc-navy);
+
+  background: transparent;
+
+  color: var(--tc-navy);
+
+  font: 0.88rem var(--tc-font);
+
+  cursor: pointer;
+
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+
+
+
+.tc-view-btn.is-active {
+
+  background: var(--tc-navy);
+
+  border-color: var(--tc-navy);
+
+  color: #FFFFFF;
+}
+
+
+.tc-view {
+
+  display: none;
+}
+
+
+.tc-view.is-active {
+
+  display: block;
+}
+
+
+.tc-intro p,
+.tc-interp-body p {
+
+  margin: 0 0 0.6rem;
+
+  color: var(--tc-text);
+}
+
+
+.tc-intro {
+
+  margin-bottom: 8px;
+
+  font-size: 0.95rem;
+}
+
+
+.tc-interp {
+
+  margin-top: 12px;
+
+  padding: 12px 16px;
+
+  background: var(--tc-row-alt);
+
+  border: 1px solid var(--tc-card-border);
+
+  border-left: 4px solid var(--tc-accent);
+
+  border-radius: 8px;
+}
+
+
+.tc-interp-title {
+
+  color: var(--tc-navy);
+
+  font-size: 1rem;
+
+  font-weight: 500;
+
+  margin-bottom: 6px;
+}
+
+
+
+
+.tc-interp-body {
+
+  font-size: 0.95rem;
+}
+
+
+.tc-interp-body p:last-child,
+.tc-intro p:last-child {
+
+  margin-bottom: 0;
+}
+
+
+.tc-group .eda-table {
+
+  box-shadow: none;
+}
+
+
+@media (max-width: 768px) {
+
+  .tc-select {
+
+    min-width: 0;
+
+    width: 100%;
+  }
+
+
+  .tc-group-nav {
+
+    width: 100%;
+  }
+
+
+  .tc-kv {
+
+    grid-template-columns: 1fr;
+  }
+}
