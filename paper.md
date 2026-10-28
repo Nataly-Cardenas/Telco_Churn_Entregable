@@ -1,8 +1,8 @@
-# Paper - Telco Customer Churn
+# Paper
 
-***Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes a partir de Datos de Suscripción: Dataset Telco Customer Churn***
+*Modelo de Clasificación Binaria para la Predicción de Abandono de Clientes a partir de Datos de Suscripción: Dataset Telco Customer Churn*
 
-**Natalý Cárdenas y Laura Rivera**  
+Natalý Cárdenas y Laura Rivera  
 Departamento de Matemáticas, Física y Ciencia de Datos, Universidad del Norte, Barranquilla, Colombia  
 `nizaquita@uninorte.edu.co` · `sriveral@uninorte.edu.co`
 
@@ -45,7 +45,7 @@ Lee el paper completo en esta página: el contenido, las tablas y las figuras se
 ```{tab-item} Versión PDF
 <iframe src="paper.pdf" title="Paper Telco Customer Churn (PDF)" width="100%" height="900" style="border: 1px solid var(--color-border); border-radius: 8px;"></iframe>
 
-Si el visor no carga en tu navegador, usa el botón **Descargar paper (PDF)**.
+Si el visor no carga en tu navegador, usa el botón Descargar paper (PDF).
 ```
 ````
 
@@ -53,7 +53,7 @@ Si el visor no carga en tu navegador, usa el botón **Descargar paper (PDF)**.
 
 El abandono de clientes (*churn*) en telecomunicaciones genera pérdidas recurrentes de ingresos, y detectarlo a tiempo permite focalizar acciones de retención. Este trabajo aborda la clasificación binaria del abandono sobre el conjunto público Telco Customer Churn. Se diseñó un protocolo reproducible con preprocesamiento sin fuga de información y validación cruzada anidada (5 particiones externas y 3 internas), en el que se compararon siete familias de modelos (KNN, Naive Bayes gaussiano, regresión logística, árbol de decisión, Random Forest, XGBoost y SVM), cuatro estrategias de balanceo y cuatro optimizadores de hiperparámetros (Grid, Random, TPE y algoritmo genético), para un total de 112 configuraciones. Random Forest con SMOTE obtuvo el mayor F1-score de la clase de abandono (0.638 ± 0.023), seguido de cerca por XGBoost (0.638) y la regresión logística (0.634), con un AUC-ROC de 0.844 en el test histórico. Las diferencias entre los tres mejores modelos fueron pequeñas y no detectables estadísticamente, mientras que SMOTE mejoró el F1-score en seis de las siete familias frente a no balancear, y Random Forest fue el modelo de mayor costo de búsqueda. SHAP identificó el tipo de contrato, el servicio de internet y la antigüedad como las variables más influyentes. Los resultados de esta etapa corresponden a la comparación de modelos de referencia y sirven como base para la posterior formulación del modelo propuesto.
 
-**Palabras clave:** Predicción de abandono de clientes · Validación cruzada anidada · Desbalance de clases · Optimización de hiperparámetros · F1-score
+Palabras clave: Predicción de abandono de clientes · Validación cruzada anidada · Desbalance de clases · Optimización de hiperparámetros · F1-score
 
 ## 1. Introducción
 
@@ -67,11 +67,11 @@ La contribución de este trabajo es un diseño experimental controlado y reprodu
 
 ### 2.1 Descripción del problema y del conjunto de datos
 
-**Descripción general.** Se utilizó el conjunto público Telco Customer Churn de IBM [13], con 7,043 clientes y 21 columnas: un identificador, 19 variables predictoras (3 numéricas y 16 categóricas, incluida `SeniorCitizen`, almacenada como entero) y la variable objetivo `Churn`. La variable objetivo es binaria (Yes = el cliente abandona, No = permanece) y presenta desbalance: en el conjunto de entrenamiento, 4,139 clientes permanecen (73.46%) y 1,495 abandonan (26.54%).
+Descripción general. Se utilizó el conjunto público Telco Customer Churn de IBM [13], con 7,043 clientes y 21 columnas: un identificador, 19 variables predictoras (3 numéricas y 16 categóricas, incluida `SeniorCitizen`, almacenada como entero) y la variable objetivo `Churn`. La variable objetivo es binaria (Yes = el cliente abandona, No = permanece) y presenta desbalance: en el conjunto de entrenamiento, 4,139 clientes permanecen (73.46%) y 1,495 abandonan (26.54%).
 
-**ETL.** *Extract:* los datos se cargaron completos, sin muestreo, desde el archivo CSV original. *Transform:* la columna `TotalCharges` se leyó como texto porque 8 registros del entrenamiento (3 en el test) contenían un espacio en blanco en lugar de un importe; se convirtió a numérico y se remplazó con 0, tras verificar con una aserción que todos esos registros tienen `tenure = 0` (clientes recién dados de alta) e inferir que ambas variables están relacionadas (sin antigüedad no hay cargo acumulado). Se colapsaron las categorías redundantes "No internet service" y "No phone service" en "No", pues el EDA no encontró discrepancias relevantes y esta transformación reduce categorías redundantes mediante *feature engineering*. Se creó la variable `AvgChargePerMonth` (cargo acumulado dividido por antigüedad, con `MonthlyCharges` como respaldo cuando `tenure = 0`). Las variables categóricas se codificaron con One-Hot (primera categoría eliminada) y las cuatro numéricas (`tenure`, `MonthlyCharges`, `TotalCharges` y `AvgChargePerMonth`) se estandarizaron, lo que produce 24 columnas. No se eliminaron valores atípicos. *Load:* el conjunto se particionó en 80/20 de forma estratificada con semilla aleatoria fija (`seed=42`), lo que da 5,634 clientes de desarrollo y 1,409 de test; la selección de modelos se hizo con validación cruzada anidada sobre los 5,634 clientes de desarrollo, y el test se usó solo como evidencia suplementaria. El escalado, la codificación y el balanceo aprenden sus parámetros únicamente con los datos de entrenamiento de cada partición.
+ETL. *Extract:* los datos se cargaron completos, sin muestreo, desde el archivo CSV original. *Transform:* la columna `TotalCharges` se leyó como texto porque 8 registros del entrenamiento (3 en el test) contenían un espacio en blanco en lugar de un importe; se convirtió a numérico y se remplazó con 0, tras verificar con una aserción que todos esos registros tienen `tenure = 0` (clientes recién dados de alta) e inferir que ambas variables están relacionadas (sin antigüedad no hay cargo acumulado). Se colapsaron las categorías redundantes "No internet service" y "No phone service" en "No", pues el EDA no encontró discrepancias relevantes y esta transformación reduce categorías redundantes mediante *feature engineering*. Se creó la variable `AvgChargePerMonth` (cargo acumulado dividido por antigüedad, con `MonthlyCharges` como respaldo cuando `tenure = 0`). Las variables categóricas se codificaron con One-Hot (primera categoría eliminada) y las cuatro numéricas (`tenure`, `MonthlyCharges`, `TotalCharges` y `AvgChargePerMonth`) se estandarizaron, lo que produce 24 columnas. No se eliminaron valores atípicos. *Load:* el conjunto se particionó en 80/20 de forma estratificada con semilla aleatoria fija (`seed=42`), lo que da 5,634 clientes de desarrollo y 1,409 de test; la selección de modelos se hizo con validación cruzada anidada sobre los 5,634 clientes de desarrollo, y el test se usó solo como evidencia suplementaria. El escalado, la codificación y el balanceo aprenden sus parámetros únicamente con los datos de entrenamiento de cada partición.
 
-**EDA.** Todo el análisis exploratorio se realizó solo sobre el conjunto de entrenamiento. La estadística descriptiva muestra `tenure` entre 0 y 72 meses (media 32.5), `MonthlyCharges` entre 18.4 y 118.75 (media 64.9) y `TotalCharges` con asimetría positiva de 0.95. El criterio IQR no marcó ningún valor atípico en las tres variables numéricas. Los únicos valores faltantes son los 8 de `TotalCharges` (0.14%). Los clientes que abandonan tienen menor antigüedad y menores cargos acumulados, pero mayores cargos mensuales; la asociación numérica marginal más fuerte con el abandono es la de `tenure` (correlación punto-biserial $r_{pb} = -0.3456$). Entre las variables categóricas, la asociación más fuerte es la de `Contract` (V de Cramér = 0.4111 [14]), seguida de `OnlineSecurity` (0.3510) y `TechSupport` (0.3449), mientras que `gender` (0.0022) y `PhoneService` (0.0179) no muestran evidencia de asociación tras la corrección de Holm [15] sobre 19 contrastes. Las mayores tasas de abandono se observan con el cheque electrónico (45.74%), el contrato mensual (42.75%), la fibra óptica (42.09%), la ausencia de seguridad en línea (41.94%) y la ausencia de soporte técnico (41.75%), como resume la {numref}`fig-paper-eda`. Además, ninguna de las tres variables numéricas superó la prueba de normalidad de D'Agostino–Pearson (con ajuste de Holm, valor $p$ prácticamente nulo en todas), por lo que la correlación entre predictores se calculó con el coeficiente de Spearman, y `tenure` y `TotalCharges` resultaron fuertemente correlacionadas ($\rho = 0.8914$).
+EDA. Todo el análisis exploratorio se realizó solo sobre el conjunto de entrenamiento. La estadística descriptiva muestra `tenure` entre 0 y 72 meses (media 32.5), `MonthlyCharges` entre 18.4 y 118.75 (media 64.9) y `TotalCharges` con asimetría positiva de 0.95. El criterio IQR no marcó ningún valor atípico en las tres variables numéricas. Los únicos valores faltantes son los 8 de `TotalCharges` (0.14%). Los clientes que abandonan tienen menor antigüedad y menores cargos acumulados, pero mayores cargos mensuales; la asociación numérica marginal más fuerte con el abandono es la de `tenure` (correlación punto-biserial $r_{pb} = -0.3456$). Entre las variables categóricas, la asociación más fuerte es la de `Contract` (V de Cramér = 0.4111 [14]), seguida de `OnlineSecurity` (0.3510) y `TechSupport` (0.3449), mientras que `gender` (0.0022) y `PhoneService` (0.0179) no muestran evidencia de asociación tras la corrección de Holm [15] sobre 19 contrastes. Las mayores tasas de abandono se observan con el cheque electrónico (45.74%), el contrato mensual (42.75%), la fibra óptica (42.09%), la ausencia de seguridad en línea (41.94%) y la ausencia de soporte técnico (41.75%), como resume la {numref}`fig-paper-eda`. Además, ninguna de las tres variables numéricas superó la prueba de normalidad de D'Agostino–Pearson (con ajuste de Holm, valor $p$ prácticamente nulo en todas), por lo que la correlación entre predictores se calculó con el coeficiente de Spearman, y `tenure` y `TotalCharges` resultaron fuertemente correlacionadas ($\rho = 0.8914$).
 
 Como consecuencia directa de estos hallazgos se tomaron las siguientes decisiones de preprocesamiento: (i) el desbalance de 73.5/26.5 llevó a evaluar la clase de abandono con métricas de clase positiva (F1, Recall, Precision) y a comparar cuatro estrategias de balanceo; (ii) la fuerte correlación entre `tenure` y `TotalCharges` llevó a conservar ambas y a añadir `AvgChargePerMonth` en lugar de eliminar una de ellas; (iii) la información duplicada de las categorías de ausencia de servicio motivó colapsarlas; (iv) los 8 faltantes de `TotalCharges`, todos con `tenure = 0` (clientes recién dados de alta, sin cargo acumulado), justificaron reemplazarlos por 0, decisión contrastada con la alternativa de mediana más indicador de imputación, que dio prácticamente el mismo AUC-ROC en validación cruzada (0.8459 y 0.8460); (v) la ausencia de valores atípicos según el IQR llevó a no recortar ni eliminar observaciones; y (vi) `SeniorCitizen`, por ser una variable binaria, se trató como categórica y no se estandarizó. `gender` y `PhoneService` se conservaron pese a su falta de asociación bivariada, y una ablación por validación cruzada mostró que quitarlas no cambia el AUC-ROC de forma medible (diferencias de +0.0001 a +0.0004, del orden de la variación entre folds).
 
@@ -93,45 +93,45 @@ Tasa de abandono por categoría en el conjunto de entrenamiento (EDA). El contra
 
 ### 2.2 Modelos de referencia (*baselines*)
 
-Se compararon siete familias de modelos, de modo que ninguna se descartó por su desempeño: **regresión logística** [1], como referencia lineal regularizada; **K vecinos más cercanos (KNN)** [4]; **Naive Bayes gaussiano** [5]; **árbol de decisión** [6]; **Random Forest** [2], por su robustez ante datos tabulares mixtos; **XGBoost** [3], referencia de *boosting* de árboles; y **SVM con kernel RBF** [7]. Las implementaciones provienen de scikit-learn [16] y XGBoost. A continuación se resume la formulación de cada una.
+Se compararon siete familias de modelos, de modo que ninguna se descartó por su desempeño: regresión logística [1], como referencia lineal regularizada; K vecinos más cercanos (KNN) [4]; Naive Bayes gaussiano [5]; árbol de decisión [6]; Random Forest [2], por su robustez ante datos tabulares mixtos; XGBoost [3], referencia de *boosting* de árboles; y SVM con kernel RBF [7]. Las implementaciones provienen de scikit-learn [16] y XGBoost. A continuación se resume la formulación de cada una.
 
-**Regresión logística.** Modela $P(y = 1 \mid x) = \sigma(w^\top x + b)$ con $\sigma(z) = 1/(1 + e^{-z})$ y minimiza una pérdida logarítmica regularizada, donde $C$ es el inverso de la regularización y $\Omega$ es la norma $L_1$ o $L_2$ [1]:
+Regresión logística. Modela $P(y = 1 \mid x) = \sigma(w^\top x + b)$ con $\sigma(z) = 1/(1 + e^{-z})$ y minimiza una pérdida logarítmica regularizada, donde $C$ es el inverso de la regularización y $\Omega$ es la norma $L_1$ o $L_2$ [1]:
 
 $$
 \min_{w,b}\ \Omega(w) + C \sum_{i=1}^{n} \log\!\left(1 + e^{-y_i (w^\top x_i + b)}\right), \qquad y_i \in \{-1, +1\}. \tag{1}
 $$
 
-**KNN.** Clasifica $x$ por el voto de sus $k$ vecinos más cercanos $\mathcal{N}_k(x)$ según la distancia de Minkowski de orden $p$, con pesos $w_i = 1$ (uniforme) o $w_i = 1/d(x, x_i)$ (por distancia) [4]:
+KNN. Clasifica $x$ por el voto de sus $k$ vecinos más cercanos $\mathcal{N}_k(x)$ según la distancia de Minkowski de orden $p$, con pesos $w_i = 1$ (uniforme) o $w_i = 1/d(x, x_i)$ (por distancia) [4]:
 
 $$
 \hat{y}(x) = \arg\max_{c} \sum_{i \in \mathcal{N}_k(x)} w_i\, \mathbb{1}[y_i = c], \qquad d_p(x, x') = \Big(\sum_j |x_j - x'_j|^p\Big)^{1/p}. \tag{2}
 $$
 
-**Naive Bayes gaussiano.** Supone independencia condicional de las variables dada la clase, con densidades gaussianas; `var_smoothing` añade un término $\epsilon$ a las varianzas [5]:
+Naive Bayes gaussiano. Supone independencia condicional de las variables dada la clase, con densidades gaussianas; `var_smoothing` añade un término $\epsilon$ a las varianzas [5]:
 
 $$
 \hat{y}(x) = \arg\max_{c}\ \pi_c \prod_{j=1}^{p} \mathcal{N}\!\left(x_j;\ \mu_{cj},\ \sigma^2_{cj} + \epsilon\right). \tag{3}
 $$
 
-**Árbol de decisión.** En cada nodo $t$ elige la partición que más reduce una impureza $I$, que puede ser Gini o entropía, con $p_c$ la proporción de la clase $c$ en el nodo [6]:
+Árbol de decisión. En cada nodo $t$ elige la partición que más reduce una impureza $I$, que puede ser Gini o entropía, con $p_c$ la proporción de la clase $c$ en el nodo [6]:
 
 $$
 I_{\text{Gini}}(t) = 1 - \sum_c p_c^2, \qquad I_{\text{ent}}(t) = -\sum_c p_c \log p_c. \tag{4}
 $$
 
-**Random Forest.** Promedia (o vota) $T$ árboles $h_t$ entrenados con muestras *bootstrap* $\mathcal{D}_t$ y un subconjunto aleatorio de variables en cada nodo [2]:
+Random Forest. Promedia (o vota) $T$ árboles $h_t$ entrenados con muestras *bootstrap* $\mathcal{D}_t$ y un subconjunto aleatorio de variables en cada nodo [2]:
 
 $$
 \hat{y}(x) = \text{mayoría}\{h_t(x; \mathcal{D}_t)\}_{t=1}^{T}. \tag{5}
 $$
 
-**XGBoost.** Construye un modelo aditivo $\hat{y}_i^{(t)} = \hat{y}_i^{(t-1)} + \eta f_t(x_i)$ que minimiza una pérdida regularizada, donde $T_f$ es el número de hojas del árbol y $w$ los pesos de sus hojas [3]:
+XGBoost. Construye un modelo aditivo $\hat{y}_i^{(t)} = \hat{y}_i^{(t-1)} + \eta f_t(x_i)$ que minimiza una pérdida regularizada, donde $T_f$ es el número de hojas del árbol y $w$ los pesos de sus hojas [3]:
 
 $$
 \mathcal{L} = \sum_{i=1}^{n} \ell(y_i, \hat{y}_i) + \sum_t \Omega(f_t), \qquad \Omega(f) = \gamma T_f + \tfrac{1}{2}\lambda \lVert w \rVert^2. \tag{6}
 $$
 
-**SVM con kernel RBF.** Resuelve el problema de margen suave y, vía el truco del kernel, produce la función de decisión [7]:
+SVM con kernel RBF. Resuelve el problema de margen suave y, vía el truco del kernel, produce la función de decisión [7]:
 
 $$
 \min_{w,b,\xi}\ \tfrac{1}{2}\lVert w \rVert^2 + C \sum_{i=1}^{n} \xi_i \ \ \text{s.a.}\ \ y_i(w^\top \phi(x_i) + b) \ge 1 - \xi_i,\ \xi_i \ge 0, \qquad f(x) = \operatorname{sign}\Big(\sum_i \alpha_i y_i\, k(x_i, x) + b\Big), \tag{7}
@@ -172,22 +172,22 @@ En KNN, árbol de decisión y Random Forest, los cuatro optimizadores agotan el 
 
 ```{admonition} Algoritmo 1 — Validación cruzada anidada con balanceo y optimización de hiperparámetros
 :class: tip
-**Requiere:** datos de desarrollo $D$, configuración (familia, balanceo, optimizador), 5 folds externos, 3 internos, presupuesto $B = 24$.
-**Produce:** predicciones fuera de muestra y métricas por fold externo.
+Requiere: datos de desarrollo $D$, configuración (familia, balanceo, optimizador), 5 folds externos, 3 internos, presupuesto $B = 24$.
+Produce: predicciones fuera de muestra y métricas por fold externo.
 
-1. **Para** cada fold externo $k = 1, \dots, 5$:
+1. Para cada fold externo $k = 1, \dots, 5$:
    1. Reservar el fold $k$ como evaluación, sin usar sus etiquetas para elegir parámetros.
-   2. **Para** cada candidato $\theta$ propuesto por el optimizador (hasta $B$ evaluaciones únicas):
-      - **Para** cada fold interno $j = 1, \dots, 3$: ajustar escalado, codificación, balanceo y clasificador solo con el entrenamiento interno y calcular el F1 positivo en el fold interno de validación.
+   2. Para cada candidato $\theta$ propuesto por el optimizador (hasta $B$ evaluaciones únicas):
+      - Para cada fold interno $j = 1, \dots, 3$: ajustar escalado, codificación, balanceo y clasificador solo con el entrenamiento interno y calcular el F1 positivo en el fold interno de validación.
       - Devolver al optimizador la media de F1 interno de $\theta$.
    3. Elegir $\theta^*$ con mayor media interna y reajustar el *pipeline* en todo el entrenamiento externo.
    4. Predecir el fold $k$ y guardar etiquetas, *scores* y tiempos.
-2. **Devolver** métricas externas (media ± desviación estándar de 5 folds).
+2. Devolver métricas externas (media ± desviación estándar de 5 folds).
 ```
 
 ### 2.4 Configuración experimental
 
-Se utilizó **F1 positivo** como métrica principal, complementada con Precision, Recall, Accuracy, AUC-ROC, Brier y ECE. Para la clase de abandono,
+Se utilizó F1 positivo como métrica principal, complementada con Precision, Recall, Accuracy, AUC-ROC, Brier y ECE. Para la clase de abandono,
 
 $$
 \text{Precision} = \frac{TP}{TP + FP}, \qquad \text{Recall} = \frac{TP}{TP + FN}, \qquad F_1 = \frac{2\,TP}{2\,TP + FP + FN}.
@@ -195,10 +195,10 @@ $$
 
 ```{admonition} Algoritmo 2 — Reajuste final de los tres modelos finalistas y evaluación histórica
 :class: tip
-**Requiere:** conjunto de desarrollo $D$, tres configuraciones congeladas, presupuesto $B = 24$, tres folds internos.
-**Produce:** modelos finales, predicciones y métricas sobre el test histórico.
+Requiere: conjunto de desarrollo $D$, tres configuraciones congeladas, presupuesto $B = 24$, tres folds internos.
+Produce: modelos finales, predicciones y métricas sobre el test histórico.
 
-1. **Para** cada configuración finalista $m$:
+1. Para cada configuración finalista $m$:
    1. Ejecutar la búsqueda definida para $m$ con $B = 24$ evaluaciones y tres folds internos.
    2. Seleccionar $\theta^*_m$ por la mayor media de F1 positivo interno.
    3. Reajustar el preprocesamiento, SMOTE y clasificador sobre todo $D$ usando $\theta^*_m$.
@@ -266,16 +266,16 @@ El balanceo fue el factor más influyente: SMOTE mejoró el F1 medio frente a no
   - 0.527 ± 0.014
   - 0.754 ± 0.010
   - 0.824 ± 0.010
-* - **Random Forest**
-  - **SMOTE–TPE**
-  - **0.638 ± 0.023**
+* - Random Forest
+  - SMOTE–TPE
+  - 0.638 ± 0.023
   - 0.735 ± 0.023
   - 0.565 ± 0.027
   - 0.779 ± 0.017
   - 0.844 ± 0.010
-* - **XGBoost**
-  - **SMOTE–Random**
-  - **0.638 ± 0.021**
+* - XGBoost
+  - SMOTE–Random
+  - 0.638 ± 0.021
   - 0.745 ± 0.023
   - 0.559 ± 0.029
   - 0.775 ± 0.019
@@ -345,7 +345,7 @@ El balanceo fue el factor más influyente: SMOTE mejoró el F1 medio frente a no
 F1-score medio de las configuraciones seleccionadas para las siete familias de modelos. Random Forest y XGBoost alcanzaron los mayores valores de F1, ambos alrededor de 0.638, seguidos por regresión logística con 0.634.
 ```
 
-**Comparación estadística.** Se aplicó la secuencia Friedman → Nemenyi → diferencia crítica sobre las 112 configuraciones y los 5 folds externos [20, 21]. Friedman produjo $\chi^2 = 422.29$ con 111 grados de libertad ($p = 7.7 \times 10^{-38}$) y una concordancia de Kendall $W = 0.76$; sin embargo, los folds de un solo conjunto de datos no son bloques independientes, por lo que estos resultados se leen solo como exploratorios. La diferencia crítica fue 89.4 rangos y solo 31 de los 6,216 pares quedaron bajo el umbral nominal 0.05, de modo que las mejores configuraciones no se separan entre sí. Entre los finalistas, la diferencia media de F1 entre Random Forest y XGBoost fue de apenas 0.0004 por fold.
+Comparación estadística. Se aplicó la secuencia Friedman → Nemenyi → diferencia crítica sobre las 112 configuraciones y los 5 folds externos [20, 21]. Friedman produjo $\chi^2 = 422.29$ con 111 grados de libertad ($p = 7.7 \times 10^{-38}$) y una concordancia de Kendall $W = 0.76$; sin embargo, los folds de un solo conjunto de datos no son bloques independientes, por lo que estos resultados se leen solo como exploratorios. La diferencia crítica fue 89.4 rangos y solo 31 de los 6,216 pares quedaron bajo el umbral nominal 0.05, de modo que las mejores configuraciones no se separan entre sí. Entre los finalistas, la diferencia media de F1 entre Random Forest y XGBoost fue de apenas 0.0004 por fold.
 
 Se congelaron las tres familias de mayor F1 medio externo, con su configuración de optimización definida por el protocolo, antes de consultar el test histórico. Los modelos finales fueron Random Forest–SMOTE–TPE ($T = 100$, profundidad 8, hoja mínima 5, $\sqrt{p}$; F1 de selección interna = 0.636521), XGBoost–SMOTE–Random ($T = 100$, profundidad 2) y regresión logística–SMOTE–Grid ($C = 0.53367$, penalización $L_1$). La {numref}`tab-paper-test` muestra su desempeño en el test de 1,409 clientes, que ya había sido expuesto en una entrega anterior y por tanto es evidencia suplementaria.
 
@@ -427,9 +427,9 @@ Los intervalos *bootstrap* pareados del 95% de los tres finalistas se solapan am
 Comparación del AUC-ROC de los tres modelos finalistas en el test histórico. Random Forest obtuvo un AUC de 0.844, mientras que XGBoost y regresión logística alcanzaron 0.842. Las diferencias fueron pequeñas y no se detectaron diferencias estadísticamente significativas mediante la comparación de AUC.
 ```
 
-**Optimizadores.** A igual presupuesto, TPE, Random y el algoritmo genético mejoraron el F1 interno acumulado frente al orden de Grid solo con presupuestos bajos (a 8 evaluaciones, ganancias de 0.0069, 0.0066 y 0.0063, respectivamente), pero a las 24 evaluaciones las diferencias fueron despreciables (+0.0004, −0.0003 y −0.00005) y las razones de tiempo, cercanas a uno. En KNN, árbol de decisión y Random Forest el espacio discreto de 24 candidatos se agota, por lo que los cuatro optimizadores empatan. No se observó una ventaja universal de calidad ni de velocidad.
+Optimizadores. A igual presupuesto, TPE, Random y el algoritmo genético mejoraron el F1 interno acumulado frente al orden de Grid solo con presupuestos bajos (a 8 evaluaciones, ganancias de 0.0069, 0.0066 y 0.0063, respectivamente), pero a las 24 evaluaciones las diferencias fueron despreciables (+0.0004, −0.0003 y −0.00005) y las razones de tiempo, cercanas a uno. En KNN, árbol de decisión y Random Forest el espacio discreto de 24 candidatos se agota, por lo que los cuatro optimizadores empatan. No se observó una ventaja universal de calidad ni de velocidad.
 
-**Calibración e interpretabilidad.** La calibración sigmoide redujo conjuntamente Brier y ECE en 80 de las 96 configuraciones con probabilidades nativas, sin mejoría universal. En el análisis con SHAP [11], las variables de mayor importancia media absoluta fueron `Contract`, `InternetService` y `tenure` en Random Forest (0.077, 0.069 y 0.068) y `Contract`, `tenure` e `InternetService` en XGBoost (0.105, 0.093 y 0.073), como muestra la {numref}`fig-paper-shap`. LIME [12] mostró estabilidad en las variables principales pero fidelidad probabilística variable entre casos. El análisis de casos individuales mostró que los falsos negativos de alta confianza reciben fuertes contribuciones negativas de un contrato de dos años y una antigüedad alta, lo que ilustra una limitación del modelo y no una explicación causal del abandono.
+Calibración e interpretabilidad. La calibración sigmoide redujo conjuntamente Brier y ECE en 80 de las 96 configuraciones con probabilidades nativas, sin mejoría universal. En el análisis con SHAP [11], las variables de mayor importancia media absoluta fueron `Contract`, `InternetService` y `tenure` en Random Forest (0.077, 0.069 y 0.068) y `Contract`, `tenure` e `InternetService` en XGBoost (0.105, 0.093 y 0.073), como muestra la {numref}`fig-paper-shap`. LIME [12] mostró estabilidad en las variables principales pero fidelidad probabilística variable entre casos. El análisis de casos individuales mostró que los falsos negativos de alta confianza reciben fuertes contribuciones negativas de un contrato de dos años y una antigüedad alta, lo que ilustra una limitación del modelo y no una explicación causal del abandono.
 
 ```{figure} paper/Imagenes/fig-shap-global-rf.png
 :name: fig-paper-shap
@@ -465,32 +465,32 @@ Esta sección se completará en la siguiente versión del manuscrito.
 
 ## Declaraciones
 
-- **Disponibilidad de datos:** el conjunto Telco Customer Churn es público y puede descargarse desde [Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn).
-- **Disponibilidad de código:** los notebooks de EDA, preprocesamiento y modelamiento avanzado están disponibles en [GitHub](https://github.com/Nataly-Cardenas/Telco_Churn_Entregable).
-- **Disponibilidad de JBOOK:** los notebooks de EDA, preprocesamiento y modelamiento avanzado están disponibles en este [Jupyter Book](https://nataly-cardenas.github.io/Telco_Churn_Entregable/intro.html).
-- **Contribución de las autoras:** N. Cárdenas y L. Rivera participaron conjuntamente en el ETL, el análisis exploratorio, el modelado y los experimentos, así como en la redacción del manuscrito.
-- **Conflicto de intereses:** las autoras declaran no tener conflictos de interés.
+- Disponibilidad de datos: el conjunto Telco Customer Churn es público y puede descargarse desde [Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn).
+- Disponibilidad de código: los notebooks de EDA, preprocesamiento y modelamiento avanzado están disponibles en [GitHub](https://github.com/Nataly-Cardenas/Telco_Churn_Entregable).
+- Disponibilidad de JBOOK: los notebooks de EDA, preprocesamiento y modelamiento avanzado están disponibles en este [Jupyter Book](https://nataly-cardenas.github.io/Telco_Churn_Entregable/intro.html).
+- Contribución de las autoras: N. Cárdenas y L. Rivera participaron conjuntamente en el ETL, el análisis exploratorio, el modelado y los experimentos, así como en la redacción del manuscrito.
+- Conflicto de intereses: las autoras declaran no tener conflictos de interés.
 
 ## Referencias
 
 1. Hosmer, D.W., Lemeshow, S., Sturdivant, R.X.: *Applied Logistic Regression*, 3rd edn. Wiley, Hoboken, NJ (2013)
-2. Breiman, L.: Random forests. *Machine Learning* **45**(1), 5–32 (2001)
+2. Breiman, L.: Random forests. *Machine Learning* 45(1), 5–32 (2001)
 3. Chen, T., Guestrin, C.: XGBoost: A scalable tree boosting system. In: *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, pp. 785–794 (2016)
-4. Cover, T., Hart, P.: Nearest neighbor pattern classification. *IEEE Transactions on Information Theory* **13**(1), 21–27 (1967)
-5. Domingos, P., Pazzani, M.: On the optimality of the simple Bayesian classifier under zero-one loss. *Machine Learning* **29**, 103–130 (1997)
+4. Cover, T., Hart, P.: Nearest neighbor pattern classification. *IEEE Transactions on Information Theory* 13(1), 21–27 (1967)
+5. Domingos, P., Pazzani, M.: On the optimality of the simple Bayesian classifier under zero-one loss. *Machine Learning* 29, 103–130 (1997)
 6. Breiman, L., Friedman, J.H., Olshen, R.A., Stone, C.J.: *Classification and Regression Trees*. Wadsworth, Belmont, CA (1984)
-7. Cortes, C., Vapnik, V.: Support-vector networks. *Machine Learning* **20**(3), 273–297 (1995)
-8. Chawla, N.V., Bowyer, K.W., Hall, L.O., Kegelmeyer, W.P.: SMOTE: Synthetic minority over-sampling technique. *Journal of Artificial Intelligence Research* **16**, 321–357 (2002)
+7. Cortes, C., Vapnik, V.: Support-vector networks. *Machine Learning* 20(3), 273–297 (1995)
+8. Chawla, N.V., Bowyer, K.W., Hall, L.O., Kegelmeyer, W.P.: SMOTE: Synthetic minority over-sampling technique. *Journal of Artificial Intelligence Research* 16, 321–357 (2002)
 9. He, H., Bai, Y., Garcia, E.A., Li, S.: ADASYN: Adaptive synthetic sampling approach for imbalanced learning. In: *2008 IEEE International Joint Conference on Neural Networks*, pp. 1322–1328 (2008)
-10. Varma, S., Simon, R.: Bias in error estimation when using cross-validation for model selection. *BMC Bioinformatics* **7**, 91 (2006)
+10. Varma, S., Simon, R.: Bias in error estimation when using cross-validation for model selection. *BMC Bioinformatics* 7, 91 (2006)
 11. Lundberg, S.M., Lee, S.-I.: A unified approach to interpreting model predictions. In: *Advances in Neural Information Processing Systems*, vol. 30, pp. 4765–4774 (2017)
 12. Ribeiro, M.T., Singh, S., Guestrin, C.: "Why should I trust you?": Explaining the predictions of any classifier. In: *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, pp. 1135–1144 (2016)
 13. IBM: Telco Customer Churn (conjunto de datos de ejemplo de IBM). Kaggle (2018). <https://www.kaggle.com/datasets/blastchar/telco-customer-churn>
 14. Cramér, H.: *Mathematical Methods of Statistics*. Princeton University Press, Princeton, NJ (1946)
-15. Holm, S.: A simple sequentially rejective multiple test procedure. *Scandinavian Journal of Statistics* **6**(2), 65–70 (1979)
-16. Pedregosa, F., *et al.*: Scikit-learn: Machine learning in Python. *Journal of Machine Learning Research* **12**, 2825–2830 (2011)
-17. Lemaître, G., Nogueira, F., Aridas, C.K.: Imbalanced-learn: A Python toolbox to tackle the curse of imbalanced datasets in machine learning. *Journal of Machine Learning Research* **18**(17), 1–5 (2017)
+15. Holm, S.: A simple sequentially rejective multiple test procedure. *Scandinavian Journal of Statistics* 6(2), 65–70 (1979)
+16. Pedregosa, F., *et al.*: Scikit-learn: Machine learning in Python. *Journal of Machine Learning Research* 12, 2825–2830 (2011)
+17. Lemaître, G., Nogueira, F., Aridas, C.K.: Imbalanced-learn: A Python toolbox to tackle the curse of imbalanced datasets in machine learning. *Journal of Machine Learning Research* 18(17), 1–5 (2017)
 18. Akiba, T., Sano, S., Yanase, T., Ohta, T., Koyama, M.: Optuna: A next-generation hyperparameter optimization framework. In: *Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, pp. 2623–2631 (2019)
-19. Fortin, F.-A., De Rainville, F.-M., Gardner, M.-A., Parizeau, M., Gagné, C.: DEAP: Evolutionary algorithms made easy. *Journal of Machine Learning Research* **13**, 2171–2175 (2012)
-20. Friedman, M.: The use of ranks to avoid the assumption of normality implicit in the analysis of variance. *Journal of the American Statistical Association* **32**(200), 675–701 (1937)
-21. Demšar, J.: Statistical comparisons of classifiers over multiple data sets. *Journal of Machine Learning Research* **7**, 1–30 (2006)
+19. Fortin, F.-A., De Rainville, F.-M., Gardner, M.-A., Parizeau, M., Gagné, C.: DEAP: Evolutionary algorithms made easy. *Journal of Machine Learning Research* 13, 2171–2175 (2012)
+20. Friedman, M.: The use of ranks to avoid the assumption of normality implicit in the analysis of variance. *Journal of the American Statistical Association* 32(200), 675–701 (1937)
+21. Demšar, J.: Statistical comparisons of classifiers over multiple data sets. *Journal of Machine Learning Research* 7, 1–30 (2006)
